@@ -1,0 +1,29 @@
+# Entity: token
+
+main: kit: entity: token: {
+
+  alias: field: {}
+
+  name: "token"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/token"
+          parts: [
+            "token"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

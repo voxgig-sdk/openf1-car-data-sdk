@@ -1,0 +1,30 @@
+# Entity: create_checkout_session
+
+main: kit: entity: create_checkout_session: {
+
+  alias: field: {}
+
+  name: "create_checkout_session"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/stripe/create-checkout-session"
+          parts: [
+            "stripe"
+            "create-checkout-session"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

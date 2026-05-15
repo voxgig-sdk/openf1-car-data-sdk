@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "create_checkout_session": {
+      "CREATE_CHECKOUT_SESSION00": {},
+      "CREATE_CHECKOUT_SESSION01": {},
+      "CREATE_CHECKOUT_SESSION02": {}
+    }
+  },
+  "new": {
+    "create_checkout_session": {
+      "create_checkout_session_ref01": {}
+    }
+  }
+}

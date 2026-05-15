@@ -1,0 +1,28 @@
+# BasicSubscriptionCancelFlow
+
+main: kit: flow: BasicSubscriptionCancelFlow:
+{
+  entity: "subscription_cancel",
+  kind: "basic",
+  name: "BasicSubscriptionCancelFlow",
+  step: [
+    {
+      input: {
+        ref: "subscription_cancel_ref01",
+        srcdatavar: "subscription_cancel_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-subscription_cancel_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSubscriptionCancelFlow"
+}

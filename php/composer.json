@@ -1,0 +1,23 @@
+{
+  "name": "voxgig-sdk/openf1-car-data",
+  "description": "Openf1CarData SDK for PHP",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Openf1CarData\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Openf1CarData\\Tests\\": "test/"
+    }
+  }
+}

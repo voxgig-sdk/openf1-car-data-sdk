@@ -1,0 +1,28 @@
+# BasicSubscriptionSuccessFlow
+
+main: kit: flow: BasicSubscriptionSuccessFlow:
+{
+  entity: "subscription_success",
+  kind: "basic",
+  name: "BasicSubscriptionSuccessFlow",
+  step: [
+    {
+      input: {
+        ref: "subscription_success_ref01",
+        srcdatavar: "subscription_success_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-subscription_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSubscriptionSuccessFlow"
+}

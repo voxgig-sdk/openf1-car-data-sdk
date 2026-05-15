@@ -1,0 +1,18 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      servers: [
+        {
+          url: "https://api.openf1.org"
+        }
+      ]
+      title: "FastAPI"
+      version: "0.1.0"
+    }
+  }
+}
+
+}

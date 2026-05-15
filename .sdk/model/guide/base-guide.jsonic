@@ -1,0 +1,53 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 7
+  metrics: count: path: 7
+  metrics: count: method: 9
+
+  entity: create_checkout_session: {
+    path: "/stripe/create-checkout-session": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: endpoint_path_post: {
+    path: "/{path}": {
+      rename: param: "path": *"id"
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: race_lap: {
+    path: "/race_lap": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: subscription_cancel: {
+    path: "/subscription_cancel": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: subscription_success: {
+    path: "/subscription_success": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: token: {
+    path: "/token": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: webhook: {
+    path: "/stripe/webhook": {
+      op: create: method: *POST
+    }
+  }
+
+}

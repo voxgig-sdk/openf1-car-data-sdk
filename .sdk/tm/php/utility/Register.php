@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// Openf1CarData SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+Openf1CarDataUtility::setRegistrar(function (Openf1CarDataUtility $u): void {
+    $u->clean = [Openf1CarDataClean::class, 'call'];
+    $u->done = [Openf1CarDataDone::class, 'call'];
+    $u->make_error = [Openf1CarDataMakeError::class, 'call'];
+    $u->feature_add = [Openf1CarDataFeatureAdd::class, 'call'];
+    $u->feature_hook = [Openf1CarDataFeatureHook::class, 'call'];
+    $u->feature_init = [Openf1CarDataFeatureInit::class, 'call'];
+    $u->fetcher = [Openf1CarDataFetcher::class, 'call'];
+    $u->make_fetch_def = [Openf1CarDataMakeFetchDef::class, 'call'];
+    $u->make_context = [Openf1CarDataMakeContext::class, 'call'];
+    $u->make_options = [Openf1CarDataMakeOptions::class, 'call'];
+    $u->make_request = [Openf1CarDataMakeRequest::class, 'call'];
+    $u->make_response = [Openf1CarDataMakeResponse::class, 'call'];
+    $u->make_result = [Openf1CarDataMakeResult::class, 'call'];
+    $u->make_point = [Openf1CarDataMakePoint::class, 'call'];
+    $u->make_spec = [Openf1CarDataMakeSpec::class, 'call'];
+    $u->make_url = [Openf1CarDataMakeUrl::class, 'call'];
+    $u->param = [Openf1CarDataParam::class, 'call'];
+    $u->prepare_auth = [Openf1CarDataPrepareAuth::class, 'call'];
+    $u->prepare_body = [Openf1CarDataPrepareBody::class, 'call'];
+    $u->prepare_headers = [Openf1CarDataPrepareHeaders::class, 'call'];
+    $u->prepare_method = [Openf1CarDataPrepareMethod::class, 'call'];
+    $u->prepare_params = [Openf1CarDataPrepareParams::class, 'call'];
+    $u->prepare_path = [Openf1CarDataPreparePath::class, 'call'];
+    $u->prepare_query = [Openf1CarDataPrepareQuery::class, 'call'];
+    $u->result_basic = [Openf1CarDataResultBasic::class, 'call'];
+    $u->result_body = [Openf1CarDataResultBody::class, 'call'];
+    $u->result_headers = [Openf1CarDataResultHeaders::class, 'call'];
+    $u->transform_request = [Openf1CarDataTransformRequest::class, 'call'];
+    $u->transform_response = [Openf1CarDataTransformResponse::class, 'call'];
+});

@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "subscription_success": {
+      "SUBSCRIPTION_SUCCESS00": {},
+      "SUBSCRIPTION_SUCCESS01": {},
+      "SUBSCRIPTION_SUCCESS02": {}
+    }
+  },
+  "new": {
+    "subscription_success": {
+      "subscription_success_ref01": {}
+    }
+  }
+}

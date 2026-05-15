@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "race_lap": {
+      "RACE_LAP00": {},
+      "RACE_LAP01": {},
+      "RACE_LAP02": {}
+    }
+  },
+  "new": {
+    "race_lap": {
+      "race_lap_ref01": {}
+    }
+  }
+}

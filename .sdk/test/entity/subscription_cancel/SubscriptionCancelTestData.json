@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "subscription_cancel": {
+      "SUBSCRIPTION_CANCEL00": {},
+      "SUBSCRIPTION_CANCEL01": {},
+      "SUBSCRIPTION_CANCEL02": {}
+    }
+  },
+  "new": {
+    "subscription_cancel": {
+      "subscription_cancel_ref01": {}
+    }
+  }
+}

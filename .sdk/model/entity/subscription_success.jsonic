@@ -1,0 +1,29 @@
+# Entity: subscription_success
+
+main: kit: entity: subscription_success: {
+
+  alias: field: {}
+
+  name: "subscription_success"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/subscription_success"
+          parts: [
+            "subscription_success"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

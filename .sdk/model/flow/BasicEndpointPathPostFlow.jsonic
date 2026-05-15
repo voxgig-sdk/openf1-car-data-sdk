@@ -1,0 +1,44 @@
+# BasicEndpointPathPostFlow
+
+main: kit: flow: BasicEndpointPathPostFlow:
+{
+  entity: "endpoint_path_post",
+  kind: "basic",
+  name: "BasicEndpointPathPostFlow",
+  step: [
+    {
+      input: {
+        ref: "endpoint_path_post_ref01"
+      }
+
+      match: {
+        path: "path01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "endpoint_path_post_ref01",
+        srcdatavar: "endpoint_path_post_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "endpoint_path_post01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-endpoint_path_post_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEndpointPathPostFlow"
+}

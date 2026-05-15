@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "endpoint_path_post": {
+      "ENDPOINT_PATH_POST00": {},
+      "ENDPOINT_PATH_POST01": {},
+      "ENDPOINT_PATH_POST02": {}
+    }
+  },
+  "new": {
+    "endpoint_path_post": {
+      "endpoint_path_post_ref01": {}
+    }
+  }
+}
