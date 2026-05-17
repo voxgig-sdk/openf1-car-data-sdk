@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/openf1-car-data-sdk/core"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/openf1-car-data-sdk/go/utility/struct"
 )
 
 type WebhookEntity struct {

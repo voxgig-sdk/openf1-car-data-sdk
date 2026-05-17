@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/openf1-car-data-sdk/core"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

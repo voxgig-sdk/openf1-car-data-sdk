@@ -1,9 +1,15 @@
 {
   "existing": {
     "token": {
-      "TOKEN00": {},
-      "TOKEN01": {},
-      "TOKEN02": {}
+      "TOKEN00": {
+        "id": "TOKEN00"
+      },
+      "TOKEN01": {
+        "id": "TOKEN01"
+      },
+      "TOKEN02": {
+        "id": "TOKEN02"
+      }
     }
   },
   "new": {

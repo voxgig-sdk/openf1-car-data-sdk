@@ -1,9 +1,15 @@
 {
   "existing": {
     "subscription_success": {
-      "SUBSCRIPTION_SUCCESS00": {},
-      "SUBSCRIPTION_SUCCESS01": {},
-      "SUBSCRIPTION_SUCCESS02": {}
+      "SUBSCRIPTION_SUCCESS00": {
+        "id": "SUBSCRIPTION_SUCCESS00"
+      },
+      "SUBSCRIPTION_SUCCESS01": {
+        "id": "SUBSCRIPTION_SUCCESS01"
+      },
+      "SUBSCRIPTION_SUCCESS02": {
+        "id": "SUBSCRIPTION_SUCCESS02"
+      }
     }
   },
   "new": {

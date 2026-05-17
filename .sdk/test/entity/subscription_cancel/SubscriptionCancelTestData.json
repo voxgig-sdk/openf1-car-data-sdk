@@ -1,9 +1,15 @@
 {
   "existing": {
     "subscription_cancel": {
-      "SUBSCRIPTION_CANCEL00": {},
-      "SUBSCRIPTION_CANCEL01": {},
-      "SUBSCRIPTION_CANCEL02": {}
+      "SUBSCRIPTION_CANCEL00": {
+        "id": "SUBSCRIPTION_CANCEL00"
+      },
+      "SUBSCRIPTION_CANCEL01": {
+        "id": "SUBSCRIPTION_CANCEL01"
+      },
+      "SUBSCRIPTION_CANCEL02": {
+        "id": "SUBSCRIPTION_CANCEL02"
+      }
     }
   },
   "new": {

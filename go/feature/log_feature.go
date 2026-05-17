@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/openf1-car-data-sdk/core"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
 )
 
 type LogFeature struct {

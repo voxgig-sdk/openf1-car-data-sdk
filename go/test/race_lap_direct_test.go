@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/openf1-car-data-sdk"
-	"github.com/voxgig-sdk/openf1-car-data-sdk/core"
+	sdk "github.com/voxgig-sdk/openf1-car-data-sdk/go"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
 )
 
 func TestRaceLapDirect(t *testing.T) {

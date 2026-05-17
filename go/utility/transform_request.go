@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/openf1-car-data-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/openf1-car-data-sdk/core"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
 )
 
 func transformRequestUtil(ctx *core.Context) any {

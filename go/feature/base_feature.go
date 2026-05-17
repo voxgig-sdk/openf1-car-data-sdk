@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/openf1-car-data-sdk/core"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
 )
 
 type BaseFeature struct {

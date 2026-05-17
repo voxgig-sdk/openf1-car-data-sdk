@@ -1,9 +1,15 @@
 {
   "existing": {
     "create_checkout_session": {
-      "CREATE_CHECKOUT_SESSION00": {},
-      "CREATE_CHECKOUT_SESSION01": {},
-      "CREATE_CHECKOUT_SESSION02": {}
+      "CREATE_CHECKOUT_SESSION00": {
+        "id": "CREATE_CHECKOUT_SESSION00"
+      },
+      "CREATE_CHECKOUT_SESSION01": {
+        "id": "CREATE_CHECKOUT_SESSION01"
+      },
+      "CREATE_CHECKOUT_SESSION02": {
+        "id": "CREATE_CHECKOUT_SESSION02"
+      }
     }
   },
   "new": {

@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/openf1-car-data-sdk/core"
+import "github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
 
 func makeRequestUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["request"] != nil {

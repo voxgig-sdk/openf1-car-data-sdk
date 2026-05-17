@@ -1,9 +1,15 @@
 {
   "existing": {
     "endpoint_path_post": {
-      "ENDPOINT_PATH_POST00": {},
-      "ENDPOINT_PATH_POST01": {},
-      "ENDPOINT_PATH_POST02": {}
+      "ENDPOINT_PATH_POST00": {
+        "id": "ENDPOINT_PATH_POST00"
+      },
+      "ENDPOINT_PATH_POST01": {
+        "id": "ENDPOINT_PATH_POST01"
+      },
+      "ENDPOINT_PATH_POST02": {
+        "id": "ENDPOINT_PATH_POST02"
+      }
     }
   },
   "new": {

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/openf1-car-data-sdk"
-	"github.com/voxgig-sdk/openf1-car-data-sdk/core"
+	sdk "github.com/voxgig-sdk/openf1-car-data-sdk/go"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/openf1-car-data-sdk/go/utility/struct"
 )
 
 func TestCreateCheckoutSessionEntity(t *testing.T) {

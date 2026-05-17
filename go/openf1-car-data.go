@@ -1,10 +1,10 @@
 package voxgigopenf1cardatasdk
 
 import (
-	"github.com/voxgig-sdk/openf1-car-data-sdk/core"
-	"github.com/voxgig-sdk/openf1-car-data-sdk/entity"
-	"github.com/voxgig-sdk/openf1-car-data-sdk/feature"
-	_ "github.com/voxgig-sdk/openf1-car-data-sdk/utility"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/core"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/entity"
+	"github.com/voxgig-sdk/openf1-car-data-sdk/go/feature"
+	_ "github.com/voxgig-sdk/openf1-car-data-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
