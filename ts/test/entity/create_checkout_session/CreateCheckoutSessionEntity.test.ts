@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'OPENF__CAR_DATA_TEST_CREATE_CHECKOUT_SESSION_ENTID': idmap,
     'OPENF__CAR_DATA_TEST_LIVE': 'FALSE',
     'OPENF__CAR_DATA_TEST_EXPLAIN': 'FALSE',
-    'OPENF__CAR_DATA_APIKEY': 'NONE',
   })
 
   idmap = env['OPENF__CAR_DATA_TEST_CREATE_CHECKOUT_SESSION_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new Openf1CarDataSDK(merge([
       {
-        apikey: env.OPENF__CAR_DATA_APIKEY,
       },
       extra
     ]))

@@ -87,7 +87,6 @@ function endpoint_path_post_basic_setup($extra)
         "OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID" => $idmap,
         "OPENF_CARDATA_TEST_LIVE" => "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-        "OPENF_CARDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -99,7 +98,6 @@ function endpoint_path_post_basic_setup($extra)
     if ($env["OPENF_CARDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OPENF_CARDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.openf1.org',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
