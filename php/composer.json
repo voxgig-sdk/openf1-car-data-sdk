@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/openf1-car-data",
-  "description": "Openf1CarData SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Fast public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "openf1-car-data"],
+  "homepage": "https://github.com/voxgig-sdk/openf1-car-data-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/openf1-car-data-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/openf1-car-data-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

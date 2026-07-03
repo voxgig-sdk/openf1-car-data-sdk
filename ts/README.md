@@ -10,7 +10,7 @@ The TypeScript SDK for the Openf1CarData API — a type-safe, entity-oriented cl
 
 ## Install
 ```bash
-npm install openf1-car-data
+npm install @voxgig-sdk/openf1-car-data
 ```
 ## Tutorial: your first API call
 

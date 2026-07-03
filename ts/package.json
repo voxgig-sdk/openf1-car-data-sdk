@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/openf1-car-data",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Fast public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "openf1-car-data"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/openf1-car-data-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/openf1-car-data-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/openf1-car-data-sdk/issues"
+  },
   "main": "dist/Openf1CarDataSDK.js",
   "type": "commonjs",
   "types": "dist/Openf1CarDataSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "Openf1CarData",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

@@ -10,7 +10,7 @@ The PHP SDK for the Openf1CarData API — an entity-oriented client using PHP co
 
 ## Install
 ```bash
-composer require voxgig/openf1-car-data-sdk
+composer require voxgig-sdk/openf1-car-data
 ```
 
 

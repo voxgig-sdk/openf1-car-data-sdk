@@ -5,16 +5,19 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "voxgig-sdk-openf1-car-data"
 version = "0.0.1"
-description = "Openf1CarData SDK for Python"
+description = "Unofficial generated Python SDK for the Fast public API. Not affiliated with or endorsed by the upstream API provider."
+readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
+keywords = ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "openf1-car-data"]
 dependencies = [
-    "requests>=2.33",
     "requests>=2.33",
 ]
 
 [project.urls]
-Homepage = "https://github.com/voxgig/openf1-car-data-sdk"
+Homepage = "https://github.com/voxgig-sdk/openf1-car-data-sdk"
+Repository = "https://github.com/voxgig-sdk/openf1-car-data-sdk"
+Issues = "https://github.com/voxgig-sdk/openf1-car-data-sdk/issues"
 
 # Explicit package list — setuptools auto-discovery refuses to pick when
 # multiple top-level dirs (core/entity/feature/utility) are present.

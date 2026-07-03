@@ -10,7 +10,7 @@ The Lua SDK for the Openf1CarData API — an entity-oriented client using Lua co
 
 ## Install
 ```bash
-luarocks install openf1-car-data-sdk
+luarocks install voxgig-sdk-openf1-car-data
 ```
 
 If the module is not yet published, add the source directory to

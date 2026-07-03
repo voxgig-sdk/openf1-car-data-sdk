@@ -10,7 +10,7 @@ The Python SDK for the Openf1CarData API — an entity-oriented client following
 
 ## Install
 ```bash
-pip install openf1-car-data-sdk
+pip install voxgig-sdk-openf1-car-data
 ```
 
 Or install from source:

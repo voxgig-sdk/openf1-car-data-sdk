@@ -10,13 +10,13 @@ The Ruby SDK for the Openf1CarData API — an entity-oriented client using idiom
 
 ## Install
 ```bash
-gem install openf1-car-data-sdk
+gem install voxgig-sdk-openf1-car-data
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "openf1-car-data-sdk"
+gem "voxgig-sdk-openf1-car-data"
 ```
 
 Then run:
