@@ -11,31 +11,7 @@ main: {
       ]
       title: "FastAPI"
       version: "0.1.0"
-      tagline: "Open-source REST API for live and historical Formula 1 telemetry, timing, and session data"
-      homepage: "https://openf1.org/"
-      docs_url: "https://openf1.org/#documentation"
-      license_short: "CC BY-NC-SA 4.0 — non-commercial, attribution, share-alike"
-      license_md: `- Data is published under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0).
-- Attribution to OpenF1 is required when redistributing or visualising the data.
-- Non-commercial use only; derivative works must be shared under the same licence.
-- OpenF1 is an unofficial, community-run project and is not affiliated with Formula 1, the FIA, or Formula One Management.`
-      about_md: `[OpenF1](https://openf1.org/) is an open-source REST API that aggregates Formula 1 race data — car telemetry, timing, positions, weather, race control messages and team radio — and exposes it through a single JSON HTTP interface. It is a community-operated project maintained by independent contributors and is not affiliated with Formula 1, the FIA, or FOM.
-
-What you get from the API:
-
-- Car telemetry sampled at roughly 3.7 Hz (speed, throttle, brake, RPM, gear, DRS).
-- Lap and sector timings, mini-sectors and speed-trap values.
-- Live race positions, intervals and gaps between drivers.
-- Pit stops, stints and tyre-compound information.
-- Weather readings (air/track temperature, humidity, wind, rainfall).
-- Race control messages (flags, safety car, incidents) and team-radio audio clips.
-- Session and meeting metadata used as keys (\`session_key\`, \`meeting_key\`) across all endpoints.
-
-Operational notes: all endpoints live under \`https://api.openf1.org/v1/\` and accept query-string filters (e.g. \`session_key\`, \`driver_number\`, \`lap_number\`, comparison operators like \`<=\`). No API key, signup, or credit card is required. The free tier is rate-limited to roughly 3 requests/second and 30 requests/minute; an optional sponsor tier raises that to 6 req/s and 60 req/min. Responses are JSON and include both live (current session) and historical data going back through past seasons.`
-      entity_desc: {
-        race_lap: "Per-driver lap timing records — sector times, lap duration and speed-trap values — typically retrieved from `/v1/laps` filtered by `session_key`, `driver_number` and `lap_number`."
-      }
-      auth: false
     }
   }
 }
+

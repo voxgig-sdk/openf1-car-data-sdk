@@ -1,24 +1,8 @@
 # Openf1CarData SDK
 
-Open-source REST API for live and historical Formula 1 telemetry, timing, and session data
+FastAPI client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About FastAPI
-
-[OpenF1](https://openf1.org/) is an open-source REST API that aggregates Formula 1 race data — car telemetry, timing, positions, weather, race control messages and team radio — and exposes it through a single JSON HTTP interface. It is a community-operated project maintained by independent contributors and is not affiliated with Formula 1, the FIA, or FOM.
-
-What you get from the API:
-
-- Car telemetry sampled at roughly 3.7 Hz (speed, throttle, brake, RPM, gear, DRS).
-- Lap and sector timings, mini-sectors and speed-trap values.
-- Live race positions, intervals and gaps between drivers.
-- Pit stops, stints and tyre-compound information.
-- Weather readings (air/track temperature, humidity, wind, rainfall).
-- Race control messages (flags, safety car, incidents) and team-radio audio clips.
-- Session and meeting metadata used as keys (`session_key`, `meeting_key`) across all endpoints.
-
-Operational notes: all endpoints live under `https://api.openf1.org/v1/` and accept query-string filters (e.g. `session_key`, `driver_number`, `lap_number`, comparison operators like `<=`). No API key, signup, or credit card is required. The free tier is rate-limited to roughly 3 requests/second and 30 requests/minute; an optional sponsor tier raises that to 6 req/s and 60 req/min. Responses are JSON and include both live (current session) and historical data going back through past seasons.
 
 ## Try it
 
@@ -52,27 +36,28 @@ gem install openf1-car-data-sdk
 luarocks install openf1-car-data-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { Openf1CarDataSDK } from 'openf1-car-data'
 
-const client = new Openf1CarDataSDK({})
+const client = new Openf1CarDataSDK({
+  apikey: process.env.OPENF1-CAR-DATA_APIKEY,
+})
 
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -104,7 +89,7 @@ The API exposes 7 entities:
 | --- | --- | --- |
 | **CreateCheckoutSession** |  | `/stripe/create-checkout-session` |
 | **EndpointPathPost** |  | `/{path}` |
-| **RaceLap** | Per-driver lap timing records — sector times, lap duration and speed-trap values — typically retrieved from `/v1/laps` filtered by `session_key`, `driver_number` and `lap_number`. | `/race_lap` |
+| **RaceLap** |  | `/race_lap` |
 | **SubscriptionCancel** |  | `/subscription_cancel` |
 | **SubscriptionSuccess** |  | `/subscription_success` |
 | **Token** |  | `/token` |
@@ -118,9 +103,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from openf1cardata_sdk import Openf1CarDataSDK
 
-client = Openf1CarDataSDK({})
+client = Openf1CarDataSDK({
+    "apikey": os.environ.get("OPENF1-CAR-DATA_APIKEY"),
+})
 
 ```
 
@@ -130,7 +118,9 @@ client = Openf1CarDataSDK({})
 <?php
 require_once 'openf1cardata_sdk.php';
 
-$client = new Openf1CarDataSDK([]);
+$client = new Openf1CarDataSDK([
+    "apikey" => getenv("OPENF1-CAR-DATA_APIKEY"),
+]);
 
 ```
 
@@ -139,7 +129,9 @@ $client = new Openf1CarDataSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/openf1-car-data-sdk/go"
 
-client := sdk.NewOpenf1CarDataSDK(map[string]any{})
+client := sdk.NewOpenf1CarDataSDK(map[string]any{
+    "apikey": os.Getenv("OPENF1-CAR-DATA_APIKEY"),
+})
 
 ```
 
@@ -148,7 +140,9 @@ client := sdk.NewOpenf1CarDataSDK(map[string]any{})
 ```ruby
 require_relative "Openf1CarData_sdk"
 
-client = Openf1CarDataSDK.new({})
+client = Openf1CarDataSDK.new({
+  "apikey" => ENV["OPENF1-CAR-DATA_APIKEY"],
+})
 
 ```
 
@@ -157,7 +151,9 @@ client = Openf1CarDataSDK.new({})
 ```lua
 local sdk = require("openf1-car-data_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("OPENF1-CAR-DATA_APIKEY"),
+})
 
 ```
 
@@ -177,25 +173,21 @@ const result = await client.CreateCheckoutSession().load({ id: 'test01' })
 ### Python
 
 ```python
-client = Openf1CarDataSDK.test(None, None)
-result, err = client.CreateCheckoutSession(None).load(
-    {"id": "test01"}, None
-)
+client = Openf1CarDataSDK.test()
+result, err = client.CreateCheckoutSession().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = Openf1CarDataSDK::test(null, null);
-[$result, $err] = $client->CreateCheckoutSession(null)->load(
-    ["id" => "test01"], null
-);
+$client = Openf1CarDataSDK::test();
+[$result, $err] = $client->CreateCheckoutSession()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.CreateCheckoutSession(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -204,19 +196,15 @@ result, err := client.CreateCheckoutSession(nil).Load(
 ### Ruby
 
 ```ruby
-client = Openf1CarDataSDK.test(nil, nil)
-result, err = client.CreateCheckoutSession(nil).load(
-  { "id" => "test01" }, nil
-)
+client = Openf1CarDataSDK.test
+result, err = client.CreateCheckoutSession().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:CreateCheckoutSession(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:CreateCheckoutSession():load({ id = "test01" })
 ```
 
 ## How it works
@@ -320,16 +308,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the FastAPI
-
-- Upstream: [https://openf1.org/](https://openf1.org/)
-- API docs: [https://openf1.org/#documentation](https://openf1.org/#documentation)
-
-- Data is published under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0).
-- Attribution to OpenF1 is required when redistributing or visualising the data.
-- Non-commercial use only; derivative works must be shared under the same licence.
-- OpenF1 is an unofficial, community-run project and is not affiliated with Formula 1, the FIA, or Formula One Management.
 
 ---
 

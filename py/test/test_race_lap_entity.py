@@ -93,6 +93,7 @@ def _race_lap_basic_setup(extra):
         "OPENF_CARDATA_TEST_RACE_LAP_ENTID": idmap,
         "OPENF_CARDATA_TEST_LIVE": "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN": "FALSE",
+        "OPENF_CARDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,6 +104,7 @@ def _race_lap_basic_setup(extra):
     if env.get("OPENF_CARDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("OPENF_CARDATA_APIKEY"),
             },
             extra or {},
         ])

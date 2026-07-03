@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -118,8 +118,8 @@ local create_checkout_session = client:CreateCheckoutSession(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:CreateCheckoutSession(nil):create({
-}, nil)
+local result, err = client:CreateCheckoutSession():create({
+})
 ```
 
 ### Common Methods
@@ -165,8 +165,8 @@ local endpoint_path_post = client:EndpointPathPost(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:EndpointPathPost(nil):create({
-}, nil)
+local result, err = client:EndpointPathPost():create({
+})
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -174,7 +174,7 @@ local result, err = client:EndpointPathPost(nil):create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:EndpointPathPost(nil):load({ id = "endpoint_path_post_id" }, nil)
+local result, err = client:EndpointPathPost():load({ id = "endpoint_path_post_id" })
 ```
 
 ### Common Methods
@@ -220,8 +220,8 @@ local race_lap = client:RaceLap(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:RaceLap(nil):create({
-}, nil)
+local result, err = client:RaceLap():create({
+})
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -229,7 +229,7 @@ local result, err = client:RaceLap(nil):create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:RaceLap(nil):load({ id = "race_lap_id" }, nil)
+local result, err = client:RaceLap():load({ id = "race_lap_id" })
 ```
 
 ### Common Methods
@@ -275,7 +275,7 @@ local subscription_cancel = client:SubscriptionCancel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:SubscriptionCancel(nil):load({ id = "subscription_cancel_id" }, nil)
+local result, err = client:SubscriptionCancel():load({ id = "subscription_cancel_id" })
 ```
 
 ### Common Methods
@@ -321,7 +321,7 @@ local subscription_success = client:SubscriptionSuccess(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:SubscriptionSuccess(nil):load({ id = "subscription_success_id" }, nil)
+local result, err = client:SubscriptionSuccess():load({ id = "subscription_success_id" })
 ```
 
 ### Common Methods
@@ -367,8 +367,8 @@ local token = client:Token(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Token(nil):create({
-}, nil)
+local result, err = client:Token():create({
+})
 ```
 
 ### Common Methods
@@ -414,8 +414,8 @@ local webhook = client:Webhook(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Webhook(nil):create({
-}, nil)
+local result, err = client:Webhook():create({
+})
 ```
 
 ### Common Methods

@@ -1,34 +1,13 @@
 {
-  "name": "openf1-car-data",
-  "origin": "voxgig-sdk",
   "def": "openf1-car-data_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "servers": [
-          {
-            "url": "https://api.openf1.org"
-          }
-        ],
-        "title": "FastAPI",
-        "version": "0.1.0",
-        "tagline": "Open-source REST API for live and historical Formula 1 telemetry, timing, and session data",
-        "homepage": "https://openf1.org/",
-        "docs_url": "https://openf1.org/#documentation",
-        "license_short": "CC BY-NC-SA 4.0 — non-commercial, attribution, share-alike",
-        "license_md": "- Data is published under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0).\n- Attribution to OpenF1 is required when redistributing or visualising the data.\n- Non-commercial use only; derivative works must be shared under the same licence.\n- OpenF1 is an unofficial, community-run project and is not affiliated with Formula 1, the FIA, or Formula One Management.",
-        "about_md": "[OpenF1](https://openf1.org/) is an open-source REST API that aggregates Formula 1 race data — car telemetry, timing, positions, weather, race control messages and team radio — and exposes it through a single JSON HTTP interface. It is a community-operated project maintained by independent contributors and is not affiliated with Formula 1, the FIA, or FOM.\n\nWhat you get from the API:\n\n- Car telemetry sampled at roughly 3.7 Hz (speed, throttle, brake, RPM, gear, DRS).\n- Lap and sector timings, mini-sectors and speed-trap values.\n- Live race positions, intervals and gaps between drivers.\n- Pit stops, stints and tyre-compound information.\n- Weather readings (air/track temperature, humidity, wind, rainfall).\n- Race control messages (flags, safety car, incidents) and team-radio audio clips.\n- Session and meeting metadata used as keys (`session_key`, `meeting_key`) across all endpoints.\n\nOperational notes: all endpoints live under `https://api.openf1.org/v1/` and accept query-string filters (e.g. `session_key`, `driver_number`, `lap_number`, comparison operators like `<=`). No API key, signup, or credit card is required. The free tier is rate-limited to roughly 3 requests/second and 30 requests/minute; an optional sponsor tier raises that to 6 req/s and 60 req/min. Responses are JSON and include both live (current session) and historical data going back through past seasons.",
-        "entity_desc": {
-          "race_lap": "Per-driver lap timing records — sector times, lap duration and speed-trap values — typically retrieved from `/v1/laps` filtered by `session_key`, `driver_number` and `lap_number`."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -37,62 +16,69 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "create_checkout_session": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "create_checkout_session",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "POST",
                   "orig": "/stripe/create-checkout-session",
                   "parts": [
                     "stripe",
                     "create-checkout-session"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "endpoint_path_post": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "endpoint_path_post",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "kind": "param",
                         "name": "id",
                         "orig": "path",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -114,25 +100,25 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             },
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "kind": "param",
                         "name": "id",
                         "orig": "path",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -154,201 +140,197 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "race_lap": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "race_lap",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "POST",
                   "orig": "/race_lap",
                   "parts": [
                     "race_lap"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             },
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "GET",
                   "orig": "/race_lap",
                   "parts": [
                     "race_lap"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "subscription_cancel": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "subscription_cancel",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "GET",
                   "orig": "/subscription_cancel",
                   "parts": [
                     "subscription_cancel"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "subscription_success": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "subscription_success",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "GET",
                   "orig": "/subscription_success",
                   "parts": [
                     "subscription_success"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "token": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "token",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "POST",
                   "orig": "/token",
                   "parts": [
                     "token"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "webhook": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "webhook",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "POST",
                   "orig": "/stripe/webhook",
                   "parts": [
                     "stripe",
                     "webhook"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
@@ -356,9 +338,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -366,6 +345,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -374,25 +361,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -408,20 +381,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -436,43 +421,47 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicCreateCheckoutSessionFlow": {
+          "active": true,
           "entity": "create_checkout_session",
+          "key$": "BasicCreateCheckoutSessionFlow",
           "kind": "basic",
           "name": "BasicCreateCheckoutSessionFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "create_checkout_session_ref01"
               },
-              "op": "create",
-              "active": true,
               "match": {},
-              "data": {},
+              "op": "create",
               "spec": [],
               "valid": []
             }
-          ],
-          "key$": "BasicCreateCheckoutSessionFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicEndpointPathPostFlow": {
+          "active": true,
           "entity": "endpoint_path_post",
+          "key$": "BasicEndpointPathPostFlow",
           "kind": "basic",
           "name": "BasicEndpointPathPostFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "endpoint_path_post_ref01"
               },
@@ -480,12 +469,12 @@
                 "path": "path01"
               },
               "op": "create",
-              "active": true,
-              "data": {},
               "spec": [],
               "valid": []
             },
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "endpoint_path_post_ref01",
                 "srcdatavar": "endpoint_path_post_ref01_data",
@@ -495,6 +484,7 @@
                 "id": "endpoint_path_post01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -502,39 +492,40 @@
                     "mark": "Mark01-endpoint_path_post_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicEndpointPathPostFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicRaceLapFlow": {
+          "active": true,
           "entity": "race_lap",
+          "key$": "BasicRaceLapFlow",
           "kind": "basic",
           "name": "BasicRaceLapFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "race_lap_ref01"
               },
-              "op": "create",
-              "active": true,
               "match": {},
-              "data": {},
+              "op": "create",
               "spec": [],
               "valid": []
             },
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "race_lap_ref01",
                 "srcdatavar": "race_lap_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -542,29 +533,29 @@
                     "mark": "Mark01-race_lap_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicRaceLapFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicSubscriptionCancelFlow": {
+          "active": true,
           "entity": "subscription_cancel",
+          "key$": "BasicSubscriptionCancelFlow",
           "kind": "basic",
           "name": "BasicSubscriptionCancelFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "subscription_cancel_ref01",
                 "srcdatavar": "subscription_cancel_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -572,29 +563,29 @@
                     "mark": "Mark01-subscription_cancel_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicSubscriptionCancelFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicSubscriptionSuccessFlow": {
+          "active": true,
           "entity": "subscription_success",
+          "key$": "BasicSubscriptionSuccessFlow",
           "kind": "basic",
           "name": "BasicSubscriptionSuccessFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "subscription_success_ref01",
                 "srcdatavar": "subscription_success_ref01_data",
                 "suffix": "_dt0"
               },
+              "match": {},
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -602,70 +593,89 @@
                     "mark": "Mark01-subscription_success_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicSubscriptionSuccessFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicTokenFlow": {
+          "active": true,
           "entity": "token",
+          "key$": "BasicTokenFlow",
           "kind": "basic",
           "name": "BasicTokenFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "token_ref01"
               },
-              "op": "create",
-              "active": true,
               "match": {},
-              "data": {},
+              "op": "create",
               "spec": [],
               "valid": []
             }
-          ],
-          "key$": "BasicTokenFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicWebhookFlow": {
+          "active": true,
           "entity": "webhook",
+          "key$": "BasicWebhookFlow",
           "kind": "basic",
           "name": "BasicWebhookFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "webhook_ref01"
               },
-              "op": "create",
-              "active": true,
               "match": {},
-              "data": {},
+              "op": "create",
               "spec": [],
               "valid": []
             }
-          ],
-          "key$": "BasicWebhookFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "servers": [
+          {
+            "url": "https://api.openf1.org"
+          }
+        ],
+        "title": "FastAPI",
+        "version": "0.1.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "openf1-car-data"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "openf1-car-data"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -680,19 +690,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "openf1-car-data"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -707,138 +717,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "openf1-car-data"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "openf1-car-data"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "openf1-car-data"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "openf1-car-data"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "openf1-car-data"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "openf1-car-data"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "openf1-car-data"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "openf1-car-data"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "openf1-car-data"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "openf1-car-data",
+  "origin": "voxgig-sdk"
 }

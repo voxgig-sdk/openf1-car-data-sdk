@@ -86,6 +86,7 @@ function race_lap_basic_setup($extra)
         "OPENF_CARDATA_TEST_RACE_LAP_ENTID" => $idmap,
         "OPENF_CARDATA_TEST_LIVE" => "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
+        "OPENF_CARDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,6 +98,7 @@ function race_lap_basic_setup($extra)
     if ($env["OPENF_CARDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["OPENF_CARDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

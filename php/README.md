@@ -1,6 +1,11 @@
 # Openf1CarData PHP SDK
 
-The PHP SDK for the Openf1CarData API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the Openf1CarData API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,14 +25,16 @@ loading a specific record.
 <?php
 require_once 'openf1cardata_sdk.php';
 
-$client = new Openf1CarDataSDK([]);
+$client = new Openf1CarDataSDK([
+    "apikey" => getenv("OPENF1-CAR-DATA_APIKEY"),
+]);
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->CreateCheckoutSession(null)->create(["name" => "Example"], null);
+[$created, $_] = $client->CreateCheckoutSession()->create(["name" => "Example"]);
 
 ```
 
@@ -72,11 +79,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = Openf1CarDataSDK::test(null, null);
+$client = Openf1CarDataSDK::test();
 
-[$result, $err] = $client->Openf1CarData(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->Openf1CarData()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -111,6 +116,7 @@ Create a `.env.local` file at the project root:
 
 ```
 OPENF1-CAR-DATA_TEST_LIVE=TRUE
+OPENF1-CAR-DATA_APIKEY=<your-key>
 ```
 
 Then run:
@@ -133,6 +139,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

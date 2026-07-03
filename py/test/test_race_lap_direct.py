@@ -59,12 +59,14 @@ def _race_lap_direct_setup(mockres):
     env = runner.env_override({
         "OPENF_CARDATA_TEST_RACE_LAP_ENTID": {},
         "OPENF_CARDATA_TEST_LIVE": "FALSE",
+        "OPENF_CARDATA_APIKEY": "NONE",
     })
 
     live = env.get("OPENF_CARDATA_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("OPENF_CARDATA_APIKEY"),
         }
         client = Openf1CarDataSDK(merged_opts)
         return {

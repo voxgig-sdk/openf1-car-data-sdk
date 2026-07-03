@@ -93,6 +93,7 @@ function endpoint_path_post_basic_setup(extra)
     ["OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID"] = idmap,
     ["OPENF_CARDATA_TEST_LIVE"] = "FALSE",
     ["OPENF_CARDATA_TEST_EXPLAIN"] = "FALSE",
+    ["OPENF_CARDATA_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,6 +105,7 @@ function endpoint_path_post_basic_setup(extra)
   if env["OPENF_CARDATA_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["OPENF_CARDATA_APIKEY"],
       },
       extra or {},
     })

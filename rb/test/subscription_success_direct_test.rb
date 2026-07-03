@@ -61,12 +61,14 @@ def subscription_success_direct_setup(mockres)
   env = Runner.env_override({
     "OPENF_CARDATA_TEST_SUBSCRIPTION_SUCCESS_ENTID" => {},
     "OPENF_CARDATA_TEST_LIVE" => "FALSE",
+    "OPENF_CARDATA_APIKEY" => "NONE",
   })
 
   live = env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["OPENF_CARDATA_APIKEY"],
     }
     client = Openf1CarDataSDK.new(merged_opts)
     return {

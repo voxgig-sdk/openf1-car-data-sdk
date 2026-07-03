@@ -110,6 +110,7 @@ func webhookBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENF_CARDATA_TEST_WEBHOOK_ENTID": idmap,
 		"OPENF_CARDATA_TEST_LIVE":      "FALSE",
 		"OPENF_CARDATA_TEST_EXPLAIN":   "FALSE",
+		"OPENF_CARDATA_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENF_CARDATA_TEST_WEBHOOK_ENTID"])
@@ -120,6 +121,7 @@ func webhookBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["OPENF_CARDATA_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["OPENF_CARDATA_APIKEY"],
 			},
 			extra,
 		})
