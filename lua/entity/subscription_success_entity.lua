@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch SubscriptionSuccessLoadMatch
+---@param ctrl? table
+---@return SubscriptionSuccess
+---@return string? err
 function SubscriptionSuccessEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

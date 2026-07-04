@@ -42,8 +42,7 @@ class SubscriptionCancelEntityTest < Minitest::Test
     # LOAD
     subscription_cancel_ref01_ent = client.SubscriptionCancel(nil)
     subscription_cancel_ref01_match_dt0 = {}
-    subscription_cancel_ref01_data_dt0_loaded, err = subscription_cancel_ref01_ent.load(subscription_cancel_ref01_match_dt0, nil)
-    assert_nil err
+    subscription_cancel_ref01_data_dt0_loaded = subscription_cancel_ref01_ent.load(subscription_cancel_ref01_match_dt0, nil)
     assert !subscription_cancel_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def subscription_cancel_basic_setup(extra)
     "OPENF_CARDATA_TEST_SUBSCRIPTION_CANCEL_ENTID" => idmap,
     "OPENF_CARDATA_TEST_LIVE" => "FALSE",
     "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-    "OPENF_CARDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def subscription_cancel_basic_setup(extra)
   if env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OPENF_CARDATA_APIKEY"],
       },
       extra || {},
     ])

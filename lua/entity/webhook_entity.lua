@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata WebhookCreateData
+---@param ctrl? table
+---@return Webhook
+---@return string? err
 function WebhookEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  EndpointPathPost,
+  EndpointPathPostLoadMatch,
+  EndpointPathPostCreateData,
+} from '../Openf1CarDataTypes'
 
 // TODO: needs Entity superclass
-class EndpointPathPostEntity extends Openf1CarDataEntityBase {
+class EndpointPathPostEntity extends Openf1CarDataEntityBase<EndpointPathPost> {
 
   constructor(client: Openf1CarDataSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class EndpointPathPostEntity extends Openf1CarDataEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: EndpointPathPostLoadMatch, ctrl?: Control): Promise<EndpointPathPost> {
 
     const utility = this._utility
 
@@ -136,7 +141,9 @@ class EndpointPathPostEntity extends Openf1CarDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<EndpointPathPost> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -144,7 +151,7 @@ class EndpointPathPostEntity extends Openf1CarDataEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: EndpointPathPostCreateData, ctrl?: Control): Promise<EndpointPathPost> {
 
     const utility = this._utility
     const {
@@ -243,7 +250,9 @@ class EndpointPathPostEntity extends Openf1CarDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<EndpointPathPost> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

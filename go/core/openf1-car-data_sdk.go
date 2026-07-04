@@ -245,36 +245,57 @@ func (sdk *Openf1CarDataSDK) Direct(fetchargs map[string]any) (map[string]any, e
 }
 
 
+// CreateCheckoutSession returns a CreateCheckoutSession entity bound to this client.
+// Idiomatic usage: client.CreateCheckoutSession(nil).List(nil, nil) or
+// client.CreateCheckoutSession(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *Openf1CarDataSDK) CreateCheckoutSession(data map[string]any) Openf1CarDataEntity {
 	return NewCreateCheckoutSessionEntityFunc(sdk, data)
 }
 
 
+// EndpointPathPost returns a EndpointPathPost entity bound to this client.
+// Idiomatic usage: client.EndpointPathPost(nil).List(nil, nil) or
+// client.EndpointPathPost(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *Openf1CarDataSDK) EndpointPathPost(data map[string]any) Openf1CarDataEntity {
 	return NewEndpointPathPostEntityFunc(sdk, data)
 }
 
 
+// RaceLap returns a RaceLap entity bound to this client.
+// Idiomatic usage: client.RaceLap(nil).List(nil, nil) or
+// client.RaceLap(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *Openf1CarDataSDK) RaceLap(data map[string]any) Openf1CarDataEntity {
 	return NewRaceLapEntityFunc(sdk, data)
 }
 
 
+// SubscriptionCancel returns a SubscriptionCancel entity bound to this client.
+// Idiomatic usage: client.SubscriptionCancel(nil).List(nil, nil) or
+// client.SubscriptionCancel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *Openf1CarDataSDK) SubscriptionCancel(data map[string]any) Openf1CarDataEntity {
 	return NewSubscriptionCancelEntityFunc(sdk, data)
 }
 
 
+// SubscriptionSuccess returns a SubscriptionSuccess entity bound to this client.
+// Idiomatic usage: client.SubscriptionSuccess(nil).List(nil, nil) or
+// client.SubscriptionSuccess(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *Openf1CarDataSDK) SubscriptionSuccess(data map[string]any) Openf1CarDataEntity {
 	return NewSubscriptionSuccessEntityFunc(sdk, data)
 }
 
 
+// Token returns a Token entity bound to this client.
+// Idiomatic usage: client.Token(nil).List(nil, nil) or
+// client.Token(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *Openf1CarDataSDK) Token(data map[string]any) Openf1CarDataEntity {
 	return NewTokenEntityFunc(sdk, data)
 }
 
 
+// Webhook returns a Webhook entity bound to this client.
+// Idiomatic usage: client.Webhook(nil).List(nil, nil) or
+// client.Webhook(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *Openf1CarDataSDK) Webhook(data map[string]any) Openf1CarDataEntity {
 	return NewWebhookEntityFunc(sdk, data)
 }

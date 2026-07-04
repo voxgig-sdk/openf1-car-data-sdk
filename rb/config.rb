@@ -15,9 +15,6 @@ module Openf1CarDataConfig
       },
       "options" => {
         "base" => "https://api.openf1.org",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -83,6 +80,7 @@ module Openf1CarDataConfig
                         "orig" => "path",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -125,6 +123,7 @@ module Openf1CarDataConfig
                         "orig" => "path",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

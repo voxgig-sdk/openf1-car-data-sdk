@@ -85,6 +85,27 @@ func (e *EndpointPathPostEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an EndpointPathPost; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *EndpointPathPostEntity) DataTyped(data ...EndpointPathPost) EndpointPathPost {
+	if len(data) > 0 {
+		return typedFrom[EndpointPathPost](e.Data(asMap(data[0])))
+	}
+	return typedFrom[EndpointPathPost](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through EndpointPathPost (all fields
+// optional at the wire level).
+func (e *EndpointPathPostEntity) MatchTyped(match ...EndpointPathPost) EndpointPathPost {
+	if len(match) > 0 {
+		return typedFrom[EndpointPathPost](e.Match(asMap(match[0])))
+	}
+	return typedFrom[EndpointPathPost](e.Match())
+}
+
 
 func (e *EndpointPathPostEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *EndpointPathPostEntity) Load(reqmatch map[string]any, ctrl map[string]a
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// EndpointPathPostLoadMatch and returns an EndpointPathPost. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *EndpointPathPostEntity) LoadTyped(reqmatch EndpointPathPostLoadMatch, ctrl map[string]any) (EndpointPathPost, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return EndpointPathPost{}, err
+	}
+	return typedFrom[EndpointPathPost](res), nil
 }
 
 
@@ -139,6 +171,17 @@ func (e *EndpointPathPostEntity) Create(reqdata map[string]any, ctrl map[string]
 			}
 		}
 	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// EndpointPathPostCreateData and returns an EndpointPathPost. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *EndpointPathPostEntity) CreateTyped(reqdata EndpointPathPostCreateData, ctrl map[string]any) (EndpointPathPost, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return EndpointPathPost{}, err
+	}
+	return typedFrom[EndpointPathPost](res), nil
 }
 
 

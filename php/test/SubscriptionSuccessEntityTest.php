@@ -49,8 +49,7 @@ class SubscriptionSuccessEntityTest extends TestCase
         // LOAD
         $subscription_success_ref01_ent = $client->SubscriptionSuccess(null);
         $subscription_success_ref01_match_dt0 = [];
-        [$subscription_success_ref01_data_dt0_loaded, $err] = $subscription_success_ref01_ent->load($subscription_success_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $subscription_success_ref01_data_dt0_loaded = $subscription_success_ref01_ent->load($subscription_success_ref01_match_dt0, null);
         $this->assertNotNull($subscription_success_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function subscription_success_basic_setup($extra)
         "OPENF_CARDATA_TEST_SUBSCRIPTION_SUCCESS_ENTID" => $idmap,
         "OPENF_CARDATA_TEST_LIVE" => "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-        "OPENF_CARDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function subscription_success_basic_setup($extra)
     if ($env["OPENF_CARDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OPENF_CARDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

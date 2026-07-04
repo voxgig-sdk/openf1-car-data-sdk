@@ -85,6 +85,27 @@ func (e *SubscriptionSuccessEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an SubscriptionSuccess; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *SubscriptionSuccessEntity) DataTyped(data ...SubscriptionSuccess) SubscriptionSuccess {
+	if len(data) > 0 {
+		return typedFrom[SubscriptionSuccess](e.Data(asMap(data[0])))
+	}
+	return typedFrom[SubscriptionSuccess](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through SubscriptionSuccess (all fields
+// optional at the wire level).
+func (e *SubscriptionSuccessEntity) MatchTyped(match ...SubscriptionSuccess) SubscriptionSuccess {
+	if len(match) > 0 {
+		return typedFrom[SubscriptionSuccess](e.Match(asMap(match[0])))
+	}
+	return typedFrom[SubscriptionSuccess](e.Match())
+}
+
 
 func (e *SubscriptionSuccessEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *SubscriptionSuccessEntity) Load(reqmatch map[string]any, ctrl map[strin
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// SubscriptionSuccessLoadMatch and returns an SubscriptionSuccess. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *SubscriptionSuccessEntity) LoadTyped(reqmatch SubscriptionSuccessLoadMatch, ctrl map[string]any) (SubscriptionSuccess, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return SubscriptionSuccess{}, err
+	}
+	return typedFrom[SubscriptionSuccess](res), nil
 }
 
 

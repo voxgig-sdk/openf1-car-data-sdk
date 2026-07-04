@@ -45,6 +45,7 @@ class CreateCheckoutSessionEntity
     end
   end
 
+  # @return [CreateCheckoutSession, Hash] the current CreateCheckoutSession data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CreateCheckoutSessionEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of CreateCheckoutSession fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class CreateCheckoutSessionEntity
   
 
   
+  # Create a new CreateCheckoutSession.
+  #
+  # @param reqdata [CreateCheckoutSessionCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [CreateCheckoutSession, Hash] the created CreateCheckoutSession; raises Openf1CarDataError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

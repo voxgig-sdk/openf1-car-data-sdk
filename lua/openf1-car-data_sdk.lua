@@ -244,42 +244,133 @@ end
 
 
 
+-- Idiomatic facade: client:create_checkout_session():list() / client:create_checkout_session():load({ id = ... })
+function Openf1CarDataSDK:create_checkout_session(data)
+  local EntityMod = require("entity.create_checkout_session_entity")
+  if data == nil then
+    if self._create_checkout_session == nil then
+      self._create_checkout_session = EntityMod.new(self, nil)
+    end
+    return self._create_checkout_session
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:create_checkout_session() instead.
 function Openf1CarDataSDK:CreateCheckoutSession(data)
   local EntityMod = require("entity.create_checkout_session_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:endpoint_path_post():list() / client:endpoint_path_post():load({ id = ... })
+function Openf1CarDataSDK:endpoint_path_post(data)
+  local EntityMod = require("entity.endpoint_path_post_entity")
+  if data == nil then
+    if self._endpoint_path_post == nil then
+      self._endpoint_path_post = EntityMod.new(self, nil)
+    end
+    return self._endpoint_path_post
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:endpoint_path_post() instead.
 function Openf1CarDataSDK:EndpointPathPost(data)
   local EntityMod = require("entity.endpoint_path_post_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:race_lap():list() / client:race_lap():load({ id = ... })
+function Openf1CarDataSDK:race_lap(data)
+  local EntityMod = require("entity.race_lap_entity")
+  if data == nil then
+    if self._race_lap == nil then
+      self._race_lap = EntityMod.new(self, nil)
+    end
+    return self._race_lap
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:race_lap() instead.
 function Openf1CarDataSDK:RaceLap(data)
   local EntityMod = require("entity.race_lap_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:subscription_cancel():list() / client:subscription_cancel():load({ id = ... })
+function Openf1CarDataSDK:subscription_cancel(data)
+  local EntityMod = require("entity.subscription_cancel_entity")
+  if data == nil then
+    if self._subscription_cancel == nil then
+      self._subscription_cancel = EntityMod.new(self, nil)
+    end
+    return self._subscription_cancel
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:subscription_cancel() instead.
 function Openf1CarDataSDK:SubscriptionCancel(data)
   local EntityMod = require("entity.subscription_cancel_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:subscription_success():list() / client:subscription_success():load({ id = ... })
+function Openf1CarDataSDK:subscription_success(data)
+  local EntityMod = require("entity.subscription_success_entity")
+  if data == nil then
+    if self._subscription_success == nil then
+      self._subscription_success = EntityMod.new(self, nil)
+    end
+    return self._subscription_success
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:subscription_success() instead.
 function Openf1CarDataSDK:SubscriptionSuccess(data)
   local EntityMod = require("entity.subscription_success_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:token():list() / client:token():load({ id = ... })
+function Openf1CarDataSDK:token(data)
+  local EntityMod = require("entity.token_entity")
+  if data == nil then
+    if self._token == nil then
+      self._token = EntityMod.new(self, nil)
+    end
+    return self._token
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:token() instead.
 function Openf1CarDataSDK:Token(data)
   local EntityMod = require("entity.token_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:webhook():list() / client:webhook():load({ id = ... })
+function Openf1CarDataSDK:webhook(data)
+  local EntityMod = require("entity.webhook_entity")
+  if data == nil then
+    if self._webhook == nil then
+      self._webhook = EntityMod.new(self, nil)
+    end
+    return self._webhook
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:webhook() instead.
 function Openf1CarDataSDK:Webhook(data)
   local EntityMod = require("entity.webhook_entity")
   return EntityMod.new(self, data)

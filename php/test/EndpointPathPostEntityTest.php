@@ -44,15 +44,13 @@ class EndpointPathPostEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.endpoint_path_post"), "endpoint_path_post_ref01"));
         $endpoint_path_post_ref01_data["path"] = $setup["idmap"]["path01"];
 
-        [$endpoint_path_post_ref01_data_result, $err] = $endpoint_path_post_ref01_ent->create($endpoint_path_post_ref01_data, null);
-        $this->assertNull($err);
+        $endpoint_path_post_ref01_data_result = $endpoint_path_post_ref01_ent->create($endpoint_path_post_ref01_data, null);
         $endpoint_path_post_ref01_data = Helpers::to_map($endpoint_path_post_ref01_data_result);
         $this->assertNotNull($endpoint_path_post_ref01_data);
 
         // LOAD
         $endpoint_path_post_ref01_match_dt0 = [];
-        [$endpoint_path_post_ref01_data_dt0_loaded, $err] = $endpoint_path_post_ref01_ent->load($endpoint_path_post_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $endpoint_path_post_ref01_data_dt0_loaded = $endpoint_path_post_ref01_ent->load($endpoint_path_post_ref01_match_dt0, null);
         $this->assertNotNull($endpoint_path_post_ref01_data_dt0_loaded);
 
     }
@@ -87,7 +85,6 @@ function endpoint_path_post_basic_setup($extra)
         "OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID" => $idmap,
         "OPENF_CARDATA_TEST_LIVE" => "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-        "OPENF_CARDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -99,7 +96,6 @@ function endpoint_path_post_basic_setup($extra)
     if ($env["OPENF_CARDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OPENF_CARDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch RaceLapLoadMatch
+---@param ctrl? table
+---@return RaceLap
+---@return string? err
 function RaceLapEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -106,6 +110,10 @@ end
 
 
 
+---@param reqdata RaceLapCreateData
+---@param ctrl? table
+---@return RaceLap
+---@return string? err
 function RaceLapEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

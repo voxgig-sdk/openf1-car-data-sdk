@@ -103,7 +103,7 @@ class Openf1CarDataSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class Openf1CarDataSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class Openf1CarDataSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,66 +216,143 @@ class Openf1CarDataSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function CreateCheckoutSession($data = null)
+    private $_create_checkout_session = null;
+
+    // Idiomatic facade: $client->create_checkout_session()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CreateCheckoutSession() (PHP method
+    // names are case-insensitive).
+    public function create_checkout_session($data = null)
     {
         require_once __DIR__ . '/entity/create_checkout_session_entity.php';
+        if ($data === null) {
+            if ($this->_create_checkout_session === null) {
+                $this->_create_checkout_session = new CreateCheckoutSessionEntity($this, null);
+            }
+            return $this->_create_checkout_session;
+        }
         return new CreateCheckoutSessionEntity($this, $data);
     }
 
 
-    public function EndpointPathPost($data = null)
+    private $_endpoint_path_post = null;
+
+    // Idiomatic facade: $client->endpoint_path_post()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias EndpointPathPost() (PHP method
+    // names are case-insensitive).
+    public function endpoint_path_post($data = null)
     {
         require_once __DIR__ . '/entity/endpoint_path_post_entity.php';
+        if ($data === null) {
+            if ($this->_endpoint_path_post === null) {
+                $this->_endpoint_path_post = new EndpointPathPostEntity($this, null);
+            }
+            return $this->_endpoint_path_post;
+        }
         return new EndpointPathPostEntity($this, $data);
     }
 
 
-    public function RaceLap($data = null)
+    private $_race_lap = null;
+
+    // Idiomatic facade: $client->race_lap()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias RaceLap() (PHP method
+    // names are case-insensitive).
+    public function race_lap($data = null)
     {
         require_once __DIR__ . '/entity/race_lap_entity.php';
+        if ($data === null) {
+            if ($this->_race_lap === null) {
+                $this->_race_lap = new RaceLapEntity($this, null);
+            }
+            return $this->_race_lap;
+        }
         return new RaceLapEntity($this, $data);
     }
 
 
-    public function SubscriptionCancel($data = null)
+    private $_subscription_cancel = null;
+
+    // Idiomatic facade: $client->subscription_cancel()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias SubscriptionCancel() (PHP method
+    // names are case-insensitive).
+    public function subscription_cancel($data = null)
     {
         require_once __DIR__ . '/entity/subscription_cancel_entity.php';
+        if ($data === null) {
+            if ($this->_subscription_cancel === null) {
+                $this->_subscription_cancel = new SubscriptionCancelEntity($this, null);
+            }
+            return $this->_subscription_cancel;
+        }
         return new SubscriptionCancelEntity($this, $data);
     }
 
 
-    public function SubscriptionSuccess($data = null)
+    private $_subscription_success = null;
+
+    // Idiomatic facade: $client->subscription_success()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias SubscriptionSuccess() (PHP method
+    // names are case-insensitive).
+    public function subscription_success($data = null)
     {
         require_once __DIR__ . '/entity/subscription_success_entity.php';
+        if ($data === null) {
+            if ($this->_subscription_success === null) {
+                $this->_subscription_success = new SubscriptionSuccessEntity($this, null);
+            }
+            return $this->_subscription_success;
+        }
         return new SubscriptionSuccessEntity($this, $data);
     }
 
 
-    public function Token($data = null)
+    private $_token = null;
+
+    // Idiomatic facade: $client->token()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Token() (PHP method
+    // names are case-insensitive).
+    public function token($data = null)
     {
         require_once __DIR__ . '/entity/token_entity.php';
+        if ($data === null) {
+            if ($this->_token === null) {
+                $this->_token = new TokenEntity($this, null);
+            }
+            return $this->_token;
+        }
         return new TokenEntity($this, $data);
     }
 
 
-    public function Webhook($data = null)
+    private $_webhook = null;
+
+    // Idiomatic facade: $client->webhook()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Webhook() (PHP method
+    // names are case-insensitive).
+    public function webhook($data = null)
     {
         require_once __DIR__ . '/entity/webhook_entity.php';
+        if ($data === null) {
+            if ($this->_webhook === null) {
+                $this->_webhook = new WebhookEntity($this, null);
+            }
+            return $this->_webhook;
+        }
         return new WebhookEntity($this, $data);
     }
 

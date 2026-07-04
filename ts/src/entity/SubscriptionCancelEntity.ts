@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  SubscriptionCancel,
+  SubscriptionCancelLoadMatch,
+} from '../Openf1CarDataTypes'
 
 // TODO: needs Entity superclass
-class SubscriptionCancelEntity extends Openf1CarDataEntityBase {
+class SubscriptionCancelEntity extends Openf1CarDataEntityBase<SubscriptionCancel> {
 
   constructor(client: Openf1CarDataSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class SubscriptionCancelEntity extends Openf1CarDataEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: SubscriptionCancelLoadMatch, ctrl?: Control): Promise<SubscriptionCancel> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class SubscriptionCancelEntity extends Openf1CarDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<SubscriptionCancel> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

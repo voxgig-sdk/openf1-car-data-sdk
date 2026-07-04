@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  RaceLap,
+  RaceLapLoadMatch,
+  RaceLapCreateData,
+} from '../Openf1CarDataTypes'
 
 // TODO: needs Entity superclass
-class RaceLapEntity extends Openf1CarDataEntityBase {
+class RaceLapEntity extends Openf1CarDataEntityBase<RaceLap> {
 
   constructor(client: Openf1CarDataSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class RaceLapEntity extends Openf1CarDataEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: RaceLapLoadMatch, ctrl?: Control): Promise<RaceLap> {
 
     const utility = this._utility
 
@@ -136,7 +141,9 @@ class RaceLapEntity extends Openf1CarDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<RaceLap> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -144,7 +151,7 @@ class RaceLapEntity extends Openf1CarDataEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: RaceLapCreateData, ctrl?: Control): Promise<RaceLap> {
 
     const utility = this._utility
     const {
@@ -243,7 +250,9 @@ class RaceLapEntity extends Openf1CarDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<RaceLap> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

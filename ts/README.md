@@ -9,9 +9,12 @@ The TypeScript SDK for the Openf1CarData API — a type-safe, entity-oriented cl
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/openf1-car-data
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/openf1-car-data-sdk/releases](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,18 +23,16 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { Openf1CarDataSDK } from 'openf1-car-data'
+import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data'
 
-const client = new Openf1CarDataSDK({
-  apikey: process.env.OPENF1-CAR-DATA_APIKEY,
-})
+const client = new Openf1CarDataSDK()
 ```
 
 ### 4. Create, update, and remove
 
 ```ts
 // Create
-const created = await client.CreateCheckoutSession().create({
+const created = await client.createcheckoutsession.create({
   name: 'Example',
 })
 
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = Openf1CarDataSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.createcheckoutsession.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new Openf1CarDataSDK({ apikey: '...' })
+const client = new Openf1CarDataSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.createcheckoutsession
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new Openf1CarDataSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new Openf1CarDataSDK({
 Create a `.env.local` file at the project root:
 
 ```
-OPENF1-CAR-DATA_TEST_LIVE=TRUE
-OPENF1-CAR-DATA_APIKEY=<your-key>
+OPENF1_CAR_DATA_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new Openf1CarDataSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new Openf1CarDataSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -325,7 +322,7 @@ API path: `/stripe/webhook`
 
 ### CreateCheckoutSession
 
-Create an instance: `const create_checkout_session = client.CreateCheckoutSession()`
+Create an instance: `const create_checkout_session = client.create_checkout_session`
 
 #### Operations
 
@@ -336,14 +333,14 @@ Create an instance: `const create_checkout_session = client.CreateCheckoutSessio
 #### Example: Create
 
 ```ts
-const create_checkout_session = await client.CreateCheckoutSession().create({
+const create_checkout_session = await client.create_checkout_session.create({
 })
 ```
 
 
 ### EndpointPathPost
 
-Create an instance: `const endpoint_path_post = client.EndpointPathPost()`
+Create an instance: `const endpoint_path_post = client.endpoint_path_post`
 
 #### Operations
 
@@ -355,20 +352,20 @@ Create an instance: `const endpoint_path_post = client.EndpointPathPost()`
 #### Example: Load
 
 ```ts
-const endpoint_path_post = await client.EndpointPathPost().load({ id: 'endpoint_path_post_id' })
+const endpoint_path_post = await client.endpoint_path_post.load({ id: 'endpoint_path_post_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const endpoint_path_post = await client.EndpointPathPost().create({
+const endpoint_path_post = await client.endpoint_path_post.create({
 })
 ```
 
 
 ### RaceLap
 
-Create an instance: `const race_lap = client.RaceLap()`
+Create an instance: `const race_lap = client.race_lap`
 
 #### Operations
 
@@ -380,20 +377,20 @@ Create an instance: `const race_lap = client.RaceLap()`
 #### Example: Load
 
 ```ts
-const race_lap = await client.RaceLap().load({ id: 'race_lap_id' })
+const race_lap = await client.race_lap.load({ id: 'race_lap_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const race_lap = await client.RaceLap().create({
+const race_lap = await client.race_lap.create({
 })
 ```
 
 
 ### SubscriptionCancel
 
-Create an instance: `const subscription_cancel = client.SubscriptionCancel()`
+Create an instance: `const subscription_cancel = client.subscription_cancel`
 
 #### Operations
 
@@ -404,13 +401,13 @@ Create an instance: `const subscription_cancel = client.SubscriptionCancel()`
 #### Example: Load
 
 ```ts
-const subscription_cancel = await client.SubscriptionCancel().load({ id: 'subscription_cancel_id' })
+const subscription_cancel = await client.subscription_cancel.load({ id: 'subscription_cancel_id' })
 ```
 
 
 ### SubscriptionSuccess
 
-Create an instance: `const subscription_success = client.SubscriptionSuccess()`
+Create an instance: `const subscription_success = client.subscription_success`
 
 #### Operations
 
@@ -421,13 +418,13 @@ Create an instance: `const subscription_success = client.SubscriptionSuccess()`
 #### Example: Load
 
 ```ts
-const subscription_success = await client.SubscriptionSuccess().load({ id: 'subscription_success_id' })
+const subscription_success = await client.subscription_success.load({ id: 'subscription_success_id' })
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.Token()`
+Create an instance: `const token = client.token`
 
 #### Operations
 
@@ -438,14 +435,14 @@ Create an instance: `const token = client.Token()`
 #### Example: Create
 
 ```ts
-const token = await client.Token().create({
+const token = await client.token.create({
 })
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.Webhook()`
+Create an instance: `const webhook = client.webhook`
 
 #### Operations
 
@@ -456,7 +453,7 @@ Create an instance: `const webhook = client.Webhook()`
 #### Example: Create
 
 ```ts
-const webhook = await client.Webhook().create({
+const webhook = await client.webhook.create({
 })
 ```
 
@@ -518,7 +515,7 @@ openf1-car-data/
 Import the SDK from the package root:
 
 ```ts
-import { Openf1CarDataSDK } from 'openf1-car-data'
+import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data'
 ```
 
 ### Entity state
@@ -528,11 +525,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const createcheckoutsession = client.createcheckoutsession
+await createcheckoutsession.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// createcheckoutsession.data() now returns the loaded createcheckoutsession data
+// createcheckoutsession.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

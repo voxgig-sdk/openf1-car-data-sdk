@@ -9,12 +9,9 @@ The Lua SDK for the Openf1CarData API — an entity-oriented client using Lua co
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-openf1-car-data
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,16 +28,14 @@ loading a specific record.
 ```lua
 local sdk = require("openf1-car-data_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("OPENF1-CAR-DATA_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 4. Create, update, and remove
 
 ```lua
 -- Create
-local created, _ = client:CreateCheckoutSession():create({ name = "Example" })
+local created, _ = client:createcheckoutsession():create({ name = "Example" })
 
 ```
 
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Openf1CarData():load({ id = "test01" })
+local result, err = client:createcheckoutsession():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-OPENF1-CAR-DATA_TEST_LIVE=TRUE
-OPENF1-CAR-DATA_APIKEY=<your-key>
+OPENF1_CAR_DATA_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -280,7 +273,7 @@ API path: `/stripe/webhook`
 
 ### CreateCheckoutSession
 
-Create an instance: `const create_checkout_session = client.CreateCheckoutSession()`
+Create an instance: `const create_checkout_session = client.create_checkout_session`
 
 #### Operations
 
@@ -291,14 +284,14 @@ Create an instance: `const create_checkout_session = client.CreateCheckoutSessio
 #### Example: Create
 
 ```ts
-const create_checkout_session = await client.CreateCheckoutSession().create({
+const create_checkout_session = await client.create_checkout_session.create({
 })
 ```
 
 
 ### EndpointPathPost
 
-Create an instance: `const endpoint_path_post = client.EndpointPathPost()`
+Create an instance: `const endpoint_path_post = client.endpoint_path_post`
 
 #### Operations
 
@@ -310,20 +303,20 @@ Create an instance: `const endpoint_path_post = client.EndpointPathPost()`
 #### Example: Load
 
 ```ts
-const endpoint_path_post = await client.EndpointPathPost().load({ id: 'endpoint_path_post_id' })
+const endpoint_path_post = await client.endpoint_path_post.load({ id: 'endpoint_path_post_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const endpoint_path_post = await client.EndpointPathPost().create({
+const endpoint_path_post = await client.endpoint_path_post.create({
 })
 ```
 
 
 ### RaceLap
 
-Create an instance: `const race_lap = client.RaceLap()`
+Create an instance: `const race_lap = client.race_lap`
 
 #### Operations
 
@@ -335,20 +328,20 @@ Create an instance: `const race_lap = client.RaceLap()`
 #### Example: Load
 
 ```ts
-const race_lap = await client.RaceLap().load({ id: 'race_lap_id' })
+const race_lap = await client.race_lap.load({ id: 'race_lap_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const race_lap = await client.RaceLap().create({
+const race_lap = await client.race_lap.create({
 })
 ```
 
 
 ### SubscriptionCancel
 
-Create an instance: `const subscription_cancel = client.SubscriptionCancel()`
+Create an instance: `const subscription_cancel = client.subscription_cancel`
 
 #### Operations
 
@@ -359,13 +352,13 @@ Create an instance: `const subscription_cancel = client.SubscriptionCancel()`
 #### Example: Load
 
 ```ts
-const subscription_cancel = await client.SubscriptionCancel().load({ id: 'subscription_cancel_id' })
+const subscription_cancel = await client.subscription_cancel.load({ id: 'subscription_cancel_id' })
 ```
 
 
 ### SubscriptionSuccess
 
-Create an instance: `const subscription_success = client.SubscriptionSuccess()`
+Create an instance: `const subscription_success = client.subscription_success`
 
 #### Operations
 
@@ -376,13 +369,13 @@ Create an instance: `const subscription_success = client.SubscriptionSuccess()`
 #### Example: Load
 
 ```ts
-const subscription_success = await client.SubscriptionSuccess().load({ id: 'subscription_success_id' })
+const subscription_success = await client.subscription_success.load({ id: 'subscription_success_id' })
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.Token()`
+Create an instance: `const token = client.token`
 
 #### Operations
 
@@ -393,14 +386,14 @@ Create an instance: `const token = client.Token()`
 #### Example: Create
 
 ```ts
-const token = await client.Token().create({
+const token = await client.token.create({
 })
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.Webhook()`
+Create an instance: `const webhook = client.webhook`
 
 #### Operations
 
@@ -411,7 +404,7 @@ Create an instance: `const webhook = client.Webhook()`
 #### Example: Create
 
 ```ts
-const webhook = await client.Webhook().create({
+const webhook = await client.webhook.create({
 })
 ```
 
@@ -487,11 +480,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local createcheckoutsession = client:createcheckoutsession()
+createcheckoutsession:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- createcheckoutsession:data_get() now returns the loaded createcheckoutsession data
+-- createcheckoutsession:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

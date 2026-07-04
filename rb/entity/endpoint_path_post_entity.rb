@@ -45,6 +45,7 @@ class EndpointPathPostEntity
     end
   end
 
+  # @return [EndpointPathPost, Hash] the current EndpointPathPost data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class EndpointPathPostEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of EndpointPathPost fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single EndpointPathPost.
+  #
+  # @param reqmatch [EndpointPathPostLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [EndpointPathPost, Hash] the loaded EndpointPathPost; raises Openf1CarDataError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -88,6 +95,11 @@ class EndpointPathPostEntity
   
 
   
+  # Create a new EndpointPathPost.
+  #
+  # @param reqdata [EndpointPathPostCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [EndpointPathPost, Hash] the created EndpointPathPost; raises Openf1CarDataError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

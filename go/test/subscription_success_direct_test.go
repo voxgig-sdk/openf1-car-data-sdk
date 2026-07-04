@@ -99,14 +99,12 @@ func subscription_successDirectSetup(mockres any) *subscription_successDirectSet
 	env := envOverride(map[string]any{
 		"OPENF_CARDATA_TEST_SUBSCRIPTION_SUCCESS_ENTID": map[string]any{},
 		"OPENF_CARDATA_TEST_LIVE":    "FALSE",
-		"OPENF_CARDATA_APIKEY":       "NONE",
 	})
 
 	live := env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["OPENF_CARDATA_APIKEY"],
 		}
 		client := sdk.NewOpenf1CarDataSDK(mergedOpts)
 

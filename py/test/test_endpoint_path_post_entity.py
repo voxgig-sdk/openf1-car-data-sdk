@@ -45,15 +45,12 @@ class TestEndpointPathPostEntity:
             vs.getpath(setup["data"], "new.endpoint_path_post"), "endpoint_path_post_ref01"))
         endpoint_path_post_ref01_data["path"] = setup["idmap"]["path01"]
 
-        endpoint_path_post_ref01_data_result, err = endpoint_path_post_ref01_ent.create(endpoint_path_post_ref01_data, None)
-        assert err is None
-        endpoint_path_post_ref01_data = helpers.to_map(endpoint_path_post_ref01_data_result)
+        endpoint_path_post_ref01_data = helpers.to_map(endpoint_path_post_ref01_ent.create(endpoint_path_post_ref01_data, None))
         assert endpoint_path_post_ref01_data is not None
 
         # LOAD
         endpoint_path_post_ref01_match_dt0 = {}
-        endpoint_path_post_ref01_data_dt0_loaded, err = endpoint_path_post_ref01_ent.load(endpoint_path_post_ref01_match_dt0, None)
-        assert err is None
+        endpoint_path_post_ref01_data_dt0_loaded = endpoint_path_post_ref01_ent.load(endpoint_path_post_ref01_match_dt0, None)
         assert endpoint_path_post_ref01_data_dt0_loaded is not None
 
 
@@ -94,7 +91,6 @@ def _endpoint_path_post_basic_setup(extra):
         "OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID": idmap,
         "OPENF_CARDATA_TEST_LIVE": "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN": "FALSE",
-        "OPENF_CARDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +101,6 @@ def _endpoint_path_post_basic_setup(extra):
     if env.get("OPENF_CARDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENF_CARDATA_APIKEY"),
             },
             extra or {},
         ])

@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -182,7 +181,7 @@ Alias for `Openf1CarDataSDK.test()`.
 ## CreateCheckoutSessionEntity
 
 ```ts
-const create_checkout_session = client.CreateCheckoutSession()
+const create_checkout_session = client.create_checkout_session
 ```
 
 ### Operations
@@ -192,7 +191,7 @@ const create_checkout_session = client.CreateCheckoutSession()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.CreateCheckoutSession().create({
+const result = await client.create_checkout_session.create({
 })
 ```
 
@@ -227,7 +226,7 @@ Return a copy of the entity options.
 ## EndpointPathPostEntity
 
 ```ts
-const endpoint_path_post = client.EndpointPathPost()
+const endpoint_path_post = client.endpoint_path_post
 ```
 
 ### Operations
@@ -237,7 +236,7 @@ const endpoint_path_post = client.EndpointPathPost()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.EndpointPathPost().create({
+const result = await client.endpoint_path_post.create({
 })
 ```
 
@@ -246,7 +245,7 @@ const result = await client.EndpointPathPost().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.EndpointPathPost().load({ id: 'endpoint_path_post_id' })
+const result = await client.endpoint_path_post.load({ id: 'endpoint_path_post_id' })
 ```
 
 ### Common Methods
@@ -280,7 +279,7 @@ Return a copy of the entity options.
 ## RaceLapEntity
 
 ```ts
-const race_lap = client.RaceLap()
+const race_lap = client.race_lap
 ```
 
 ### Operations
@@ -290,7 +289,7 @@ const race_lap = client.RaceLap()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.RaceLap().create({
+const result = await client.race_lap.create({
 })
 ```
 
@@ -299,7 +298,7 @@ const result = await client.RaceLap().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.RaceLap().load({ id: 'race_lap_id' })
+const result = await client.race_lap.load({ id: 'race_lap_id' })
 ```
 
 ### Common Methods
@@ -333,7 +332,7 @@ Return a copy of the entity options.
 ## SubscriptionCancelEntity
 
 ```ts
-const subscription_cancel = client.SubscriptionCancel()
+const subscription_cancel = client.subscription_cancel
 ```
 
 ### Operations
@@ -343,7 +342,7 @@ const subscription_cancel = client.SubscriptionCancel()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.SubscriptionCancel().load({ id: 'subscription_cancel_id' })
+const result = await client.subscription_cancel.load({ id: 'subscription_cancel_id' })
 ```
 
 ### Common Methods
@@ -377,7 +376,7 @@ Return a copy of the entity options.
 ## SubscriptionSuccessEntity
 
 ```ts
-const subscription_success = client.SubscriptionSuccess()
+const subscription_success = client.subscription_success
 ```
 
 ### Operations
@@ -387,7 +386,7 @@ const subscription_success = client.SubscriptionSuccess()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.SubscriptionSuccess().load({ id: 'subscription_success_id' })
+const result = await client.subscription_success.load({ id: 'subscription_success_id' })
 ```
 
 ### Common Methods
@@ -421,7 +420,7 @@ Return a copy of the entity options.
 ## TokenEntity
 
 ```ts
-const token = client.Token()
+const token = client.token
 ```
 
 ### Operations
@@ -431,7 +430,7 @@ const token = client.Token()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Token().create({
+const result = await client.token.create({
 })
 ```
 
@@ -466,7 +465,7 @@ Return a copy of the entity options.
 ## WebhookEntity
 
 ```ts
-const webhook = client.Webhook()
+const webhook = client.webhook
 ```
 
 ### Operations
@@ -476,7 +475,7 @@ const webhook = client.Webhook()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Webhook().create({
+const result = await client.webhook.create({
 })
 ```
 

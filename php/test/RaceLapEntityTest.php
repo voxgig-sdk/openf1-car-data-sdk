@@ -43,15 +43,13 @@ class RaceLapEntityTest extends TestCase
         $race_lap_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.race_lap"), "race_lap_ref01"));
 
-        [$race_lap_ref01_data_result, $err] = $race_lap_ref01_ent->create($race_lap_ref01_data, null);
-        $this->assertNull($err);
+        $race_lap_ref01_data_result = $race_lap_ref01_ent->create($race_lap_ref01_data, null);
         $race_lap_ref01_data = Helpers::to_map($race_lap_ref01_data_result);
         $this->assertNotNull($race_lap_ref01_data);
 
         // LOAD
         $race_lap_ref01_match_dt0 = [];
-        [$race_lap_ref01_data_dt0_loaded, $err] = $race_lap_ref01_ent->load($race_lap_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $race_lap_ref01_data_dt0_loaded = $race_lap_ref01_ent->load($race_lap_ref01_match_dt0, null);
         $this->assertNotNull($race_lap_ref01_data_dt0_loaded);
 
     }
@@ -86,7 +84,6 @@ function race_lap_basic_setup($extra)
         "OPENF_CARDATA_TEST_RACE_LAP_ENTID" => $idmap,
         "OPENF_CARDATA_TEST_LIVE" => "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-        "OPENF_CARDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +95,6 @@ function race_lap_basic_setup($extra)
     if ($env["OPENF_CARDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OPENF_CARDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

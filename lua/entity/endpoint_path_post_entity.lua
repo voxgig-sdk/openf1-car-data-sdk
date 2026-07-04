@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch EndpointPathPostLoadMatch
+---@param ctrl? table
+---@return EndpointPathPost
+---@return string? err
 function EndpointPathPostEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -106,6 +110,10 @@ end
 
 
 
+---@param reqdata EndpointPathPostCreateData
+---@param ctrl? table
+---@return EndpointPathPost
+---@return string? err
 function EndpointPathPostEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

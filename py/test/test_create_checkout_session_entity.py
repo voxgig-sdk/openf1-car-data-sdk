@@ -44,9 +44,7 @@ class TestCreateCheckoutSessionEntity:
         create_checkout_session_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.create_checkout_session"), "create_checkout_session_ref01"))
 
-        create_checkout_session_ref01_data_result, err = create_checkout_session_ref01_ent.create(create_checkout_session_ref01_data, None)
-        assert err is None
-        create_checkout_session_ref01_data = helpers.to_map(create_checkout_session_ref01_data_result)
+        create_checkout_session_ref01_data = helpers.to_map(create_checkout_session_ref01_ent.create(create_checkout_session_ref01_data, None))
         assert create_checkout_session_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _create_checkout_session_basic_setup(extra):
         "OPENF_CARDATA_TEST_CREATE_CHECKOUT_SESSION_ENTID": idmap,
         "OPENF_CARDATA_TEST_LIVE": "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN": "FALSE",
-        "OPENF_CARDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _create_checkout_session_basic_setup(extra):
     if env.get("OPENF_CARDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENF_CARDATA_APIKEY"),
             },
             extra or {},
         ])

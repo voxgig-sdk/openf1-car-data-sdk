@@ -36,8 +36,7 @@ class WebhookEntityTest < Minitest::Test
     webhook_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.webhook"), "webhook_ref01"))
 
-    webhook_ref01_data_result, err = webhook_ref01_ent.create(webhook_ref01_data, nil)
-    assert_nil err
+    webhook_ref01_data_result = webhook_ref01_ent.create(webhook_ref01_data, nil)
     webhook_ref01_data = Helpers.to_map(webhook_ref01_data_result)
     assert !webhook_ref01_data.nil?
 
@@ -77,7 +76,6 @@ def webhook_basic_setup(extra)
     "OPENF_CARDATA_TEST_WEBHOOK_ENTID" => idmap,
     "OPENF_CARDATA_TEST_LIVE" => "FALSE",
     "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-    "OPENF_CARDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -89,7 +87,6 @@ def webhook_basic_setup(extra)
   if env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OPENF_CARDATA_APIKEY"],
       },
       extra || {},
     ])

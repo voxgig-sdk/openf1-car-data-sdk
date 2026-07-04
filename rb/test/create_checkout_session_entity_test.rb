@@ -36,8 +36,7 @@ class CreateCheckoutSessionEntityTest < Minitest::Test
     create_checkout_session_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.create_checkout_session"), "create_checkout_session_ref01"))
 
-    create_checkout_session_ref01_data_result, err = create_checkout_session_ref01_ent.create(create_checkout_session_ref01_data, nil)
-    assert_nil err
+    create_checkout_session_ref01_data_result = create_checkout_session_ref01_ent.create(create_checkout_session_ref01_data, nil)
     create_checkout_session_ref01_data = Helpers.to_map(create_checkout_session_ref01_data_result)
     assert !create_checkout_session_ref01_data.nil?
 
@@ -77,7 +76,6 @@ def create_checkout_session_basic_setup(extra)
     "OPENF_CARDATA_TEST_CREATE_CHECKOUT_SESSION_ENTID" => idmap,
     "OPENF_CARDATA_TEST_LIVE" => "FALSE",
     "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-    "OPENF_CARDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -89,7 +87,6 @@ def create_checkout_session_basic_setup(extra)
   if env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OPENF_CARDATA_APIKEY"],
       },
       extra || {},
     ])

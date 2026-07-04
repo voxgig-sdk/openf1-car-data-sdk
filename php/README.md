@@ -9,9 +9,10 @@ The PHP SDK for the Openf1CarData API — an entity-oriented client using PHP co
 
 
 ## Install
-```bash
-composer require voxgig-sdk/openf1-car-data
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/openf1-car-data-sdk/releases](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,16 +26,14 @@ loading a specific record.
 <?php
 require_once 'openf1cardata_sdk.php';
 
-$client = new Openf1CarDataSDK([
-    "apikey" => getenv("OPENF1-CAR-DATA_APIKEY"),
-]);
+$client = new Openf1CarDataSDK();
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->CreateCheckoutSession()->create(["name" => "Example"]);
+$created = $client->createcheckoutsession()->create(["name" => "Example"]);
 
 ```
 
@@ -46,28 +45,31 @@ $client = new Openf1CarDataSDK([
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +83,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = Openf1CarDataSDK::test();
 
-[$result, $err] = $client->Openf1CarData()->load(["id" => "test01"]);
+$result = $client->createcheckoutsession()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +117,7 @@ $client = new Openf1CarDataSDK([
 Create a `.env.local` file at the project root:
 
 ```
-OPENF1-CAR-DATA_TEST_LIVE=TRUE
-OPENF1-CAR-DATA_APIKEY=<your-key>
+OPENF1_CAR_DATA_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +140,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -191,8 +191,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -275,7 +279,7 @@ API path: `/stripe/webhook`
 
 ### CreateCheckoutSession
 
-Create an instance: `const create_checkout_session = client.CreateCheckoutSession()`
+Create an instance: `const create_checkout_session = client.create_checkout_session`
 
 #### Operations
 
@@ -286,14 +290,14 @@ Create an instance: `const create_checkout_session = client.CreateCheckoutSessio
 #### Example: Create
 
 ```ts
-const create_checkout_session = await client.CreateCheckoutSession().create({
+const create_checkout_session = await client.create_checkout_session.create({
 })
 ```
 
 
 ### EndpointPathPost
 
-Create an instance: `const endpoint_path_post = client.EndpointPathPost()`
+Create an instance: `const endpoint_path_post = client.endpoint_path_post`
 
 #### Operations
 
@@ -305,20 +309,20 @@ Create an instance: `const endpoint_path_post = client.EndpointPathPost()`
 #### Example: Load
 
 ```ts
-const endpoint_path_post = await client.EndpointPathPost().load({ id: 'endpoint_path_post_id' })
+const endpoint_path_post = await client.endpoint_path_post.load({ id: 'endpoint_path_post_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const endpoint_path_post = await client.EndpointPathPost().create({
+const endpoint_path_post = await client.endpoint_path_post.create({
 })
 ```
 
 
 ### RaceLap
 
-Create an instance: `const race_lap = client.RaceLap()`
+Create an instance: `const race_lap = client.race_lap`
 
 #### Operations
 
@@ -330,20 +334,20 @@ Create an instance: `const race_lap = client.RaceLap()`
 #### Example: Load
 
 ```ts
-const race_lap = await client.RaceLap().load({ id: 'race_lap_id' })
+const race_lap = await client.race_lap.load({ id: 'race_lap_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const race_lap = await client.RaceLap().create({
+const race_lap = await client.race_lap.create({
 })
 ```
 
 
 ### SubscriptionCancel
 
-Create an instance: `const subscription_cancel = client.SubscriptionCancel()`
+Create an instance: `const subscription_cancel = client.subscription_cancel`
 
 #### Operations
 
@@ -354,13 +358,13 @@ Create an instance: `const subscription_cancel = client.SubscriptionCancel()`
 #### Example: Load
 
 ```ts
-const subscription_cancel = await client.SubscriptionCancel().load({ id: 'subscription_cancel_id' })
+const subscription_cancel = await client.subscription_cancel.load({ id: 'subscription_cancel_id' })
 ```
 
 
 ### SubscriptionSuccess
 
-Create an instance: `const subscription_success = client.SubscriptionSuccess()`
+Create an instance: `const subscription_success = client.subscription_success`
 
 #### Operations
 
@@ -371,13 +375,13 @@ Create an instance: `const subscription_success = client.SubscriptionSuccess()`
 #### Example: Load
 
 ```ts
-const subscription_success = await client.SubscriptionSuccess().load({ id: 'subscription_success_id' })
+const subscription_success = await client.subscription_success.load({ id: 'subscription_success_id' })
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.Token()`
+Create an instance: `const token = client.token`
 
 #### Operations
 
@@ -388,14 +392,14 @@ Create an instance: `const token = client.Token()`
 #### Example: Create
 
 ```ts
-const token = await client.Token().create({
+const token = await client.token.create({
 })
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.Webhook()`
+Create an instance: `const webhook = client.webhook`
 
 #### Operations
 
@@ -406,7 +410,7 @@ Create an instance: `const webhook = client.Webhook()`
 #### Example: Create
 
 ```ts
-const webhook = await client.Webhook().create({
+const webhook = await client.webhook.create({
 })
 ```
 
@@ -482,11 +486,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$createcheckoutsession = $client->createcheckoutsession();
+$createcheckoutsession->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $createcheckoutsession->dataGet() now returns the loaded createcheckoutsession data
+// $createcheckoutsession->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

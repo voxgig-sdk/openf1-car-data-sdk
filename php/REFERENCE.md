@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -80,7 +79,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -94,11 +96,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -106,17 +109,17 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## CreateCheckoutSessionEntity
 
 ```php
-$create_checkout_session = $client->CreateCheckoutSession();
+$create_checkout_session = $client->create_checkout_session();
 ```
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->CreateCheckoutSession()->create([
+$result = $client->create_checkout_session()->create([
 ]);
 ```
 
@@ -153,26 +156,26 @@ Return the entity name.
 ## EndpointPathPostEntity
 
 ```php
-$endpoint_path_post = $client->EndpointPathPost();
+$endpoint_path_post = $client->endpoint_path_post();
 ```
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->EndpointPathPost()->create([
+$result = $client->endpoint_path_post()->create([
 ]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->EndpointPathPost()->load(["id" => "endpoint_path_post_id"]);
+$result = $client->endpoint_path_post()->load(["id" => "endpoint_path_post_id"]);
 ```
 
 ### Common Methods
@@ -208,26 +211,26 @@ Return the entity name.
 ## RaceLapEntity
 
 ```php
-$race_lap = $client->RaceLap();
+$race_lap = $client->race_lap();
 ```
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->RaceLap()->create([
+$result = $client->race_lap()->create([
 ]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->RaceLap()->load(["id" => "race_lap_id"]);
+$result = $client->race_lap()->load(["id" => "race_lap_id"]);
 ```
 
 ### Common Methods
@@ -263,17 +266,17 @@ Return the entity name.
 ## SubscriptionCancelEntity
 
 ```php
-$subscription_cancel = $client->SubscriptionCancel();
+$subscription_cancel = $client->subscription_cancel();
 ```
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->SubscriptionCancel()->load(["id" => "subscription_cancel_id"]);
+$result = $client->subscription_cancel()->load(["id" => "subscription_cancel_id"]);
 ```
 
 ### Common Methods
@@ -309,17 +312,17 @@ Return the entity name.
 ## SubscriptionSuccessEntity
 
 ```php
-$subscription_success = $client->SubscriptionSuccess();
+$subscription_success = $client->subscription_success();
 ```
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->SubscriptionSuccess()->load(["id" => "subscription_success_id"]);
+$result = $client->subscription_success()->load(["id" => "subscription_success_id"]);
 ```
 
 ### Common Methods
@@ -355,17 +358,17 @@ Return the entity name.
 ## TokenEntity
 
 ```php
-$token = $client->Token();
+$token = $client->token();
 ```
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->Token()->create([
+$result = $client->token()->create([
 ]);
 ```
 
@@ -402,17 +405,17 @@ Return the entity name.
 ## WebhookEntity
 
 ```php
-$webhook = $client->Webhook();
+$webhook = $client->webhook();
 ```
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->Webhook()->create([
+$result = $client->webhook()->create([
 ]);
 ```
 

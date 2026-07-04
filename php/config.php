@@ -20,9 +20,6 @@ class Openf1CarDataConfig
             ],
             "options" => [
                 "base" => "https://api.openf1.org",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -88,6 +85,7 @@ class Openf1CarDataConfig
                         'orig' => 'path',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -130,6 +128,7 @@ class Openf1CarDataConfig
                         'orig' => 'path',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

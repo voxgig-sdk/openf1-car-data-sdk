@@ -62,14 +62,12 @@ function subscription_cancel_direct_setup(mockres)
   local env = runner.env_override({
     ["OPENF_CARDATA_TEST_SUBSCRIPTION_CANCEL_ENTID"] = {},
     ["OPENF_CARDATA_TEST_LIVE"] = "FALSE",
-    ["OPENF_CARDATA_APIKEY"] = "NONE",
   })
 
   local live = env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["OPENF_CARDATA_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

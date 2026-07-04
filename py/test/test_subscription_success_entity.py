@@ -49,8 +49,7 @@ class TestSubscriptionSuccessEntity:
         # LOAD
         subscription_success_ref01_ent = client.SubscriptionSuccess(None)
         subscription_success_ref01_match_dt0 = {}
-        subscription_success_ref01_data_dt0_loaded, err = subscription_success_ref01_ent.load(subscription_success_ref01_match_dt0, None)
-        assert err is None
+        subscription_success_ref01_data_dt0_loaded = subscription_success_ref01_ent.load(subscription_success_ref01_match_dt0, None)
         assert subscription_success_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _subscription_success_basic_setup(extra):
         "OPENF_CARDATA_TEST_SUBSCRIPTION_SUCCESS_ENTID": idmap,
         "OPENF_CARDATA_TEST_LIVE": "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN": "FALSE",
-        "OPENF_CARDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _subscription_success_basic_setup(extra):
     if env.get("OPENF_CARDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENF_CARDATA_APIKEY"),
             },
             extra or {},
         ])

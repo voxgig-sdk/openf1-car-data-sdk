@@ -74,14 +74,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'OPENF_CARDATA_TEST_SUBSCRIPTION_CANCEL_ENTID': {},
     'OPENF_CARDATA_TEST_LIVE': 'FALSE',
-    'OPENF_CARDATA_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.OPENF_CARDATA_TEST_LIVE
 
   if (live) {
     const client = new Openf1CarDataSDK({
-      apikey: env.OPENF_CARDATA_APIKEY,
     })
 
     let idmap: any = env['OPENF_CARDATA_TEST_SUBSCRIPTION_CANCEL_ENTID']

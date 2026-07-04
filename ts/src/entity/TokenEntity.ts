@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Token,
+  TokenCreateData,
+} from '../Openf1CarDataTypes'
 
 // TODO: needs Entity superclass
-class TokenEntity extends Openf1CarDataEntityBase {
+class TokenEntity extends Openf1CarDataEntityBase<Token> {
 
   constructor(client: Openf1CarDataSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class TokenEntity extends Openf1CarDataEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: TokenCreateData, ctrl?: Control): Promise<Token> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class TokenEntity extends Openf1CarDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Token> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

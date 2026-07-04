@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CreateCheckoutSession,
+  CreateCheckoutSessionCreateData,
+} from '../Openf1CarDataTypes'
 
 // TODO: needs Entity superclass
-class CreateCheckoutSessionEntity extends Openf1CarDataEntityBase {
+class CreateCheckoutSessionEntity extends Openf1CarDataEntityBase<CreateCheckoutSession> {
 
   constructor(client: Openf1CarDataSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class CreateCheckoutSessionEntity extends Openf1CarDataEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: CreateCheckoutSessionCreateData, ctrl?: Control): Promise<CreateCheckoutSession> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class CreateCheckoutSessionEntity extends Openf1CarDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CreateCheckoutSession> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

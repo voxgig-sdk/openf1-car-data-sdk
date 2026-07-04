@@ -55,6 +55,9 @@ class TokenEntity
         return new TokenEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Token|array $args Token data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class TokenEntity
         }
     }
 
+    /**
+     * @return Token|array The current Token data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Token fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class TokenEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Token fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -88,7 +100,16 @@ class TokenEntity
     
 
     
-    public function create($reqdata, $ctrl = null): array
+    /**
+     * Create a new Token.
+     *
+     * @param TokenCreateData|array|null $reqdata Body data as an assoc-array;
+     *   a typed TokenCreateData names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Token|array The created Token as an assoc-array at the
+     *   SDK boundary; throws Openf1CarDataError on failure (item-5 convention).
+     */
+    public function create(?array $reqdata = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class TokenEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

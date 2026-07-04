@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://api.openf1.org",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -83,6 +80,7 @@ def make_config():
                       "orig": "path",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },
@@ -125,6 +123,7 @@ def make_config():
                       "orig": "path",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

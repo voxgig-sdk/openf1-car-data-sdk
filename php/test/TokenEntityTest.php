@@ -43,8 +43,7 @@ class TokenEntityTest extends TestCase
         $token_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.token"), "token_ref01"));
 
-        [$token_ref01_data_result, $err] = $token_ref01_ent->create($token_ref01_data, null);
-        $this->assertNull($err);
+        $token_ref01_data_result = $token_ref01_ent->create($token_ref01_data, null);
         $token_ref01_data = Helpers::to_map($token_ref01_data_result);
         $this->assertNotNull($token_ref01_data);
 
@@ -80,7 +79,6 @@ function token_basic_setup($extra)
         "OPENF_CARDATA_TEST_TOKEN_ENTID" => $idmap,
         "OPENF_CARDATA_TEST_LIVE" => "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-        "OPENF_CARDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +90,6 @@ function token_basic_setup($extra)
     if ($env["OPENF_CARDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OPENF_CARDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

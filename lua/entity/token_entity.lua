@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata TokenCreateData
+---@param ctrl? table
+---@return Token
+---@return string? err
 function TokenEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

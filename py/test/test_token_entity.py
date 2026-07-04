@@ -44,9 +44,7 @@ class TestTokenEntity:
         token_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.token"), "token_ref01"))
 
-        token_ref01_data_result, err = token_ref01_ent.create(token_ref01_data, None)
-        assert err is None
-        token_ref01_data = helpers.to_map(token_ref01_data_result)
+        token_ref01_data = helpers.to_map(token_ref01_ent.create(token_ref01_data, None))
         assert token_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _token_basic_setup(extra):
         "OPENF_CARDATA_TEST_TOKEN_ENTID": idmap,
         "OPENF_CARDATA_TEST_LIVE": "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN": "FALSE",
-        "OPENF_CARDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _token_basic_setup(extra):
     if env.get("OPENF_CARDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENF_CARDATA_APIKEY"),
             },
             extra or {},
         ])

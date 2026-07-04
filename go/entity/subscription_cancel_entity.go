@@ -85,6 +85,27 @@ func (e *SubscriptionCancelEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an SubscriptionCancel; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *SubscriptionCancelEntity) DataTyped(data ...SubscriptionCancel) SubscriptionCancel {
+	if len(data) > 0 {
+		return typedFrom[SubscriptionCancel](e.Data(asMap(data[0])))
+	}
+	return typedFrom[SubscriptionCancel](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through SubscriptionCancel (all fields
+// optional at the wire level).
+func (e *SubscriptionCancelEntity) MatchTyped(match ...SubscriptionCancel) SubscriptionCancel {
+	if len(match) > 0 {
+		return typedFrom[SubscriptionCancel](e.Match(asMap(match[0])))
+	}
+	return typedFrom[SubscriptionCancel](e.Match())
+}
+
 
 func (e *SubscriptionCancelEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *SubscriptionCancelEntity) Load(reqmatch map[string]any, ctrl map[string
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// SubscriptionCancelLoadMatch and returns an SubscriptionCancel. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *SubscriptionCancelEntity) LoadTyped(reqmatch SubscriptionCancelLoadMatch, ctrl map[string]any) (SubscriptionCancel, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return SubscriptionCancel{}, err
+	}
+	return typedFrom[SubscriptionCancel](res), nil
 }
 
 

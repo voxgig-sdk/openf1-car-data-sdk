@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata CreateCheckoutSessionCreateData
+---@param ctrl? table
+---@return CreateCheckoutSession
+---@return string? err
 function CreateCheckoutSessionEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

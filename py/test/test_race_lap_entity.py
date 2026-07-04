@@ -44,15 +44,12 @@ class TestRaceLapEntity:
         race_lap_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.race_lap"), "race_lap_ref01"))
 
-        race_lap_ref01_data_result, err = race_lap_ref01_ent.create(race_lap_ref01_data, None)
-        assert err is None
-        race_lap_ref01_data = helpers.to_map(race_lap_ref01_data_result)
+        race_lap_ref01_data = helpers.to_map(race_lap_ref01_ent.create(race_lap_ref01_data, None))
         assert race_lap_ref01_data is not None
 
         # LOAD
         race_lap_ref01_match_dt0 = {}
-        race_lap_ref01_data_dt0_loaded, err = race_lap_ref01_ent.load(race_lap_ref01_match_dt0, None)
-        assert err is None
+        race_lap_ref01_data_dt0_loaded = race_lap_ref01_ent.load(race_lap_ref01_match_dt0, None)
         assert race_lap_ref01_data_dt0_loaded is not None
 
 
@@ -93,7 +90,6 @@ def _race_lap_basic_setup(extra):
         "OPENF_CARDATA_TEST_RACE_LAP_ENTID": idmap,
         "OPENF_CARDATA_TEST_LIVE": "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN": "FALSE",
-        "OPENF_CARDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -104,7 +100,6 @@ def _race_lap_basic_setup(extra):
     if env.get("OPENF_CARDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENF_CARDATA_APIKEY"),
             },
             extra or {},
         ])

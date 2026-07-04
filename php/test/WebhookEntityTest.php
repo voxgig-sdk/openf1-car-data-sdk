@@ -43,8 +43,7 @@ class WebhookEntityTest extends TestCase
         $webhook_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.webhook"), "webhook_ref01"));
 
-        [$webhook_ref01_data_result, $err] = $webhook_ref01_ent->create($webhook_ref01_data, null);
-        $this->assertNull($err);
+        $webhook_ref01_data_result = $webhook_ref01_ent->create($webhook_ref01_data, null);
         $webhook_ref01_data = Helpers::to_map($webhook_ref01_data_result);
         $this->assertNotNull($webhook_ref01_data);
 
@@ -80,7 +79,6 @@ function webhook_basic_setup($extra)
         "OPENF_CARDATA_TEST_WEBHOOK_ENTID" => $idmap,
         "OPENF_CARDATA_TEST_LIVE" => "FALSE",
         "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-        "OPENF_CARDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +90,6 @@ function webhook_basic_setup($extra)
     if ($env["OPENF_CARDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OPENF_CARDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

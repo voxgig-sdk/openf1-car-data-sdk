@@ -36,15 +36,13 @@ class RaceLapEntityTest < Minitest::Test
     race_lap_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.race_lap"), "race_lap_ref01"))
 
-    race_lap_ref01_data_result, err = race_lap_ref01_ent.create(race_lap_ref01_data, nil)
-    assert_nil err
+    race_lap_ref01_data_result = race_lap_ref01_ent.create(race_lap_ref01_data, nil)
     race_lap_ref01_data = Helpers.to_map(race_lap_ref01_data_result)
     assert !race_lap_ref01_data.nil?
 
     # LOAD
     race_lap_ref01_match_dt0 = {}
-    race_lap_ref01_data_dt0_loaded, err = race_lap_ref01_ent.load(race_lap_ref01_match_dt0, nil)
-    assert_nil err
+    race_lap_ref01_data_dt0_loaded = race_lap_ref01_ent.load(race_lap_ref01_match_dt0, nil)
     assert !race_lap_ref01_data_dt0_loaded.nil?
 
   end
@@ -83,7 +81,6 @@ def race_lap_basic_setup(extra)
     "OPENF_CARDATA_TEST_RACE_LAP_ENTID" => idmap,
     "OPENF_CARDATA_TEST_LIVE" => "FALSE",
     "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
-    "OPENF_CARDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +92,6 @@ def race_lap_basic_setup(extra)
   if env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OPENF_CARDATA_APIKEY"],
       },
       extra || {},
     ])
