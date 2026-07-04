@@ -210,98 +210,49 @@ class Openf1CarDataSDK {
 
 
 
-  _create_checkout_session?: CreateCheckoutSessionEntity
-
-  // Idiomatic facade: `client.create_checkout_session.list()` / `client.create_checkout_session.load({ id })`.
-  get create_checkout_session(): CreateCheckoutSessionEntity {
-    return (this._create_checkout_session ??= new CreateCheckoutSessionEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.create_checkout_session` instead. */
+  // Entity access: `client.CreateCheckoutSession().list()` / `client.CreateCheckoutSession().load({ id })`.
   CreateCheckoutSession(data?: any) {
     const self = this
     return new CreateCheckoutSessionEntity(self,data)
   }
 
 
-  _endpoint_path_post?: EndpointPathPostEntity
-
-  // Idiomatic facade: `client.endpoint_path_post.list()` / `client.endpoint_path_post.load({ id })`.
-  get endpoint_path_post(): EndpointPathPostEntity {
-    return (this._endpoint_path_post ??= new EndpointPathPostEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.endpoint_path_post` instead. */
+  // Entity access: `client.EndpointPathPost().list()` / `client.EndpointPathPost().load({ id })`.
   EndpointPathPost(data?: any) {
     const self = this
     return new EndpointPathPostEntity(self,data)
   }
 
 
-  _race_lap?: RaceLapEntity
-
-  // Idiomatic facade: `client.race_lap.list()` / `client.race_lap.load({ id })`.
-  get race_lap(): RaceLapEntity {
-    return (this._race_lap ??= new RaceLapEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.race_lap` instead. */
+  // Entity access: `client.RaceLap().list()` / `client.RaceLap().load({ id })`.
   RaceLap(data?: any) {
     const self = this
     return new RaceLapEntity(self,data)
   }
 
 
-  _subscription_cancel?: SubscriptionCancelEntity
-
-  // Idiomatic facade: `client.subscription_cancel.list()` / `client.subscription_cancel.load({ id })`.
-  get subscription_cancel(): SubscriptionCancelEntity {
-    return (this._subscription_cancel ??= new SubscriptionCancelEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.subscription_cancel` instead. */
+  // Entity access: `client.SubscriptionCancel().list()` / `client.SubscriptionCancel().load({ id })`.
   SubscriptionCancel(data?: any) {
     const self = this
     return new SubscriptionCancelEntity(self,data)
   }
 
 
-  _subscription_success?: SubscriptionSuccessEntity
-
-  // Idiomatic facade: `client.subscription_success.list()` / `client.subscription_success.load({ id })`.
-  get subscription_success(): SubscriptionSuccessEntity {
-    return (this._subscription_success ??= new SubscriptionSuccessEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.subscription_success` instead. */
+  // Entity access: `client.SubscriptionSuccess().list()` / `client.SubscriptionSuccess().load({ id })`.
   SubscriptionSuccess(data?: any) {
     const self = this
     return new SubscriptionSuccessEntity(self,data)
   }
 
 
-  _token?: TokenEntity
-
-  // Idiomatic facade: `client.token.list()` / `client.token.load({ id })`.
-  get token(): TokenEntity {
-    return (this._token ??= new TokenEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.token` instead. */
+  // Entity access: `client.Token().list()` / `client.Token().load({ id })`.
   Token(data?: any) {
     const self = this
     return new TokenEntity(self,data)
   }
 
 
-  _webhook?: WebhookEntity
-
-  // Idiomatic facade: `client.webhook.list()` / `client.webhook.load({ id })`.
-  get webhook(): WebhookEntity {
-    return (this._webhook ??= new WebhookEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.webhook` instead. */
+  // Entity access: `client.Webhook().list()` / `client.Webhook().load({ id })`.
   Webhook(data?: any) {
     const self = this
     return new WebhookEntity(self,data)

@@ -208,91 +208,49 @@ class Openf1CarDataSDK
   end
 
 
-  # Idiomatic facade: client.create_checkout_session.list / client.create_checkout_session.load({ "id" => ... })
-  def create_checkout_session
-    require_relative 'entity/create_checkout_session_entity'
-    @create_checkout_session ||= CreateCheckoutSessionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.create_checkout_session instead.
+  # Canonical facade: client.CreateCheckoutSession.list / client.CreateCheckoutSession.load({ "id" => ... })
   def CreateCheckoutSession(data = nil)
     require_relative 'entity/create_checkout_session_entity'
     CreateCheckoutSessionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.endpoint_path_post.list / client.endpoint_path_post.load({ "id" => ... })
-  def endpoint_path_post
-    require_relative 'entity/endpoint_path_post_entity'
-    @endpoint_path_post ||= EndpointPathPostEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.endpoint_path_post instead.
+  # Canonical facade: client.EndpointPathPost.list / client.EndpointPathPost.load({ "id" => ... })
   def EndpointPathPost(data = nil)
     require_relative 'entity/endpoint_path_post_entity'
     EndpointPathPostEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.race_lap.list / client.race_lap.load({ "id" => ... })
-  def race_lap
-    require_relative 'entity/race_lap_entity'
-    @race_lap ||= RaceLapEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.race_lap instead.
+  # Canonical facade: client.RaceLap.list / client.RaceLap.load({ "id" => ... })
   def RaceLap(data = nil)
     require_relative 'entity/race_lap_entity'
     RaceLapEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.subscription_cancel.list / client.subscription_cancel.load({ "id" => ... })
-  def subscription_cancel
-    require_relative 'entity/subscription_cancel_entity'
-    @subscription_cancel ||= SubscriptionCancelEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.subscription_cancel instead.
+  # Canonical facade: client.SubscriptionCancel.list / client.SubscriptionCancel.load({ "id" => ... })
   def SubscriptionCancel(data = nil)
     require_relative 'entity/subscription_cancel_entity'
     SubscriptionCancelEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.subscription_success.list / client.subscription_success.load({ "id" => ... })
-  def subscription_success
-    require_relative 'entity/subscription_success_entity'
-    @subscription_success ||= SubscriptionSuccessEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.subscription_success instead.
+  # Canonical facade: client.SubscriptionSuccess.list / client.SubscriptionSuccess.load({ "id" => ... })
   def SubscriptionSuccess(data = nil)
     require_relative 'entity/subscription_success_entity'
     SubscriptionSuccessEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.token.list / client.token.load({ "id" => ... })
-  def token
-    require_relative 'entity/token_entity'
-    @token ||= TokenEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.token instead.
+  # Canonical facade: client.Token.list / client.Token.load({ "id" => ... })
   def Token(data = nil)
     require_relative 'entity/token_entity'
     TokenEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.webhook.list / client.webhook.load({ "id" => ... })
-  def webhook
-    require_relative 'entity/webhook_entity'
-    @webhook ||= WebhookEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.webhook instead.
+  # Canonical facade: client.Webhook.list / client.Webhook.load({ "id" => ... })
   def Webhook(data = nil)
     require_relative 'entity/webhook_entity'
     WebhookEntity.new(self, data)

@@ -35,7 +35,8 @@ local client = sdk.new()
 
 ```lua
 -- Create
-local created, _ = client:createcheckoutsession():create({ name = "Example" })
+local created, err = client:CreateCheckoutSession():create({ name = "Example" })
+if err then error(err) end
 
 ```
 
@@ -82,8 +83,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:createcheckoutsession():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:CreateCheckoutSession():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -162,7 +163,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `CreateCheckoutSession` | `(data) -> CreateCheckoutSessionEntity` | Create a CreateCheckoutSession entity instance. |
-| `EndpointPathPost` | `(data) -> EndpointPathPostEntity` | Create a EndpointPathPost entity instance. |
+| `EndpointPathPost` | `(data) -> EndpointPathPostEntity` | Create an EndpointPathPost entity instance. |
 | `RaceLap` | `(data) -> RaceLapEntity` | Create a RaceLap entity instance. |
 | `SubscriptionCancel` | `(data) -> SubscriptionCancelEntity` | Create a SubscriptionCancel entity instance. |
 | `SubscriptionSuccess` | `(data) -> SubscriptionSuccessEntity` | Create a SubscriptionSuccess entity instance. |
@@ -189,17 +190,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local create_checkout_session, err = client:CreateCheckoutSession():load({ id = "example_id" })
+    if err then error(err) end
+    -- create_checkout_session is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -273,7 +279,7 @@ API path: `/stripe/webhook`
 
 ### CreateCheckoutSession
 
-Create an instance: `const create_checkout_session = client.create_checkout_session`
+Create an instance: `local create_checkout_session = client:CreateCheckoutSession(nil)`
 
 #### Operations
 
@@ -283,15 +289,15 @@ Create an instance: `const create_checkout_session = client.create_checkout_sess
 
 #### Example: Create
 
-```ts
-const create_checkout_session = await client.create_checkout_session.create({
+```lua
+local create_checkout_session, err = client:CreateCheckoutSession():create({
 })
 ```
 
 
 ### EndpointPathPost
 
-Create an instance: `const endpoint_path_post = client.endpoint_path_post`
+Create an instance: `local endpoint_path_post = client:EndpointPathPost(nil)`
 
 #### Operations
 
@@ -302,21 +308,21 @@ Create an instance: `const endpoint_path_post = client.endpoint_path_post`
 
 #### Example: Load
 
-```ts
-const endpoint_path_post = await client.endpoint_path_post.load({ id: 'endpoint_path_post_id' })
+```lua
+local endpoint_path_post, err = client:EndpointPathPost():load({ id = "endpoint_path_post_id" })
 ```
 
 #### Example: Create
 
-```ts
-const endpoint_path_post = await client.endpoint_path_post.create({
+```lua
+local endpoint_path_post, err = client:EndpointPathPost():create({
 })
 ```
 
 
 ### RaceLap
 
-Create an instance: `const race_lap = client.race_lap`
+Create an instance: `local race_lap = client:RaceLap(nil)`
 
 #### Operations
 
@@ -327,21 +333,21 @@ Create an instance: `const race_lap = client.race_lap`
 
 #### Example: Load
 
-```ts
-const race_lap = await client.race_lap.load({ id: 'race_lap_id' })
+```lua
+local race_lap, err = client:RaceLap():load({ id = "race_lap_id" })
 ```
 
 #### Example: Create
 
-```ts
-const race_lap = await client.race_lap.create({
+```lua
+local race_lap, err = client:RaceLap():create({
 })
 ```
 
 
 ### SubscriptionCancel
 
-Create an instance: `const subscription_cancel = client.subscription_cancel`
+Create an instance: `local subscription_cancel = client:SubscriptionCancel(nil)`
 
 #### Operations
 
@@ -351,14 +357,14 @@ Create an instance: `const subscription_cancel = client.subscription_cancel`
 
 #### Example: Load
 
-```ts
-const subscription_cancel = await client.subscription_cancel.load({ id: 'subscription_cancel_id' })
+```lua
+local subscription_cancel, err = client:SubscriptionCancel():load({ id = "subscription_cancel_id" })
 ```
 
 
 ### SubscriptionSuccess
 
-Create an instance: `const subscription_success = client.subscription_success`
+Create an instance: `local subscription_success = client:SubscriptionSuccess(nil)`
 
 #### Operations
 
@@ -368,14 +374,14 @@ Create an instance: `const subscription_success = client.subscription_success`
 
 #### Example: Load
 
-```ts
-const subscription_success = await client.subscription_success.load({ id: 'subscription_success_id' })
+```lua
+local subscription_success, err = client:SubscriptionSuccess():load({ id = "subscription_success_id" })
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.token`
+Create an instance: `local token = client:Token(nil)`
 
 #### Operations
 
@@ -385,15 +391,15 @@ Create an instance: `const token = client.token`
 
 #### Example: Create
 
-```ts
-const token = await client.token.create({
+```lua
+local token, err = client:Token():create({
 })
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.webhook`
+Create an instance: `local webhook = client:Webhook(nil)`
 
 #### Operations
 
@@ -403,8 +409,8 @@ Create an instance: `const webhook = client.webhook`
 
 #### Example: Create
 
-```ts
-const webhook = await client.webhook.create({
+```lua
+local webhook, err = client:Webhook():create({
 })
 ```
 
@@ -480,7 +486,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local createcheckoutsession = client:createcheckoutsession()
+local createcheckoutsession = client:CreateCheckoutSession()
 createcheckoutsession:load({ id = "example_id" })
 
 -- createcheckoutsession:data_get() now returns the loaded createcheckoutsession data

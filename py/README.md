@@ -34,8 +34,8 @@ client = Openf1CarDataSDK()
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.createcheckoutsession.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.CreateCheckoutSession().create({"name": "Example"})
 
 ```
 
@@ -82,8 +82,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = Openf1CarDataSDK.test()
 
-result = client.createcheckoutsession.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+createcheckoutsession = client.CreateCheckoutSession().load({"id": "test01"})
+# createcheckoutsession contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -160,7 +161,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `CreateCheckoutSession` | `(data) -> CreateCheckoutSessionEntity` | Create a CreateCheckoutSession entity instance. |
-| `EndpointPathPost` | `(data) -> EndpointPathPostEntity` | Create a EndpointPathPost entity instance. |
+| `EndpointPathPost` | `(data) -> EndpointPathPostEntity` | Create an EndpointPathPost entity instance. |
 | `RaceLap` | `(data) -> RaceLapEntity` | Create a RaceLap entity instance. |
 | `SubscriptionCancel` | `(data) -> SubscriptionCancelEntity` | Create a SubscriptionCancel entity instance. |
 | `SubscriptionSuccess` | `(data) -> SubscriptionSuccessEntity` | Create a SubscriptionSuccess entity instance. |
@@ -275,7 +276,7 @@ API path: `/stripe/webhook`
 
 ### CreateCheckoutSession
 
-Create an instance: `const create_checkout_session = client.create_checkout_session`
+Create an instance: `create_checkout_session = client.CreateCheckoutSession()`
 
 #### Operations
 
@@ -285,15 +286,15 @@ Create an instance: `const create_checkout_session = client.create_checkout_sess
 
 #### Example: Create
 
-```ts
-const create_checkout_session = await client.create_checkout_session.create({
+```python
+create_checkout_session = client.CreateCheckoutSession().create({
 })
 ```
 
 
 ### EndpointPathPost
 
-Create an instance: `const endpoint_path_post = client.endpoint_path_post`
+Create an instance: `endpoint_path_post = client.EndpointPathPost()`
 
 #### Operations
 
@@ -304,21 +305,21 @@ Create an instance: `const endpoint_path_post = client.endpoint_path_post`
 
 #### Example: Load
 
-```ts
-const endpoint_path_post = await client.endpoint_path_post.load({ id: 'endpoint_path_post_id' })
+```python
+endpoint_path_post = client.EndpointPathPost().load({"id": "endpoint_path_post_id"})
 ```
 
 #### Example: Create
 
-```ts
-const endpoint_path_post = await client.endpoint_path_post.create({
+```python
+endpoint_path_post = client.EndpointPathPost().create({
 })
 ```
 
 
 ### RaceLap
 
-Create an instance: `const race_lap = client.race_lap`
+Create an instance: `race_lap = client.RaceLap()`
 
 #### Operations
 
@@ -329,21 +330,21 @@ Create an instance: `const race_lap = client.race_lap`
 
 #### Example: Load
 
-```ts
-const race_lap = await client.race_lap.load({ id: 'race_lap_id' })
+```python
+race_lap = client.RaceLap().load({"id": "race_lap_id"})
 ```
 
 #### Example: Create
 
-```ts
-const race_lap = await client.race_lap.create({
+```python
+race_lap = client.RaceLap().create({
 })
 ```
 
 
 ### SubscriptionCancel
 
-Create an instance: `const subscription_cancel = client.subscription_cancel`
+Create an instance: `subscription_cancel = client.SubscriptionCancel()`
 
 #### Operations
 
@@ -353,14 +354,14 @@ Create an instance: `const subscription_cancel = client.subscription_cancel`
 
 #### Example: Load
 
-```ts
-const subscription_cancel = await client.subscription_cancel.load({ id: 'subscription_cancel_id' })
+```python
+subscription_cancel = client.SubscriptionCancel().load({"id": "subscription_cancel_id"})
 ```
 
 
 ### SubscriptionSuccess
 
-Create an instance: `const subscription_success = client.subscription_success`
+Create an instance: `subscription_success = client.SubscriptionSuccess()`
 
 #### Operations
 
@@ -370,14 +371,14 @@ Create an instance: `const subscription_success = client.subscription_success`
 
 #### Example: Load
 
-```ts
-const subscription_success = await client.subscription_success.load({ id: 'subscription_success_id' })
+```python
+subscription_success = client.SubscriptionSuccess().load({"id": "subscription_success_id"})
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.token`
+Create an instance: `token = client.Token()`
 
 #### Operations
 
@@ -387,15 +388,15 @@ Create an instance: `const token = client.token`
 
 #### Example: Create
 
-```ts
-const token = await client.token.create({
+```python
+token = client.Token().create({
 })
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.webhook`
+Create an instance: `webhook = client.Webhook()`
 
 #### Operations
 
@@ -405,8 +406,8 @@ Create an instance: `const webhook = client.webhook`
 
 #### Example: Create
 
-```ts
-const webhook = await client.webhook.create({
+```python
+webhook = client.Webhook().create({
 })
 ```
 
@@ -481,7 +482,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-createcheckoutsession = client.createcheckoutsession
+createcheckoutsession = client.CreateCheckoutSession()
 createcheckoutsession.load({"id": "example_id"})
 
 # createcheckoutsession.data_get() now returns the loaded createcheckoutsession data

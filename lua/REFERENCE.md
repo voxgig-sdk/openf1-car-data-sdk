@@ -107,7 +107,7 @@ same parameters as `direct()`.
 ## CreateCheckoutSessionEntity
 
 ```lua
-local create_checkout_session = client:create_checkout_session(nil)
+local create_checkout_session = client:CreateCheckoutSession(nil)
 ```
 
 ### Operations
@@ -117,7 +117,7 @@ local create_checkout_session = client:create_checkout_session(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:create_checkout_session():create({
+local result, err = client:CreateCheckoutSession():create({
 })
 ```
 
@@ -154,7 +154,7 @@ Return the entity name.
 ## EndpointPathPostEntity
 
 ```lua
-local endpoint_path_post = client:endpoint_path_post(nil)
+local endpoint_path_post = client:EndpointPathPost(nil)
 ```
 
 ### Operations
@@ -164,7 +164,7 @@ local endpoint_path_post = client:endpoint_path_post(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:endpoint_path_post():create({
+local result, err = client:EndpointPathPost():create({
 })
 ```
 
@@ -173,7 +173,7 @@ local result, err = client:endpoint_path_post():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:endpoint_path_post():load({ id = "endpoint_path_post_id" })
+local result, err = client:EndpointPathPost():load({ id = "endpoint_path_post_id" })
 ```
 
 ### Common Methods
@@ -209,7 +209,7 @@ Return the entity name.
 ## RaceLapEntity
 
 ```lua
-local race_lap = client:race_lap(nil)
+local race_lap = client:RaceLap(nil)
 ```
 
 ### Operations
@@ -219,7 +219,7 @@ local race_lap = client:race_lap(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:race_lap():create({
+local result, err = client:RaceLap():create({
 })
 ```
 
@@ -228,7 +228,7 @@ local result, err = client:race_lap():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:race_lap():load({ id = "race_lap_id" })
+local result, err = client:RaceLap():load({ id = "race_lap_id" })
 ```
 
 ### Common Methods
@@ -264,7 +264,7 @@ Return the entity name.
 ## SubscriptionCancelEntity
 
 ```lua
-local subscription_cancel = client:subscription_cancel(nil)
+local subscription_cancel = client:SubscriptionCancel(nil)
 ```
 
 ### Operations
@@ -274,7 +274,7 @@ local subscription_cancel = client:subscription_cancel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:subscription_cancel():load({ id = "subscription_cancel_id" })
+local result, err = client:SubscriptionCancel():load({ id = "subscription_cancel_id" })
 ```
 
 ### Common Methods
@@ -310,7 +310,7 @@ Return the entity name.
 ## SubscriptionSuccessEntity
 
 ```lua
-local subscription_success = client:subscription_success(nil)
+local subscription_success = client:SubscriptionSuccess(nil)
 ```
 
 ### Operations
@@ -320,7 +320,7 @@ local subscription_success = client:subscription_success(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:subscription_success():load({ id = "subscription_success_id" })
+local result, err = client:SubscriptionSuccess():load({ id = "subscription_success_id" })
 ```
 
 ### Common Methods
@@ -356,7 +356,7 @@ Return the entity name.
 ## TokenEntity
 
 ```lua
-local token = client:token(nil)
+local token = client:Token(nil)
 ```
 
 ### Operations
@@ -366,7 +366,7 @@ local token = client:token(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:token():create({
+local result, err = client:Token():create({
 })
 ```
 
@@ -403,7 +403,7 @@ Return the entity name.
 ## WebhookEntity
 
 ```lua
-local webhook = client:webhook(nil)
+local webhook = client:Webhook(nil)
 ```
 
 ### Operations
@@ -413,7 +413,7 @@ local webhook = client:webhook(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:webhook():create({
+local result, err = client:Webhook():create({
 })
 ```
 

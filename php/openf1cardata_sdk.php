@@ -233,10 +233,10 @@ class Openf1CarDataSDK
 
     private $_create_checkout_session = null;
 
-    // Idiomatic facade: $client->create_checkout_session()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CreateCheckoutSession() (PHP method
-    // names are case-insensitive).
-    public function create_checkout_session($data = null)
+    // Canonical facade: $client->CreateCheckoutSession()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->create_checkout_session()
+    // resolves here too.
+    public function CreateCheckoutSession($data = null)
     {
         require_once __DIR__ . '/entity/create_checkout_session_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class Openf1CarDataSDK
 
     private $_endpoint_path_post = null;
 
-    // Idiomatic facade: $client->endpoint_path_post()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias EndpointPathPost() (PHP method
-    // names are case-insensitive).
-    public function endpoint_path_post($data = null)
+    // Canonical facade: $client->EndpointPathPost()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->endpoint_path_post()
+    // resolves here too.
+    public function EndpointPathPost($data = null)
     {
         require_once __DIR__ . '/entity/endpoint_path_post_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class Openf1CarDataSDK
 
     private $_race_lap = null;
 
-    // Idiomatic facade: $client->race_lap()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias RaceLap() (PHP method
-    // names are case-insensitive).
-    public function race_lap($data = null)
+    // Canonical facade: $client->RaceLap()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->race_lap()
+    // resolves here too.
+    public function RaceLap($data = null)
     {
         require_once __DIR__ . '/entity/race_lap_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class Openf1CarDataSDK
 
     private $_subscription_cancel = null;
 
-    // Idiomatic facade: $client->subscription_cancel()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias SubscriptionCancel() (PHP method
-    // names are case-insensitive).
-    public function subscription_cancel($data = null)
+    // Canonical facade: $client->SubscriptionCancel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->subscription_cancel()
+    // resolves here too.
+    public function SubscriptionCancel($data = null)
     {
         require_once __DIR__ . '/entity/subscription_cancel_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class Openf1CarDataSDK
 
     private $_subscription_success = null;
 
-    // Idiomatic facade: $client->subscription_success()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias SubscriptionSuccess() (PHP method
-    // names are case-insensitive).
-    public function subscription_success($data = null)
+    // Canonical facade: $client->SubscriptionSuccess()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->subscription_success()
+    // resolves here too.
+    public function SubscriptionSuccess($data = null)
     {
         require_once __DIR__ . '/entity/subscription_success_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class Openf1CarDataSDK
 
     private $_token = null;
 
-    // Idiomatic facade: $client->token()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Token() (PHP method
-    // names are case-insensitive).
-    public function token($data = null)
+    // Canonical facade: $client->Token()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->token()
+    // resolves here too.
+    public function Token($data = null)
     {
         require_once __DIR__ . '/entity/token_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class Openf1CarDataSDK
 
     private $_webhook = null;
 
-    // Idiomatic facade: $client->webhook()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Webhook() (PHP method
-    // names are case-insensitive).
-    public function webhook($data = null)
+    // Canonical facade: $client->Webhook()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->webhook()
+    // resolves here too.
+    public function Webhook($data = null)
     {
         require_once __DIR__ . '/entity/webhook_entity.php';
         if ($data === null) {

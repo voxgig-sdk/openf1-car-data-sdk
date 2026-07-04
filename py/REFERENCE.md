@@ -104,7 +104,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## CreateCheckoutSessionEntity
 
 ```python
-create_checkout_session = client.create_checkout_session
+create_checkout_session = client.CreateCheckoutSession()
 ```
 
 ### Operations
@@ -114,7 +114,7 @@ create_checkout_session = client.create_checkout_session
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.create_checkout_session.create({
+result = client.CreateCheckoutSession().create({
 })
 ```
 
@@ -150,7 +150,7 @@ Return the entity name.
 ## EndpointPathPostEntity
 
 ```python
-endpoint_path_post = client.endpoint_path_post
+endpoint_path_post = client.EndpointPathPost()
 ```
 
 ### Operations
@@ -160,7 +160,7 @@ endpoint_path_post = client.endpoint_path_post
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.endpoint_path_post.create({
+result = client.EndpointPathPost().create({
 })
 ```
 
@@ -169,7 +169,7 @@ result = client.endpoint_path_post.create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.endpoint_path_post.load({"id": "endpoint_path_post_id"})
+result = client.EndpointPathPost().load({"id": "endpoint_path_post_id"})
 ```
 
 ### Common Methods
@@ -204,7 +204,7 @@ Return the entity name.
 ## RaceLapEntity
 
 ```python
-race_lap = client.race_lap
+race_lap = client.RaceLap()
 ```
 
 ### Operations
@@ -214,7 +214,7 @@ race_lap = client.race_lap
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.race_lap.create({
+result = client.RaceLap().create({
 })
 ```
 
@@ -223,7 +223,7 @@ result = client.race_lap.create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.race_lap.load({"id": "race_lap_id"})
+result = client.RaceLap().load({"id": "race_lap_id"})
 ```
 
 ### Common Methods
@@ -258,7 +258,7 @@ Return the entity name.
 ## SubscriptionCancelEntity
 
 ```python
-subscription_cancel = client.subscription_cancel
+subscription_cancel = client.SubscriptionCancel()
 ```
 
 ### Operations
@@ -268,7 +268,7 @@ subscription_cancel = client.subscription_cancel
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.subscription_cancel.load({"id": "subscription_cancel_id"})
+result = client.SubscriptionCancel().load({"id": "subscription_cancel_id"})
 ```
 
 ### Common Methods
@@ -303,7 +303,7 @@ Return the entity name.
 ## SubscriptionSuccessEntity
 
 ```python
-subscription_success = client.subscription_success
+subscription_success = client.SubscriptionSuccess()
 ```
 
 ### Operations
@@ -313,7 +313,7 @@ subscription_success = client.subscription_success
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.subscription_success.load({"id": "subscription_success_id"})
+result = client.SubscriptionSuccess().load({"id": "subscription_success_id"})
 ```
 
 ### Common Methods
@@ -348,7 +348,7 @@ Return the entity name.
 ## TokenEntity
 
 ```python
-token = client.token
+token = client.Token()
 ```
 
 ### Operations
@@ -358,7 +358,7 @@ token = client.token
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.token.create({
+result = client.Token().create({
 })
 ```
 
@@ -394,7 +394,7 @@ Return the entity name.
 ## WebhookEntity
 
 ```python
-webhook = client.webhook
+webhook = client.Webhook()
 ```
 
 ### Operations
@@ -404,7 +404,7 @@ webhook = client.webhook
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.webhook.create({
+result = client.Webhook().create({
 })
 ```
 

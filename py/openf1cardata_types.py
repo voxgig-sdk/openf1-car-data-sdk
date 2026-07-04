@@ -4,89 +4,77 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class CreateCheckoutSession:
+class CreateCheckoutSession(TypedDict):
     pass
 
 
-@dataclass
-class CreateCheckoutSessionCreateData:
+class CreateCheckoutSessionCreateData(TypedDict):
     pass
 
 
-@dataclass
-class EndpointPathPost:
+class EndpointPathPost(TypedDict):
     pass
 
 
-@dataclass
-class EndpointPathPostLoadMatch:
+class EndpointPathPostLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class EndpointPathPostCreateData:
+class EndpointPathPostCreateData(TypedDict):
     id: str
 
 
-@dataclass
-class RaceLap:
+class RaceLap(TypedDict):
     pass
 
 
-@dataclass
-class RaceLapLoadMatch:
+class RaceLapLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class RaceLapCreateData:
+class RaceLapCreateData(TypedDict):
     pass
 
 
-@dataclass
-class SubscriptionCancel:
+class SubscriptionCancel(TypedDict):
     pass
 
 
-@dataclass
-class SubscriptionCancelLoadMatch:
+class SubscriptionCancelLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class SubscriptionSuccess:
+class SubscriptionSuccess(TypedDict):
     pass
 
 
-@dataclass
-class SubscriptionSuccessLoadMatch:
+class SubscriptionSuccessLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Token:
+class Token(TypedDict):
     pass
 
 
-@dataclass
-class TokenCreateData:
+class TokenCreateData(TypedDict):
     pass
 
 
-@dataclass
-class Webhook:
+class Webhook(TypedDict):
     pass
 
 
-@dataclass
-class WebhookCreateData:
+class WebhookCreateData(TypedDict):
     pass
-

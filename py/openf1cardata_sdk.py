@@ -220,121 +220,51 @@ class Openf1CarDataSDK:
         }
 
 
-    @property
-    def create_checkout_session(self):
-        """Idiomatic facade: client.create_checkout_session.list() / client.create_checkout_session.load({"id": ...})."""
-        from entity.create_checkout_session_entity import CreateCheckoutSessionEntity
-        cached = getattr(self, "_create_checkout_session", None)
-        if cached is None:
-            cached = CreateCheckoutSessionEntity(self, None)
-            self._create_checkout_session = cached
-        return cached
-
-    def CreateCheckoutSession(self, data=None):
-        # Deprecated: use client.create_checkout_session instead.
+    def CreateCheckoutSession(self, data=None) -> "CreateCheckoutSessionEntity":
+        """Entity factory: client.CreateCheckoutSession().list({}) / client.CreateCheckoutSession().load({"id": ...})."""
         from entity.create_checkout_session_entity import CreateCheckoutSessionEntity
         return CreateCheckoutSessionEntity(self, data)
 
 
-    @property
-    def endpoint_path_post(self):
-        """Idiomatic facade: client.endpoint_path_post.list() / client.endpoint_path_post.load({"id": ...})."""
-        from entity.endpoint_path_post_entity import EndpointPathPostEntity
-        cached = getattr(self, "_endpoint_path_post", None)
-        if cached is None:
-            cached = EndpointPathPostEntity(self, None)
-            self._endpoint_path_post = cached
-        return cached
-
-    def EndpointPathPost(self, data=None):
-        # Deprecated: use client.endpoint_path_post instead.
+    def EndpointPathPost(self, data=None) -> "EndpointPathPostEntity":
+        """Entity factory: client.EndpointPathPost().list({}) / client.EndpointPathPost().load({"id": ...})."""
         from entity.endpoint_path_post_entity import EndpointPathPostEntity
         return EndpointPathPostEntity(self, data)
 
 
-    @property
-    def race_lap(self):
-        """Idiomatic facade: client.race_lap.list() / client.race_lap.load({"id": ...})."""
-        from entity.race_lap_entity import RaceLapEntity
-        cached = getattr(self, "_race_lap", None)
-        if cached is None:
-            cached = RaceLapEntity(self, None)
-            self._race_lap = cached
-        return cached
-
-    def RaceLap(self, data=None):
-        # Deprecated: use client.race_lap instead.
+    def RaceLap(self, data=None) -> "RaceLapEntity":
+        """Entity factory: client.RaceLap().list({}) / client.RaceLap().load({"id": ...})."""
         from entity.race_lap_entity import RaceLapEntity
         return RaceLapEntity(self, data)
 
 
-    @property
-    def subscription_cancel(self):
-        """Idiomatic facade: client.subscription_cancel.list() / client.subscription_cancel.load({"id": ...})."""
-        from entity.subscription_cancel_entity import SubscriptionCancelEntity
-        cached = getattr(self, "_subscription_cancel", None)
-        if cached is None:
-            cached = SubscriptionCancelEntity(self, None)
-            self._subscription_cancel = cached
-        return cached
-
-    def SubscriptionCancel(self, data=None):
-        # Deprecated: use client.subscription_cancel instead.
+    def SubscriptionCancel(self, data=None) -> "SubscriptionCancelEntity":
+        """Entity factory: client.SubscriptionCancel().list({}) / client.SubscriptionCancel().load({"id": ...})."""
         from entity.subscription_cancel_entity import SubscriptionCancelEntity
         return SubscriptionCancelEntity(self, data)
 
 
-    @property
-    def subscription_success(self):
-        """Idiomatic facade: client.subscription_success.list() / client.subscription_success.load({"id": ...})."""
-        from entity.subscription_success_entity import SubscriptionSuccessEntity
-        cached = getattr(self, "_subscription_success", None)
-        if cached is None:
-            cached = SubscriptionSuccessEntity(self, None)
-            self._subscription_success = cached
-        return cached
-
-    def SubscriptionSuccess(self, data=None):
-        # Deprecated: use client.subscription_success instead.
+    def SubscriptionSuccess(self, data=None) -> "SubscriptionSuccessEntity":
+        """Entity factory: client.SubscriptionSuccess().list({}) / client.SubscriptionSuccess().load({"id": ...})."""
         from entity.subscription_success_entity import SubscriptionSuccessEntity
         return SubscriptionSuccessEntity(self, data)
 
 
-    @property
-    def token(self):
-        """Idiomatic facade: client.token.list() / client.token.load({"id": ...})."""
-        from entity.token_entity import TokenEntity
-        cached = getattr(self, "_token", None)
-        if cached is None:
-            cached = TokenEntity(self, None)
-            self._token = cached
-        return cached
-
-    def Token(self, data=None):
-        # Deprecated: use client.token instead.
+    def Token(self, data=None) -> "TokenEntity":
+        """Entity factory: client.Token().list({}) / client.Token().load({"id": ...})."""
         from entity.token_entity import TokenEntity
         return TokenEntity(self, data)
 
 
-    @property
-    def webhook(self):
-        """Idiomatic facade: client.webhook.list() / client.webhook.load({"id": ...})."""
-        from entity.webhook_entity import WebhookEntity
-        cached = getattr(self, "_webhook", None)
-        if cached is None:
-            cached = WebhookEntity(self, None)
-            self._webhook = cached
-        return cached
-
-    def Webhook(self, data=None):
-        # Deprecated: use client.webhook instead.
+    def Webhook(self, data=None) -> "WebhookEntity":
+        """Entity factory: client.Webhook().list({}) / client.Webhook().load({"id": ...})."""
         from entity.webhook_entity import WebhookEntity
         return WebhookEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "Openf1CarDataSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -354,3 +284,15 @@ class Openf1CarDataSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.create_checkout_session_entity import CreateCheckoutSessionEntity
+    from entity.endpoint_path_post_entity import EndpointPathPostEntity
+    from entity.race_lap_entity import RaceLapEntity
+    from entity.subscription_cancel_entity import SubscriptionCancelEntity
+    from entity.subscription_success_entity import SubscriptionSuccessEntity
+    from entity.token_entity import TokenEntity
+    from entity.webhook_entity import WebhookEntity

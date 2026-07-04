@@ -32,8 +32,8 @@ $client = new Openf1CarDataSDK();
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->createcheckoutsession()->create(["name" => "Example"]);
+// create() returns the bare created CreateCheckoutSession record.
+$created = $client->CreateCheckoutSession()->create(["name" => "Example"]);
 
 ```
 
@@ -78,13 +78,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = Openf1CarDataSDK::test();
+$client = Openf1CarDataSDK::test([
+    "entity" => ["createcheckoutsession" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->createcheckoutsession()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$createcheckoutsession = $client->CreateCheckoutSession()->load(["id" => "test01"]);
+print_r($createcheckoutsession);
 ```
 
 ### Use a custom fetch function
@@ -164,7 +168,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `CreateCheckoutSession` | `($data): CreateCheckoutSessionEntity` | Create a CreateCheckoutSession entity instance. |
-| `EndpointPathPost` | `($data): EndpointPathPostEntity` | Create a EndpointPathPost entity instance. |
+| `EndpointPathPost` | `($data): EndpointPathPostEntity` | Create an EndpointPathPost entity instance. |
 | `RaceLap` | `($data): RaceLapEntity` | Create a RaceLap entity instance. |
 | `SubscriptionCancel` | `($data): SubscriptionCancelEntity` | Create a SubscriptionCancel entity instance. |
 | `SubscriptionSuccess` | `($data): SubscriptionSuccessEntity` | Create a SubscriptionSuccess entity instance. |
@@ -279,7 +283,7 @@ API path: `/stripe/webhook`
 
 ### CreateCheckoutSession
 
-Create an instance: `const create_checkout_session = client.create_checkout_session`
+Create an instance: `$create_checkout_session = $client->CreateCheckoutSession();`
 
 #### Operations
 
@@ -289,15 +293,15 @@ Create an instance: `const create_checkout_session = client.create_checkout_sess
 
 #### Example: Create
 
-```ts
-const create_checkout_session = await client.create_checkout_session.create({
-})
+```php
+$create_checkout_session = $client->CreateCheckoutSession()->create([
+]);
 ```
 
 
 ### EndpointPathPost
 
-Create an instance: `const endpoint_path_post = client.endpoint_path_post`
+Create an instance: `$endpoint_path_post = $client->EndpointPathPost();`
 
 #### Operations
 
@@ -308,21 +312,22 @@ Create an instance: `const endpoint_path_post = client.endpoint_path_post`
 
 #### Example: Load
 
-```ts
-const endpoint_path_post = await client.endpoint_path_post.load({ id: 'endpoint_path_post_id' })
+```php
+// load() returns the bare EndpointPathPost record (throws on error).
+$endpoint_path_post = $client->EndpointPathPost()->load(["id" => "endpoint_path_post_id"]);
 ```
 
 #### Example: Create
 
-```ts
-const endpoint_path_post = await client.endpoint_path_post.create({
-})
+```php
+$endpoint_path_post = $client->EndpointPathPost()->create([
+]);
 ```
 
 
 ### RaceLap
 
-Create an instance: `const race_lap = client.race_lap`
+Create an instance: `$race_lap = $client->RaceLap();`
 
 #### Operations
 
@@ -333,21 +338,22 @@ Create an instance: `const race_lap = client.race_lap`
 
 #### Example: Load
 
-```ts
-const race_lap = await client.race_lap.load({ id: 'race_lap_id' })
+```php
+// load() returns the bare RaceLap record (throws on error).
+$race_lap = $client->RaceLap()->load(["id" => "race_lap_id"]);
 ```
 
 #### Example: Create
 
-```ts
-const race_lap = await client.race_lap.create({
-})
+```php
+$race_lap = $client->RaceLap()->create([
+]);
 ```
 
 
 ### SubscriptionCancel
 
-Create an instance: `const subscription_cancel = client.subscription_cancel`
+Create an instance: `$subscription_cancel = $client->SubscriptionCancel();`
 
 #### Operations
 
@@ -357,14 +363,15 @@ Create an instance: `const subscription_cancel = client.subscription_cancel`
 
 #### Example: Load
 
-```ts
-const subscription_cancel = await client.subscription_cancel.load({ id: 'subscription_cancel_id' })
+```php
+// load() returns the bare SubscriptionCancel record (throws on error).
+$subscription_cancel = $client->SubscriptionCancel()->load(["id" => "subscription_cancel_id"]);
 ```
 
 
 ### SubscriptionSuccess
 
-Create an instance: `const subscription_success = client.subscription_success`
+Create an instance: `$subscription_success = $client->SubscriptionSuccess();`
 
 #### Operations
 
@@ -374,14 +381,15 @@ Create an instance: `const subscription_success = client.subscription_success`
 
 #### Example: Load
 
-```ts
-const subscription_success = await client.subscription_success.load({ id: 'subscription_success_id' })
+```php
+// load() returns the bare SubscriptionSuccess record (throws on error).
+$subscription_success = $client->SubscriptionSuccess()->load(["id" => "subscription_success_id"]);
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.token`
+Create an instance: `$token = $client->Token();`
 
 #### Operations
 
@@ -391,15 +399,15 @@ Create an instance: `const token = client.token`
 
 #### Example: Create
 
-```ts
-const token = await client.token.create({
-})
+```php
+$token = $client->Token()->create([
+]);
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.webhook`
+Create an instance: `$webhook = $client->Webhook();`
 
 #### Operations
 
@@ -409,9 +417,9 @@ Create an instance: `const webhook = client.webhook`
 
 #### Example: Create
 
-```ts
-const webhook = await client.webhook.create({
-})
+```php
+$webhook = $client->Webhook()->create([
+]);
 ```
 
 
@@ -486,7 +494,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$createcheckoutsession = $client->createcheckoutsession();
+$createcheckoutsession = $client->CreateCheckoutSession();
 $createcheckoutsession->load(["id" => "example_id"]);
 
 // $createcheckoutsession->dataGet() now returns the loaded createcheckoutsession data

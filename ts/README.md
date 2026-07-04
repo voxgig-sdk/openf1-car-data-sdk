@@ -31,8 +31,8 @@ const client = new Openf1CarDataSDK()
 ### 4. Create, update, and remove
 
 ```ts
-// Create
-const created = await client.createcheckoutsession.create({
+// Create — returns the created CreateCheckoutSession
+const created = await client.CreateCheckoutSession().create({
   name: 'Example',
 })
 
@@ -52,6 +52,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +83,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = Openf1CarDataSDK.test()
 
-const result = await client.createcheckoutsession.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const createcheckoutsession = await client.CreateCheckoutSession().load({ id: 'test01' })
+// createcheckoutsession is a bare entity populated with mock response data
+console.log(createcheckoutsession)
 ```
 
 You can also use the instance method:
@@ -97,7 +100,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.createcheckoutsession
+const entity = client.CreateCheckoutSession()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -176,7 +179,7 @@ new Openf1CarDataSDK(options?: {
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
 | `CreateCheckoutSession(data?)` | `CreateCheckoutSessionEntity` | Create a CreateCheckoutSession entity instance. |
-| `EndpointPathPost(data?)` | `EndpointPathPostEntity` | Create a EndpointPathPost entity instance. |
+| `EndpointPathPost(data?)` | `EndpointPathPostEntity` | Create an EndpointPathPost entity instance. |
 | `RaceLap(data?)` | `RaceLapEntity` | Create a RaceLap entity instance. |
 | `SubscriptionCancel(data?)` | `SubscriptionCancelEntity` | Create a SubscriptionCancel entity instance. |
 | `SubscriptionSuccess(data?)` | `SubscriptionSuccessEntity` | Create a SubscriptionSuccess entity instance. |
@@ -198,29 +201,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): Openf1CarDataSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -322,7 +326,7 @@ API path: `/stripe/webhook`
 
 ### CreateCheckoutSession
 
-Create an instance: `const create_checkout_session = client.create_checkout_session`
+Create an instance: `const create_checkout_session = client.CreateCheckoutSession()`
 
 #### Operations
 
@@ -333,14 +337,14 @@ Create an instance: `const create_checkout_session = client.create_checkout_sess
 #### Example: Create
 
 ```ts
-const create_checkout_session = await client.create_checkout_session.create({
+const create_checkout_session = await client.CreateCheckoutSession().create({
 })
 ```
 
 
 ### EndpointPathPost
 
-Create an instance: `const endpoint_path_post = client.endpoint_path_post`
+Create an instance: `const endpoint_path_post = client.EndpointPathPost()`
 
 #### Operations
 
@@ -352,20 +356,20 @@ Create an instance: `const endpoint_path_post = client.endpoint_path_post`
 #### Example: Load
 
 ```ts
-const endpoint_path_post = await client.endpoint_path_post.load({ id: 'endpoint_path_post_id' })
+const endpoint_path_post = await client.EndpointPathPost().load({ id: 'endpoint_path_post_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const endpoint_path_post = await client.endpoint_path_post.create({
+const endpoint_path_post = await client.EndpointPathPost().create({
 })
 ```
 
 
 ### RaceLap
 
-Create an instance: `const race_lap = client.race_lap`
+Create an instance: `const race_lap = client.RaceLap()`
 
 #### Operations
 
@@ -377,20 +381,20 @@ Create an instance: `const race_lap = client.race_lap`
 #### Example: Load
 
 ```ts
-const race_lap = await client.race_lap.load({ id: 'race_lap_id' })
+const race_lap = await client.RaceLap().load({ id: 'race_lap_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const race_lap = await client.race_lap.create({
+const race_lap = await client.RaceLap().create({
 })
 ```
 
 
 ### SubscriptionCancel
 
-Create an instance: `const subscription_cancel = client.subscription_cancel`
+Create an instance: `const subscription_cancel = client.SubscriptionCancel()`
 
 #### Operations
 
@@ -401,13 +405,13 @@ Create an instance: `const subscription_cancel = client.subscription_cancel`
 #### Example: Load
 
 ```ts
-const subscription_cancel = await client.subscription_cancel.load({ id: 'subscription_cancel_id' })
+const subscription_cancel = await client.SubscriptionCancel().load({ id: 'subscription_cancel_id' })
 ```
 
 
 ### SubscriptionSuccess
 
-Create an instance: `const subscription_success = client.subscription_success`
+Create an instance: `const subscription_success = client.SubscriptionSuccess()`
 
 #### Operations
 
@@ -418,13 +422,13 @@ Create an instance: `const subscription_success = client.subscription_success`
 #### Example: Load
 
 ```ts
-const subscription_success = await client.subscription_success.load({ id: 'subscription_success_id' })
+const subscription_success = await client.SubscriptionSuccess().load({ id: 'subscription_success_id' })
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.token`
+Create an instance: `const token = client.Token()`
 
 #### Operations
 
@@ -435,14 +439,14 @@ Create an instance: `const token = client.token`
 #### Example: Create
 
 ```ts
-const token = await client.token.create({
+const token = await client.Token().create({
 })
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.webhook`
+Create an instance: `const webhook = client.Webhook()`
 
 #### Operations
 
@@ -453,7 +457,7 @@ Create an instance: `const webhook = client.webhook`
 #### Example: Create
 
 ```ts
-const webhook = await client.webhook.create({
+const webhook = await client.Webhook().create({
 })
 ```
 
@@ -525,7 +529,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const createcheckoutsession = client.createcheckoutsession
+const createcheckoutsession = client.CreateCheckoutSession()
 await createcheckoutsession.load({ id: "example_id" })
 
 // createcheckoutsession.data() now returns the loaded createcheckoutsession data

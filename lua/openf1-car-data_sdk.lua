@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:create_checkout_session():list() / client:create_checkout_session():load({ id = ... })
-function Openf1CarDataSDK:create_checkout_session(data)
+-- Idiomatic facade: client:CreateCheckoutSession():list() / client:CreateCheckoutSession():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function Openf1CarDataSDK:CreateCheckoutSession(data)
   local EntityMod = require("entity.create_checkout_session_entity")
   if data == nil then
     if self._create_checkout_session == nil then
@@ -256,15 +257,10 @@ function Openf1CarDataSDK:create_checkout_session(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:create_checkout_session() instead.
-function Openf1CarDataSDK:CreateCheckoutSession(data)
-  local EntityMod = require("entity.create_checkout_session_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:endpoint_path_post():list() / client:endpoint_path_post():load({ id = ... })
-function Openf1CarDataSDK:endpoint_path_post(data)
+-- Idiomatic facade: client:EndpointPathPost():list() / client:EndpointPathPost():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function Openf1CarDataSDK:EndpointPathPost(data)
   local EntityMod = require("entity.endpoint_path_post_entity")
   if data == nil then
     if self._endpoint_path_post == nil then
@@ -275,15 +271,10 @@ function Openf1CarDataSDK:endpoint_path_post(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:endpoint_path_post() instead.
-function Openf1CarDataSDK:EndpointPathPost(data)
-  local EntityMod = require("entity.endpoint_path_post_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:race_lap():list() / client:race_lap():load({ id = ... })
-function Openf1CarDataSDK:race_lap(data)
+-- Idiomatic facade: client:RaceLap():list() / client:RaceLap():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function Openf1CarDataSDK:RaceLap(data)
   local EntityMod = require("entity.race_lap_entity")
   if data == nil then
     if self._race_lap == nil then
@@ -294,15 +285,10 @@ function Openf1CarDataSDK:race_lap(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:race_lap() instead.
-function Openf1CarDataSDK:RaceLap(data)
-  local EntityMod = require("entity.race_lap_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:subscription_cancel():list() / client:subscription_cancel():load({ id = ... })
-function Openf1CarDataSDK:subscription_cancel(data)
+-- Idiomatic facade: client:SubscriptionCancel():list() / client:SubscriptionCancel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function Openf1CarDataSDK:SubscriptionCancel(data)
   local EntityMod = require("entity.subscription_cancel_entity")
   if data == nil then
     if self._subscription_cancel == nil then
@@ -313,15 +299,10 @@ function Openf1CarDataSDK:subscription_cancel(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:subscription_cancel() instead.
-function Openf1CarDataSDK:SubscriptionCancel(data)
-  local EntityMod = require("entity.subscription_cancel_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:subscription_success():list() / client:subscription_success():load({ id = ... })
-function Openf1CarDataSDK:subscription_success(data)
+-- Idiomatic facade: client:SubscriptionSuccess():list() / client:SubscriptionSuccess():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function Openf1CarDataSDK:SubscriptionSuccess(data)
   local EntityMod = require("entity.subscription_success_entity")
   if data == nil then
     if self._subscription_success == nil then
@@ -332,15 +313,10 @@ function Openf1CarDataSDK:subscription_success(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:subscription_success() instead.
-function Openf1CarDataSDK:SubscriptionSuccess(data)
-  local EntityMod = require("entity.subscription_success_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:token():list() / client:token():load({ id = ... })
-function Openf1CarDataSDK:token(data)
+-- Idiomatic facade: client:Token():list() / client:Token():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function Openf1CarDataSDK:Token(data)
   local EntityMod = require("entity.token_entity")
   if data == nil then
     if self._token == nil then
@@ -351,15 +327,10 @@ function Openf1CarDataSDK:token(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:token() instead.
-function Openf1CarDataSDK:Token(data)
-  local EntityMod = require("entity.token_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:webhook():list() / client:webhook():load({ id = ... })
-function Openf1CarDataSDK:webhook(data)
+-- Idiomatic facade: client:Webhook():list() / client:Webhook():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function Openf1CarDataSDK:Webhook(data)
   local EntityMod = require("entity.webhook_entity")
   if data == nil then
     if self._webhook == nil then
@@ -367,12 +338,6 @@ function Openf1CarDataSDK:webhook(data)
     end
     return self._webhook
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:webhook() instead.
-function Openf1CarDataSDK:Webhook(data)
-  local EntityMod = require("entity.webhook_entity")
   return EntityMod.new(self, data)
 end
 

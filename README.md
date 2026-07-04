@@ -134,22 +134,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = Openf1CarDataSDK.test()
-const result = await client.createcheckoutsession.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const createcheckoutsession = await client.CreateCheckoutSession().load({ id: 'test01' })
+// createcheckoutsession is a bare CreateCheckoutSession populated with mock data
+console.log(createcheckoutsession)
 ```
 
 ### Python
 
 ```python
 client = Openf1CarDataSDK.test()
-result = client.createcheckoutsession.load({"id": "test01"})
+createcheckoutsession = client.CreateCheckoutSession().load({"id": "test01"})
+print(createcheckoutsession)
 ```
 
 ### PHP
 
 ```php
-$client = Openf1CarDataSDK::test();
-$result = $client->createcheckoutsession()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = Openf1CarDataSDK::test([
+    "entity" => ["createcheckoutsession" => ["test01" => ["id" => "test01"]]],
+]);
+$createcheckoutsession = $client->CreateCheckoutSession()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -164,15 +169,18 @@ result, err := client.CreateCheckoutSession(nil).Load(
 ### Ruby
 
 ```ruby
-client = Openf1CarDataSDK.test
-result = client.createcheckoutsession.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = Openf1CarDataSDK.test({
+  "entity" => { "createcheckoutsession" => { "test01" => { "id" => "test01" } } },
+})
+createcheckoutsession = client.CreateCheckoutSession.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:createcheckoutsession():load({ id = "test01" })
+local result, err = client:CreateCheckoutSession():load({ id = "test01" })
 ```
 
 ## How it works
@@ -220,6 +228,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
