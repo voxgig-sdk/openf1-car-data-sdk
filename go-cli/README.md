@@ -16,9 +16,6 @@ go build -o openf1-car-data-cli ./...
 
 ```sh
 # One-shot: arguments form a single AQL expression
-./openf1-car-data-cli list create_checkout_session
-./openf1-car-data-cli load 1 create_checkout_session
-./openf1-car-data-cli load '{id:1}' create_checkout_session
 
 # REPL
 ./openf1-car-data-cli
@@ -28,9 +25,7 @@ go build -o openf1-car-data-cli ./...
 
 | Word     | Signatures                                   | Description                |
 |----------|----------------------------------------------|----------------------------|
-| `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

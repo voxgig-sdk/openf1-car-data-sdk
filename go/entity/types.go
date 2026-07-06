@@ -12,8 +12,7 @@ import "encoding/json"
 type CreateCheckoutSession struct {
 }
 
-// CreateCheckoutSessionCreateData mirrors the create_checkout_session fields as an all-optional match
-// filter (Go analog of Partial<CreateCheckoutSession>).
+// CreateCheckoutSessionCreateData is the typed request payload for CreateCheckoutSession.CreateTyped.
 type CreateCheckoutSessionCreateData struct {
 }
 
@@ -35,13 +34,11 @@ type EndpointPathPostCreateData struct {
 type RaceLap struct {
 }
 
-// RaceLapLoadMatch mirrors the race_lap fields as an all-optional match
-// filter (Go analog of Partial<RaceLap>).
+// RaceLapLoadMatch is the typed request payload for RaceLap.LoadTyped.
 type RaceLapLoadMatch struct {
 }
 
-// RaceLapCreateData mirrors the race_lap fields as an all-optional match
-// filter (Go analog of Partial<RaceLap>).
+// RaceLapCreateData is the typed request payload for RaceLap.CreateTyped.
 type RaceLapCreateData struct {
 }
 
@@ -49,8 +46,7 @@ type RaceLapCreateData struct {
 type SubscriptionCancel struct {
 }
 
-// SubscriptionCancelLoadMatch mirrors the subscription_cancel fields as an all-optional match
-// filter (Go analog of Partial<SubscriptionCancel>).
+// SubscriptionCancelLoadMatch is the typed request payload for SubscriptionCancel.LoadTyped.
 type SubscriptionCancelLoadMatch struct {
 }
 
@@ -58,8 +54,7 @@ type SubscriptionCancelLoadMatch struct {
 type SubscriptionSuccess struct {
 }
 
-// SubscriptionSuccessLoadMatch mirrors the subscription_success fields as an all-optional match
-// filter (Go analog of Partial<SubscriptionSuccess>).
+// SubscriptionSuccessLoadMatch is the typed request payload for SubscriptionSuccess.LoadTyped.
 type SubscriptionSuccessLoadMatch struct {
 }
 
@@ -67,8 +62,7 @@ type SubscriptionSuccessLoadMatch struct {
 type Token struct {
 }
 
-// TokenCreateData mirrors the token fields as an all-optional match
-// filter (Go analog of Partial<Token>).
+// TokenCreateData is the typed request payload for Token.CreateTyped.
 type TokenCreateData struct {
 }
 
@@ -76,8 +70,7 @@ type TokenCreateData struct {
 type Webhook struct {
 }
 
-// WebhookCreateData mirrors the webhook fields as an all-optional match
-// filter (Go analog of Partial<Webhook>).
+// WebhookCreateData is the typed request payload for Webhook.CreateTyped.
 type WebhookCreateData struct {
 }
 

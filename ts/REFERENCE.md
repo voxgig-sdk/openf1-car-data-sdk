@@ -298,7 +298,7 @@ const result = await client.RaceLap().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.RaceLap().load({ id: 'race_lap_id' })
+const result = await client.RaceLap().load()
 ```
 
 ### Common Methods
@@ -342,7 +342,7 @@ const subscription_cancel = client.SubscriptionCancel()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.SubscriptionCancel().load({ id: 'subscription_cancel_id' })
+const result = await client.SubscriptionCancel().load()
 ```
 
 ### Common Methods
@@ -386,7 +386,7 @@ const subscription_success = client.SubscriptionSuccess()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.SubscriptionSuccess().load({ id: 'subscription_success_id' })
+const result = await client.SubscriptionSuccess().load()
 ```
 
 ### Common Methods

@@ -8,7 +8,7 @@ Complete API reference for the Openf1CarData Python SDK.
 ### Constructor
 
 ```python
-from openf1-car-data_sdk import Openf1CarDataSDK
+from openf1cardata_sdk import Openf1CarDataSDK
 
 client = Openf1CarDataSDK(options)
 ```
@@ -223,7 +223,7 @@ result = client.RaceLap().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.RaceLap().load({"id": "race_lap_id"})
+result = client.RaceLap().load()
 ```
 
 ### Common Methods
@@ -268,7 +268,7 @@ subscription_cancel = client.SubscriptionCancel()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.SubscriptionCancel().load({"id": "subscription_cancel_id"})
+result = client.SubscriptionCancel().load()
 ```
 
 ### Common Methods
@@ -313,7 +313,7 @@ subscription_success = client.SubscriptionSuccess()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.SubscriptionSuccess().load({"id": "subscription_success_id"})
+result = client.SubscriptionSuccess().load()
 ```
 
 ### Common Methods

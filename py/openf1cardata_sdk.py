@@ -221,43 +221,43 @@ class Openf1CarDataSDK:
 
 
     def CreateCheckoutSession(self, data=None) -> "CreateCheckoutSessionEntity":
-        """Entity factory: client.CreateCheckoutSession().list({}) / client.CreateCheckoutSession().load({"id": ...})."""
+        """Entity factory: client.CreateCheckoutSession().list() / client.CreateCheckoutSession().load({"id": ...})."""
         from entity.create_checkout_session_entity import CreateCheckoutSessionEntity
         return CreateCheckoutSessionEntity(self, data)
 
 
     def EndpointPathPost(self, data=None) -> "EndpointPathPostEntity":
-        """Entity factory: client.EndpointPathPost().list({}) / client.EndpointPathPost().load({"id": ...})."""
+        """Entity factory: client.EndpointPathPost().list() / client.EndpointPathPost().load({"id": ...})."""
         from entity.endpoint_path_post_entity import EndpointPathPostEntity
         return EndpointPathPostEntity(self, data)
 
 
     def RaceLap(self, data=None) -> "RaceLapEntity":
-        """Entity factory: client.RaceLap().list({}) / client.RaceLap().load({"id": ...})."""
+        """Entity factory: client.RaceLap().list() / client.RaceLap().load({"id": ...})."""
         from entity.race_lap_entity import RaceLapEntity
         return RaceLapEntity(self, data)
 
 
     def SubscriptionCancel(self, data=None) -> "SubscriptionCancelEntity":
-        """Entity factory: client.SubscriptionCancel().list({}) / client.SubscriptionCancel().load({"id": ...})."""
+        """Entity factory: client.SubscriptionCancel().list() / client.SubscriptionCancel().load({"id": ...})."""
         from entity.subscription_cancel_entity import SubscriptionCancelEntity
         return SubscriptionCancelEntity(self, data)
 
 
     def SubscriptionSuccess(self, data=None) -> "SubscriptionSuccessEntity":
-        """Entity factory: client.SubscriptionSuccess().list({}) / client.SubscriptionSuccess().load({"id": ...})."""
+        """Entity factory: client.SubscriptionSuccess().list() / client.SubscriptionSuccess().load({"id": ...})."""
         from entity.subscription_success_entity import SubscriptionSuccessEntity
         return SubscriptionSuccessEntity(self, data)
 
 
     def Token(self, data=None) -> "TokenEntity":
-        """Entity factory: client.Token().list({}) / client.Token().load({"id": ...})."""
+        """Entity factory: client.Token().list() / client.Token().load({"id": ...})."""
         from entity.token_entity import TokenEntity
         return TokenEntity(self, data)
 
 
     def Webhook(self, data=None) -> "WebhookEntity":
-        """Entity factory: client.Webhook().list({}) / client.Webhook().load({"id": ...})."""
+        """Entity factory: client.Webhook().list() / client.Webhook().load({"id": ...})."""
         from entity.webhook_entity import WebhookEntity
         return WebhookEntity(self, data)
 

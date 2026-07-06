@@ -8,7 +8,7 @@ Complete API reference for the Openf1CarData Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'openf1-car-data_sdk'
+require_relative 'Openf1CarData_sdk'
 
 client = Openf1CarDataSDK.new(options)
 ```
@@ -231,7 +231,7 @@ result = client.RaceLap.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.RaceLap.load({ "id" => "race_lap_id" })
+result = client.RaceLap.load()
 ```
 
 ### Common Methods
@@ -277,7 +277,7 @@ subscription_cancel = client.SubscriptionCancel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.SubscriptionCancel.load({ "id" => "subscription_cancel_id" })
+result = client.SubscriptionCancel.load()
 ```
 
 ### Common Methods
@@ -323,7 +323,7 @@ subscription_success = client.SubscriptionSuccess
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.SubscriptionSuccess.load({ "id" => "subscription_success_id" })
+result = client.SubscriptionSuccess.load()
 ```
 
 ### Common Methods

@@ -223,7 +223,7 @@ result, err := client.RaceLap(nil).Create(map[string]any{
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.RaceLap(nil).Load(map[string]any{"id": "race_lap_id"}, nil)
+result, err := client.RaceLap(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -263,7 +263,7 @@ subscription_cancel := client.SubscriptionCancel(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.SubscriptionCancel(nil).Load(map[string]any{"id": "subscription_cancel_id"}, nil)
+result, err := client.SubscriptionCancel(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -303,7 +303,7 @@ subscription_success := client.SubscriptionSuccess(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.SubscriptionSuccess(nil).Load(map[string]any{"id": "subscription_success_id"}, nil)
+result, err := client.SubscriptionSuccess(nil).Load(nil, nil)
 ```
 
 ### Common Methods

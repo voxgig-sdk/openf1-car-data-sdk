@@ -8,7 +8,8 @@
 export interface CreateCheckoutSession {
 }
 
-export type CreateCheckoutSessionCreateData = Partial<CreateCheckoutSession>
+export interface CreateCheckoutSessionCreateData {
+}
 
 export interface EndpointPathPost {
 }
@@ -24,27 +25,33 @@ export interface EndpointPathPostCreateData {
 export interface RaceLap {
 }
 
-export type RaceLapLoadMatch = Partial<RaceLap>
+export interface RaceLapLoadMatch {
+}
 
-export type RaceLapCreateData = Partial<RaceLap>
+export interface RaceLapCreateData {
+}
 
 export interface SubscriptionCancel {
 }
 
-export type SubscriptionCancelLoadMatch = Partial<SubscriptionCancel>
+export interface SubscriptionCancelLoadMatch {
+}
 
 export interface SubscriptionSuccess {
 }
 
-export type SubscriptionSuccessLoadMatch = Partial<SubscriptionSuccess>
+export interface SubscriptionSuccessLoadMatch {
+}
 
 export interface Token {
 }
 
-export type TokenCreateData = Partial<Token>
+export interface TokenCreateData {
+}
 
 export interface Webhook {
 }
 
-export type WebhookCreateData = Partial<Webhook>
+export interface WebhookCreateData {
+}
 

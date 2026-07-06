@@ -8,7 +8,7 @@ Complete API reference for the Openf1CarData PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/openf1-car-data_sdk.php';
+require_once __DIR__ . '/openf1cardata_sdk.php';
 
 $client = new Openf1CarDataSDK($options);
 ```
@@ -69,11 +69,11 @@ Create a new `TokenEntity` instance. Pass `null` for no initial data.
 
 Create a new `WebhookEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): Openf1CarDataUtility`
 
 Return a copy of the SDK utility object.
 
@@ -125,19 +125,19 @@ $result = $client->CreateCheckoutSession()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -146,7 +146,7 @@ Set the entity match criteria.
 Create a new `CreateCheckoutSessionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -180,19 +180,19 @@ $result = $client->EndpointPathPost()->load(["id" => "endpoint_path_post_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -201,7 +201,7 @@ Set the entity match criteria.
 Create a new `EndpointPathPostEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -230,24 +230,24 @@ $result = $client->RaceLap()->create([
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->RaceLap()->load(["id" => "race_lap_id"]);
+$result = $client->RaceLap()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -256,7 +256,7 @@ Set the entity match criteria.
 Create a new `RaceLapEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -276,24 +276,24 @@ $subscription_cancel = $client->SubscriptionCancel();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->SubscriptionCancel()->load(["id" => "subscription_cancel_id"]);
+$result = $client->SubscriptionCancel()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -302,7 +302,7 @@ Set the entity match criteria.
 Create a new `SubscriptionCancelEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -322,24 +322,24 @@ $subscription_success = $client->SubscriptionSuccess();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->SubscriptionSuccess()->load(["id" => "subscription_success_id"]);
+$result = $client->SubscriptionSuccess()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -348,7 +348,7 @@ Set the entity match criteria.
 Create a new `SubscriptionSuccessEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -374,19 +374,19 @@ $result = $client->Token()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -395,7 +395,7 @@ Set the entity match criteria.
 Create a new `TokenEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -421,19 +421,19 @@ $result = $client->Webhook()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -442,7 +442,7 @@ Set the entity match criteria.
 Create a new `WebhookEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

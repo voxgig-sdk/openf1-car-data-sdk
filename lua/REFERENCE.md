@@ -228,7 +228,7 @@ local result, err = client:RaceLap():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:RaceLap():load({ id = "race_lap_id" })
+local result, err = client:RaceLap():load()
 ```
 
 ### Common Methods
@@ -274,7 +274,7 @@ local subscription_cancel = client:SubscriptionCancel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:SubscriptionCancel():load({ id = "subscription_cancel_id" })
+local result, err = client:SubscriptionCancel():load()
 ```
 
 ### Common Methods
@@ -320,7 +320,7 @@ local subscription_success = client:SubscriptionSuccess(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:SubscriptionSuccess():load({ id = "subscription_success_id" })
+local result, err = client:SubscriptionSuccess():load()
 ```
 
 ### Common Methods

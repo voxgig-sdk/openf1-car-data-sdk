@@ -17,7 +17,7 @@ class CreateCheckoutSession
 {
 }
 
-/** Match filter for CreateCheckoutSession#create (any subset of CreateCheckoutSession fields). */
+/** Request payload for CreateCheckoutSession#create. */
 class CreateCheckoutSessionCreateData
 {
 }
@@ -44,12 +44,12 @@ class RaceLap
 {
 }
 
-/** Match filter for RaceLap#load (any subset of RaceLap fields). */
+/** Request payload for RaceLap#load. */
 class RaceLapLoadMatch
 {
 }
 
-/** Match filter for RaceLap#create (any subset of RaceLap fields). */
+/** Request payload for RaceLap#create. */
 class RaceLapCreateData
 {
 }
@@ -59,7 +59,7 @@ class SubscriptionCancel
 {
 }
 
-/** Match filter for SubscriptionCancel#load (any subset of SubscriptionCancel fields). */
+/** Request payload for SubscriptionCancel#load. */
 class SubscriptionCancelLoadMatch
 {
 }
@@ -69,7 +69,7 @@ class SubscriptionSuccess
 {
 }
 
-/** Match filter for SubscriptionSuccess#load (any subset of SubscriptionSuccess fields). */
+/** Request payload for SubscriptionSuccess#load. */
 class SubscriptionSuccessLoadMatch
 {
 }
@@ -79,7 +79,7 @@ class Token
 {
 }
 
-/** Match filter for Token#create (any subset of Token fields). */
+/** Request payload for Token#create. */
 class TokenCreateData
 {
 }
@@ -89,7 +89,7 @@ class Webhook
 {
 }
 
-/** Match filter for Webhook#create (any subset of Webhook fields). */
+/** Request payload for Webhook#create. */
 class WebhookCreateData
 {
 }
