@@ -45,9 +45,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  createcheckoutsession = client.CreateCheckoutSession.create({  })
+  endpointpathpost = client.EndpointPathPost.load({ "id" => "example_id" })
 rescue => err
-  warn "create failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -108,14 +108,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = Openf1CarDataSDK.test
+client = Openf1CarDataSDK.test({
+  "entity" => { "endpointpathpost" => { "test01" => { "id" => "test01" } } },
+})
 
 # Entity ops return the bare mock record (raises on error).
-createcheckoutsession = client.CreateCheckoutSession.create({  })
-puts createcheckoutsession
+endpointpathpost = client.EndpointPathPost.load({ "id" => "test01" })
+puts endpointpathpost
 ```
 
 ### Use a custom fetch function
@@ -341,6 +344,7 @@ endpoint_path_post = client.EndpointPathPost.load({ "id" => "endpoint_path_post_
 
 ```ruby
 endpoint_path_post = client.EndpointPathPost.create({
+  "id" => "example_id", # String
 })
 ```
 
@@ -515,15 +519,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-createcheckoutsession = client.CreateCheckoutSession
-createcheckoutsession.create({  })
+endpointpathpost = client.EndpointPathPost
+endpointpathpost.load({ "id" => "example_id" })
 
-# createcheckoutsession.data_get now returns the createcheckoutsession data from the last create
-# createcheckoutsession.match_get returns the last match criteria
+# endpointpathpost.data_get now returns the endpointpathpost data from the last load
+# endpointpathpost.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

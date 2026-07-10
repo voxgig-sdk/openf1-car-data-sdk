@@ -167,6 +167,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->EndpointPathPost()->create([
+  "id" => null, // string
 ]);
 ```
 

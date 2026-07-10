@@ -168,6 +168,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.EndpointPathPost.create({
+  "id" => "example_id", # String
 })
 ```
 

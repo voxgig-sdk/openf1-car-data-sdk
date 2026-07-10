@@ -51,10 +51,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    createcheckoutsession = client.CreateCheckoutSession().create({  })
-    print(createcheckoutsession)
+    endpointpathpost = client.EndpointPathPost().load({"id": "example_id"})
+    print(endpointpathpost)
 except Exception as err:
-    print(f"create failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -119,8 +119,8 @@ Create a mock client for unit testing — no server required:
 client = Openf1CarDataSDK.test()
 
 # Entity ops return the bare record and raise on error.
-createcheckoutsession = client.CreateCheckoutSession().create({})
-# createcheckoutsession contains the mock response record
+endpointpathpost = client.EndpointPathPost().load({"id": "test01"})
+# endpointpathpost contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -346,6 +346,7 @@ endpoint_path_post = client.EndpointPathPost().load({"id": "endpoint_path_post_i
 
 ```python
 endpoint_path_post = client.EndpointPathPost().create({
+    "id": "example_id",  # str
 })
 ```
 
@@ -516,15 +517,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-createcheckoutsession = client.CreateCheckoutSession()
-createcheckoutsession.create({  })
+endpointpathpost = client.EndpointPathPost()
+endpointpathpost.load({"id": "example_id"})
 
-# createcheckoutsession.data_get() now returns the createcheckoutsession data from the last create
-# createcheckoutsession.match_get() returns the last match criteria
+# endpointpathpost.data_get() now returns the endpointpathpost data from the last load
+# endpointpathpost.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

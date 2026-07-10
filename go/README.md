@@ -50,7 +50,7 @@ import (
 func main() {
     client := sdk.New()
 
-    // Create a createcheckoutsession.
+    // Create a createCheckoutSession.
     created, err := client.CreateCheckoutSession(nil).Create(map[string]any{}, nil)
     if err != nil {
         panic(err)
@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-createcheckoutsession, err := client.CreateCheckoutSession(nil).Create(map[string]any{}, nil)
+endpointpathpost, err := client.EndpointPathPost(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = createcheckoutsession
+_ = endpointpathpost
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-createcheckoutsession, err := client.CreateCheckoutSession(nil).Create(
-    map[string]any{}, nil,
+endpointPathPost, err := client.EndpointPathPost(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(createcheckoutsession) // the returned mock data
+fmt.Println(endpointPathPost) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -252,9 +252,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    createcheckoutsession, err := client.CreateCheckoutSession(nil).Create(map[string]any{/* fields */}, nil)
+    createCheckoutSession, err := client.CreateCheckoutSession(nil).Create(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // createcheckoutsession is the returned record
+    // createCheckoutSession is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -331,7 +331,7 @@ API path: `/stripe/webhook`
 
 ### CreateCheckoutSession
 
-Create an instance: `create_checkout_session := client.CreateCheckoutSession(nil)`
+Create an instance: `createCheckoutSession := client.CreateCheckoutSession(nil)`
 
 #### Operations
 
@@ -344,57 +344,66 @@ Create an instance: `create_checkout_session := client.CreateCheckoutSession(nil
 ```go
 result, err := client.CreateCheckoutSession(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### EndpointPathPost
 
-Create an instance: `endpoint_path_post := client.EndpointPathPost(nil)`
+Create an instance: `endpointPathPost := client.EndpointPathPost(nil)`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Example: Load
 
 ```go
-endpoint_path_post, err := client.EndpointPathPost(nil).Load(map[string]any{"id": "endpoint_path_post_id"}, nil)
+endpointPathPost, err := client.EndpointPathPost(nil).Load(map[string]any{"id": "endpoint_path_post_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(endpoint_path_post) // the loaded record
+fmt.Println(endpointPathPost) // the loaded record
 ```
 
 #### Example: Create
 
 ```go
 result, err := client.EndpointPathPost(nil).Create(map[string]any{
+    "id": "example_id",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### RaceLap
 
-Create an instance: `race_lap := client.RaceLap(nil)`
+Create an instance: `raceLap := client.RaceLap(nil)`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Example: Load
 
 ```go
-race_lap, err := client.RaceLap(nil).Load(nil, nil)
+raceLap, err := client.RaceLap(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(race_lap) // the loaded record
+fmt.Println(raceLap) // the loaded record
 ```
 
 #### Example: Create
@@ -402,12 +411,16 @@ fmt.Println(race_lap) // the loaded record
 ```go
 result, err := client.RaceLap(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### SubscriptionCancel
 
-Create an instance: `subscription_cancel := client.SubscriptionCancel(nil)`
+Create an instance: `subscriptionCancel := client.SubscriptionCancel(nil)`
 
 #### Operations
 
@@ -418,17 +431,17 @@ Create an instance: `subscription_cancel := client.SubscriptionCancel(nil)`
 #### Example: Load
 
 ```go
-subscription_cancel, err := client.SubscriptionCancel(nil).Load(nil, nil)
+subscriptionCancel, err := client.SubscriptionCancel(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(subscription_cancel) // the loaded record
+fmt.Println(subscriptionCancel) // the loaded record
 ```
 
 
 ### SubscriptionSuccess
 
-Create an instance: `subscription_success := client.SubscriptionSuccess(nil)`
+Create an instance: `subscriptionSuccess := client.SubscriptionSuccess(nil)`
 
 #### Operations
 
@@ -439,11 +452,11 @@ Create an instance: `subscription_success := client.SubscriptionSuccess(nil)`
 #### Example: Load
 
 ```go
-subscription_success, err := client.SubscriptionSuccess(nil).Load(nil, nil)
+subscriptionSuccess, err := client.SubscriptionSuccess(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(subscription_success) // the loaded record
+fmt.Println(subscriptionSuccess) // the loaded record
 ```
 
 
@@ -462,6 +475,10 @@ Create an instance: `token := client.Token(nil)`
 ```go
 result, err := client.Token(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -480,6 +497,10 @@ Create an instance: `webhook := client.Webhook(nil)`
 ```go
 result, err := client.Webhook(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -552,15 +573,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Create`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-createcheckoutsession := client.CreateCheckoutSession(nil)
-createcheckoutsession.Create(map[string]any{}, nil)
+endpointpathpost := client.EndpointPathPost(nil)
+endpointpathpost.Load(map[string]any{"id": "example_id"}, nil)
 
-// createcheckoutsession.Data() now returns the createcheckoutsession data from the last create
-// createcheckoutsession.Match() returns the last match criteria
+// endpointpathpost.Data() now returns the endpointpathpost data from the last load
+// endpointpathpost.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

@@ -165,6 +165,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:EndpointPathPost():create({
+  id = --[[ string ]],
 })
 ```
 

@@ -49,7 +49,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local createcheckoutsession, err = client:CreateCheckoutSession():create({  })
+local endpointpathpost, err = client:EndpointPathPost():load({ id = "example_id" })
 if err then error(err) end
 ```
 
@@ -107,7 +107,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CreateCheckoutSession():create({  })
+local result, err = client:EndpointPathPost():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -336,6 +336,7 @@ local endpoint_path_post, err = client:EndpointPathPost():load({ id = "endpoint_
 
 ```lua
 local endpoint_path_post, err = client:EndpointPathPost():create({
+  id = "example_id", -- string
 })
 ```
 
@@ -507,15 +508,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local createcheckoutsession = client:CreateCheckoutSession()
-createcheckoutsession:create({  })
+local endpointpathpost = client:EndpointPathPost()
+endpointpathpost:load({ id = "example_id" })
 
--- createcheckoutsession:data_get() now returns the createcheckoutsession data from the last create
--- createcheckoutsession:match_get() returns the last match criteria
+-- endpointpathpost:data_get() now returns the endpointpathpost data from the last load
+-- endpointpathpost:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

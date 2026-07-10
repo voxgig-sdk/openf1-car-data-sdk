@@ -47,7 +47,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $createcheckoutsession = $client->CreateCheckoutSession()->create([]);
+    $endpointpathpost = $client->EndpointPathPost()->load(["id" => "example_id"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -114,14 +114,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = Openf1CarDataSDK::test();
+$client = Openf1CarDataSDK::test([
+    "entity" => ["endpointpathpost" => ["test01" => ["id" => "test01"]]],
+]);
 
 // Entity ops return the bare mock record (throws on error).
-$createcheckoutsession = $client->CreateCheckoutSession()->create([]);
-print_r($createcheckoutsession);
+$endpointpathpost = $client->EndpointPathPost()->load(["id" => "test01"]);
+print_r($endpointpathpost);
 ```
 
 ### Use a custom fetch function
@@ -351,6 +354,7 @@ $endpoint_path_post = $client->EndpointPathPost()->load(["id" => "endpoint_path_
 
 ```php
 $endpoint_path_post = $client->EndpointPathPost()->create([
+    "id" => null, // string
 ]);
 ```
 
@@ -525,15 +529,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$createcheckoutsession = $client->CreateCheckoutSession();
-$createcheckoutsession->create([]);
+$endpointpathpost = $client->EndpointPathPost();
+$endpointpathpost->load(["id" => "example_id"]);
 
-// $createcheckoutsession->data_get() now returns the createcheckoutsession data from the last create
-// $createcheckoutsession->match_get() returns the last match criteria
+// $endpointpathpost->data_get() now returns the endpointpathpost data from the last load
+// $endpointpathpost->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

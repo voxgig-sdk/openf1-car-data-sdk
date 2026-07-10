@@ -237,6 +237,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.EndpointPathPost().create({
+  id: 'example_id',
 })
 ```
 

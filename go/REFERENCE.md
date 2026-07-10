@@ -114,7 +114,8 @@ same parameters as `Direct()`.
 ## CreateCheckoutSessionEntity
 
 ```go
-create_checkout_session := client.CreateCheckoutSession(nil)
+createCheckoutSession := client.CreateCheckoutSession(nil)
+fmt.Println(createCheckoutSession.GetName()) // "create_checkout_session"
 ```
 
 ### Operations
@@ -126,6 +127,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.CreateCheckoutSession(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -155,19 +160,11 @@ Return the entity name.
 ## EndpointPathPostEntity
 
 ```go
-endpoint_path_post := client.EndpointPathPost(nil)
+endpointPathPost := client.EndpointPathPost(nil)
+fmt.Println(endpointPathPost.GetName()) // "endpoint_path_post"
 ```
 
 ### Operations
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.EndpointPathPost(nil).Create(map[string]any{
-}, nil)
-```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -175,6 +172,24 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.EndpointPathPost(nil).Load(map[string]any{"id": "endpoint_path_post_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.EndpointPathPost(nil).Create(map[string]any{
+    "id": "example_id",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -204,10 +219,23 @@ Return the entity name.
 ## RaceLapEntity
 
 ```go
-race_lap := client.RaceLap(nil)
+raceLap := client.RaceLap(nil)
+fmt.Println(raceLap.GetName()) // "race_lap"
 ```
 
 ### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.RaceLap(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
 
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
 
@@ -216,14 +244,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.RaceLap(nil).Create(map[string]any{
 }, nil)
-```
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria.
-
-```go
-result, err := client.RaceLap(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -253,7 +277,8 @@ Return the entity name.
 ## SubscriptionCancelEntity
 
 ```go
-subscription_cancel := client.SubscriptionCancel(nil)
+subscriptionCancel := client.SubscriptionCancel(nil)
+fmt.Println(subscriptionCancel.GetName()) // "subscription_cancel"
 ```
 
 ### Operations
@@ -264,6 +289,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.SubscriptionCancel(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -293,7 +322,8 @@ Return the entity name.
 ## SubscriptionSuccessEntity
 
 ```go
-subscription_success := client.SubscriptionSuccess(nil)
+subscriptionSuccess := client.SubscriptionSuccess(nil)
+fmt.Println(subscriptionSuccess.GetName()) // "subscription_success"
 ```
 
 ### Operations
@@ -304,6 +334,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.SubscriptionSuccess(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -334,6 +368,7 @@ Return the entity name.
 
 ```go
 token := client.Token(nil)
+fmt.Println(token.GetName()) // "token"
 ```
 
 ### Operations
@@ -345,6 +380,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.Token(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -375,6 +414,7 @@ Return the entity name.
 
 ```go
 webhook := client.Webhook(nil)
+fmt.Println(webhook.GetName()) // "webhook"
 ```
 
 ### Operations
@@ -386,6 +426,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.Webhook(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

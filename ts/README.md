@@ -48,10 +48,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const createcheckoutsession = await client.CreateCheckoutSession().create({  })
-  console.log(createcheckoutsession)
+  const endpointpathpost = await client.EndpointPathPost().load({ id: "example_id" })
+  console.log(endpointpathpost)
 } catch (err) {
-  console.error('create failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -115,9 +115,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = Openf1CarDataSDK.test()
 
-const createcheckoutsession = await client.CreateCheckoutSession().create({  })
-// createcheckoutsession is a bare entity populated with mock response data
-console.log(createcheckoutsession)
+const endpointpathpost = await client.EndpointPathPost().load({ id: 'test01' })
+// endpointpathpost is a bare entity populated with mock response data
+console.log(endpointpathpost)
 ```
 
 You can also use the instance method:
@@ -132,10 +132,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.CreateCheckoutSession()
+const entity = client.EndpointPathPost()
 
 // First call runs the operation and stores its result
-await entity.create({  })
+await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -389,6 +389,7 @@ const endpoint_path_post = await client.EndpointPathPost().load({ id: 'endpoint_
 
 ```ts
 const endpoint_path_post = await client.EndpointPathPost().create({
+  id: 'example_id',
 })
 ```
 
@@ -552,16 +553,16 @@ import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const createcheckoutsession = client.CreateCheckoutSession()
-await createcheckoutsession.create({  })
+const endpointpathpost = client.EndpointPathPost()
+await endpointpathpost.load({ id: "example_id" })
 
-// createcheckoutsession.data() now returns the createcheckoutsession data from the last `create`
-// createcheckoutsession.match() returns the last match criteria
+// endpointpathpost.data() now returns the endpointpathpost data from the last `load`
+// endpointpathpost.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration
