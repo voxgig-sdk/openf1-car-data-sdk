@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- Openf1CarData SDK configuration
 
 local function make_config()
   return {

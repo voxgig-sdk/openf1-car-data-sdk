@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Openf1CarData SDK exists test
 
 local sdk = require("openf1-car-data_sdk")
 
