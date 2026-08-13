@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ Openf1CarDataUtility.registrar = ->(u) {
   u.prepare_params = Openf1CarDataUtilities::PrepareParams
   u.prepare_path = Openf1CarDataUtilities::PreparePath
   u.prepare_query = Openf1CarDataUtilities::PrepareQuery
+  u.graphql_body = Openf1CarDataUtilities::GraphqlBody
+  u.graphql_errors = Openf1CarDataUtilities::GraphqlErrors
   u.result_basic = Openf1CarDataUtilities::ResultBasic
   u.result_body = Openf1CarDataUtilities::ResultBody
   u.result_headers = Openf1CarDataUtilities::ResultHeaders

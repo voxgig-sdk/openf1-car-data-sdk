@@ -19,11 +19,15 @@ import {
 describe('SubscriptionSuccessDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENF1CARDATA_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENF1CARDATA_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENF1_CAR_DATA_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENF1_CAR_DATA_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new Openf1CarDataSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -72,17 +76,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'OPENF_CARDATA_TEST_SUBSCRIPTION_SUCCESS_ENTID': {},
-    'OPENF_CARDATA_TEST_LIVE': 'FALSE',
+    'OPENF1_CAR_DATA_TEST_SUBSCRIPTION_SUCCESS_ENTID': {},
+    'OPENF1_CAR_DATA_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.OPENF_CARDATA_TEST_LIVE
+  const live = 'TRUE' === env.OPENF1_CAR_DATA_TEST_LIVE
 
   if (live) {
     const client = new Openf1CarDataSDK({
     })
 
-    let idmap: any = env['OPENF_CARDATA_TEST_SUBSCRIPTION_SUCCESS_ENTID']
+    let idmap: any = env['OPENF1_CAR_DATA_TEST_SUBSCRIPTION_SUCCESS_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from openf1cardata_sdk.utility.voxgig_struct import voxgig_struct as vs
 from openf1cardata_sdk import Openf1CarDataSDK
-from core import helpers
+from openf1cardata_sdk.core import helpers
 from test import runner
 
 
@@ -66,11 +66,11 @@ def _endpoint_path_post_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID": {},
-        "OPENF_CARDATA_TEST_LIVE": "FALSE",
+        "OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID": {},
+        "OPENF1_CAR_DATA_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("OPENF_CARDATA_TEST_LIVE") == "TRUE"
+    live = env.get("OPENF1_CAR_DATA_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

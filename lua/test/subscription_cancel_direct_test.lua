@@ -60,11 +60,11 @@ function subscription_cancel_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["OPENF_CARDATA_TEST_SUBSCRIPTION_CANCEL_ENTID"] = {},
-    ["OPENF_CARDATA_TEST_LIVE"] = "FALSE",
+    ["OPENF1_CAR_DATA_TEST_SUBSCRIPTION_CANCEL_ENTID"] = {},
+    ["OPENF1_CAR_DATA_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
+  local live = env["OPENF1_CAR_DATA_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

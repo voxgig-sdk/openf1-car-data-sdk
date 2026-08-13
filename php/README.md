@@ -34,7 +34,7 @@ $client = new Openf1CarDataSDK();
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created CreateCheckoutSession record.
+// create() returns the ENTITY — call data_get() for the created CreateCheckoutSession record.
 $created = $client->CreateCheckoutSession()->create([]);
 
 ```
@@ -122,7 +122,8 @@ $client = Openf1CarDataSDK::test([
     "entity" => ["endpointpathpost" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $endpointpathpost = $client->EndpointPathPost()->load(["id" => "test01"]);
 print_r($endpointpathpost);
 ```
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -346,7 +347,7 @@ Create an instance: `$endpoint_path_post = $client->EndpointPathPost();`
 #### Example: Load
 
 ```php
-// load() returns the bare EndpointPathPost record (throws on error).
+// load() returns the ENTITY — call data_get() for the EndpointPathPost record (throws on error).
 $endpoint_path_post = $client->EndpointPathPost()->load(["id" => "endpoint_path_post_id"]);
 ```
 
@@ -373,7 +374,7 @@ Create an instance: `$race_lap = $client->RaceLap();`
 #### Example: Load
 
 ```php
-// load() returns the bare RaceLap record (throws on error).
+// load() returns the ENTITY — call data_get() for the RaceLap record (throws on error).
 $race_lap = $client->RaceLap()->load();
 ```
 
@@ -398,7 +399,7 @@ Create an instance: `$subscription_cancel = $client->SubscriptionCancel();`
 #### Example: Load
 
 ```php
-// load() returns the bare SubscriptionCancel record (throws on error).
+// load() returns the ENTITY — call data_get() for the SubscriptionCancel record (throws on error).
 $subscription_cancel = $client->SubscriptionCancel()->load();
 ```
 
@@ -416,7 +417,7 @@ Create an instance: `$subscription_success = $client->SubscriptionSuccess();`
 #### Example: Load
 
 ```php
-// load() returns the bare SubscriptionSuccess record (throws on error).
+// load() returns the ENTITY — call data_get() for the SubscriptionSuccess record (throws on error).
 $subscription_success = $client->SubscriptionSuccess()->load();
 ```
 

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Openf1CarData SDK exists test
 
 import pytest
 from openf1cardata_sdk import Openf1CarDataSDK

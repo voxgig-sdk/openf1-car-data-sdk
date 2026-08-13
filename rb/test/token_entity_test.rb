@@ -26,7 +26,7 @@ class TokenEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set OPENF_CARDATA_TEST_TOKEN_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set OPENF1_CAR_DATA_TEST_TOKEN_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -37,7 +37,7 @@ class TokenEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.token"), "token_ref01"))
 
     token_ref01_data_result = token_ref01_ent.create(token_ref01_data, nil)
-    token_ref01_data = Helpers.to_map(token_ref01_data_result)
+    token_ref01_data = Helpers.to_map(token_ref01_data_result.respond_to?(:data_get) ? token_ref01_data_result.data_get : token_ref01_data_result)
     assert !token_ref01_data.nil?
 
   end
@@ -69,22 +69,22 @@ def token_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["OPENF_CARDATA_TEST_TOKEN_ENTID"]
+  entid_env_raw = ENV["OPENF1_CAR_DATA_TEST_TOKEN_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "OPENF_CARDATA_TEST_TOKEN_ENTID" => idmap,
-    "OPENF_CARDATA_TEST_LIVE" => "FALSE",
-    "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
+    "OPENF1_CAR_DATA_TEST_TOKEN_ENTID" => idmap,
+    "OPENF1_CAR_DATA_TEST_LIVE" => "FALSE",
+    "OPENF1_CAR_DATA_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["OPENF_CARDATA_TEST_TOKEN_ENTID"])
+    env["OPENF1_CAR_DATA_TEST_TOKEN_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
+  if env["OPENF1_CAR_DATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -93,13 +93,13 @@ def token_basic_setup(extra)
     client = Openf1CarDataSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["OPENF_CARDATA_TEST_LIVE"] == "TRUE"
+  live = env["OPENF1_CAR_DATA_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["OPENF_CARDATA_TEST_EXPLAIN"] == "TRUE",
+    explain: env["OPENF1_CAR_DATA_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

@@ -75,11 +75,11 @@ function endpoint_path_post_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID" => [],
-        "OPENF_CARDATA_TEST_LIVE" => "FALSE",
+        "OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID" => [],
+        "OPENF1_CAR_DATA_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["OPENF_CARDATA_TEST_LIVE"] === "TRUE";
+    $live = $env["OPENF1_CAR_DATA_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

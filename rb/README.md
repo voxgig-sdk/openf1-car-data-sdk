@@ -33,7 +33,7 @@ client = Openf1CarDataSDK.new
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created CreateCheckoutSession record.
+# create returns the ENTITY — call data_get for the created CreateCheckoutSession record.
 created = client.CreateCheckoutSession.create({  })
 
 ```
@@ -116,7 +116,8 @@ client = Openf1CarDataSDK.test({
   "entity" => { "endpointpathpost" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 endpointpathpost = client.EndpointPathPost.load({ "id" => "test01" })
 puts endpointpathpost
 ```
@@ -336,7 +337,7 @@ Create an instance: `endpoint_path_post = client.EndpointPathPost`
 #### Example: Load
 
 ```ruby
-# load returns the bare EndpointPathPost record (raises on error).
+# load returns the ENTITY — call data_get for the EndpointPathPost record (raises on error).
 endpoint_path_post = client.EndpointPathPost.load({ "id" => "endpoint_path_post_id" })
 ```
 
@@ -363,7 +364,7 @@ Create an instance: `race_lap = client.RaceLap`
 #### Example: Load
 
 ```ruby
-# load returns the bare RaceLap record (raises on error).
+# load returns the ENTITY — call data_get for the RaceLap record (raises on error).
 race_lap = client.RaceLap.load()
 ```
 
@@ -388,7 +389,7 @@ Create an instance: `subscription_cancel = client.SubscriptionCancel`
 #### Example: Load
 
 ```ruby
-# load returns the bare SubscriptionCancel record (raises on error).
+# load returns the ENTITY — call data_get for the SubscriptionCancel record (raises on error).
 subscription_cancel = client.SubscriptionCancel.load()
 ```
 
@@ -406,7 +407,7 @@ Create an instance: `subscription_success = client.SubscriptionSuccess`
 #### Example: Load
 
 ```ruby
-# load returns the bare SubscriptionSuccess record (raises on error).
+# load returns the ENTITY — call data_get for the SubscriptionSuccess record (raises on error).
 subscription_success = client.SubscriptionSuccess.load()
 ```
 

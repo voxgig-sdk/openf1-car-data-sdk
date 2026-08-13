@@ -220,9 +220,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local create_checkout_session, err = client:CreateCheckoutSession():load()
+    local endpoint_path_post, err = client:EndpointPathPost():load({ id = "example_id" })
     if err then error(err) end
-    -- create_checkout_session is the loaded record
+    -- endpoint_path_post is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.

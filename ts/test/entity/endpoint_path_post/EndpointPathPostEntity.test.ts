@@ -26,8 +26,8 @@ import {
 describe('EndpointPathPostEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENF1CARDATA_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENF1CARDATA_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENF1_CAR_DATA_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENF1_CAR_DATA_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = Openf1CarDataSDK.test()
@@ -38,7 +38,7 @@ describe('EndpointPathPostEntity', async () => {
 
   test('basic', async (t) => {
 
-    const live = 'TRUE' === process.env.OPENF__CAR_DATA_TEST_LIVE
+    const live = 'TRUE' === process.env.OPENF1_CAR_DATA_TEST_LIVE
     for (const op of ['create', 'load']) {
       if (maybeSkipControl(t, 'entityOp', 'endpoint_path_post.' + op, live)) return
     }
@@ -48,7 +48,7 @@ describe('EndpointPathPostEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set OPENF__CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -63,7 +63,7 @@ describe('EndpointPathPostEntity', async () => {
     let endpoint_path_post_ref01_data = setup.data.new.endpoint_path_post['endpoint_path_post_ref01']
     endpoint_path_post_ref01_data['path'] = setup.idmap['path01']
 
-    endpoint_path_post_ref01_data = await endpoint_path_post_ref01_ent.create(endpoint_path_post_ref01_data)
+    endpoint_path_post_ref01_data = (await endpoint_path_post_ref01_ent.create(endpoint_path_post_ref01_data)).data()
     assert(null != endpoint_path_post_ref01_data)
 
 
@@ -108,18 +108,18 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['OPENF__CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID']
+  const idmapEnvVal = process.env['OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'OPENF__CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID': idmap,
-    'OPENF__CAR_DATA_TEST_LIVE': 'FALSE',
-    'OPENF__CAR_DATA_TEST_EXPLAIN': 'FALSE',
+    'OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID': idmap,
+    'OPENF1_CAR_DATA_TEST_LIVE': 'FALSE',
+    'OPENF1_CAR_DATA_TEST_EXPLAIN': 'FALSE',
   })
 
-  idmap = env['OPENF__CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID']
+  idmap = env['OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID']
 
-  const live = 'TRUE' === env.OPENF__CAR_DATA_TEST_LIVE
+  const live = 'TRUE' === env.OPENF1_CAR_DATA_TEST_LIVE
 
   if (live) {
     client = new Openf1CarDataSDK(merge([
@@ -136,7 +136,7 @@ function basicSetup(extra?: any) {
     client,
     struct,
     data: entityData,
-    explain: 'TRUE' === env.OPENF__CAR_DATA_TEST_EXPLAIN,
+    explain: 'TRUE' === env.OPENF1_CAR_DATA_TEST_EXPLAIN,
     live,
     syntheticOnly: live && !idmapOverridden,
     now: Date.now(),

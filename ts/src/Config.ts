@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Openf1CarData',
   }
 
 
@@ -81,6 +81,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/stripe/create-checkout-session",
               "parts": [
@@ -125,6 +126,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "POST",
               "orig": "/{path}",
               "parts": [
@@ -168,6 +170,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{path}",
               "parts": [
@@ -208,6 +211,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/race_lap",
               "parts": [
@@ -230,6 +234,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/race_lap",
               "parts": [
@@ -261,6 +266,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/subscription_cancel",
               "parts": [
@@ -292,6 +298,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/subscription_success",
               "parts": [
@@ -323,6 +330,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/token",
               "parts": [
@@ -354,6 +362,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/stripe/webhook",
               "parts": [

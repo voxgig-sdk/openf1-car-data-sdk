@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import Openf1CarDataSDK
-from core.error import Openf1CarDataError
-from core.result import Openf1CarDataResult
-from core.response import Openf1CarDataResponse
-from core.spec import Openf1CarDataSpec
-from feature.base_feature import Openf1CarDataBaseFeature
+from projectname_sdk.core.error import Openf1CarDataError
+from projectname_sdk.core.result import Openf1CarDataResult
+from projectname_sdk.core.response import Openf1CarDataResponse
+from projectname_sdk.core.spec import Openf1CarDataSpec
+from projectname_sdk.feature.base_feature import Openf1CarDataBaseFeature
 
 
 def _client():

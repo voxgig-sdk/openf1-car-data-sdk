@@ -33,7 +33,7 @@ class EndpointPathPostEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -45,7 +45,7 @@ class EndpointPathPostEntityTest extends TestCase
         $endpoint_path_post_ref01_data["path"] = $setup["idmap"]["path01"];
 
         $endpoint_path_post_ref01_data_result = $endpoint_path_post_ref01_ent->create($endpoint_path_post_ref01_data, null);
-        $endpoint_path_post_ref01_data = Helpers::to_map($endpoint_path_post_ref01_data_result);
+        $endpoint_path_post_ref01_data = Helpers::to_map(is_object($endpoint_path_post_ref01_data_result) && method_exists($endpoint_path_post_ref01_data_result, 'data_get') ? $endpoint_path_post_ref01_data_result->data_get() : $endpoint_path_post_ref01_data_result);
         $this->assertNotNull($endpoint_path_post_ref01_data);
 
         // LOAD
@@ -78,22 +78,22 @@ function endpoint_path_post_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID");
+    $entid_env_raw = getenv("OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID" => $idmap,
-        "OPENF_CARDATA_TEST_LIVE" => "FALSE",
-        "OPENF_CARDATA_TEST_EXPLAIN" => "FALSE",
+        "OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID" => $idmap,
+        "OPENF1_CAR_DATA_TEST_LIVE" => "FALSE",
+        "OPENF1_CAR_DATA_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["OPENF_CARDATA_TEST_ENDPOINT_PATH_POST_ENTID"]);
+        $env["OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["OPENF_CARDATA_TEST_LIVE"] === "TRUE") {
+    if ($env["OPENF1_CAR_DATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -102,13 +102,13 @@ function endpoint_path_post_basic_setup($extra)
         $client = new Openf1CarDataSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["OPENF_CARDATA_TEST_LIVE"] === "TRUE";
+    $live = $env["OPENF1_CAR_DATA_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["OPENF_CARDATA_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["OPENF1_CAR_DATA_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

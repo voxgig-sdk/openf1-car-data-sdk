@@ -23,8 +23,8 @@ module Openf1CarDataTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("OPENF1CARDATA_TEST_LIVE")
-    override = getenv("OPENF1CARDATA_TEST_OVERRIDE")
+    live = getenv("OPENF1_CAR_DATA_TEST_LIVE")
+    override = getenv("OPENF1_CAR_DATA_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module Openf1CarDataTestRunner
       end
     end
 
-    explain = getenv("OPENF1CARDATA_TEST_EXPLAIN")
-    m["OPENF1CARDATA_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("OPENF1_CAR_DATA_TEST_EXPLAIN")
+    m["OPENF1_CAR_DATA_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

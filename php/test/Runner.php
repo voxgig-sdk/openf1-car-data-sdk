@@ -43,8 +43,8 @@ class Openf1CarDataTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('OPENF1CARDATA_TEST_LIVE');
-        $override = self::getenv('OPENF1CARDATA_TEST_OVERRIDE');
+        $live = self::getenv('OPENF1_CAR_DATA_TEST_LIVE');
+        $override = self::getenv('OPENF1_CAR_DATA_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class Openf1CarDataTestRunner
             }
         }
 
-        $explain = self::getenv('OPENF1CARDATA_TEST_EXPLAIN');
+        $explain = self::getenv('OPENF1_CAR_DATA_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['OPENF1CARDATA_TEST_EXPLAIN'] = $explain;
+            $m['OPENF1_CAR_DATA_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

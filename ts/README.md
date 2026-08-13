@@ -36,7 +36,7 @@ const client = new Openf1CarDataSDK()
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created CreateCheckoutSession
+// Create — returns the created CreateCheckoutSession ENTITY (.data() for the record)
 const created = await client.CreateCheckoutSession().create({})
 
 ```
@@ -116,7 +116,8 @@ Create a mock client for unit testing — no server required:
 const client = Openf1CarDataSDK.test()
 
 const endpointpathpost = await client.EndpointPathPost().load({ id: 'test01' })
-// endpointpathpost is a bare entity populated with mock response data
+// endpointpathpost is the entity, populated with mock response data
+// — call endpointpathpost.data() for the record itself
 console.log(endpointpathpost)
 ```
 

@@ -65,11 +65,11 @@ function subscription_cancel_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "OPENF_CARDATA_TEST_SUBSCRIPTION_CANCEL_ENTID" => [],
-        "OPENF_CARDATA_TEST_LIVE" => "FALSE",
+        "OPENF1_CAR_DATA_TEST_SUBSCRIPTION_CANCEL_ENTID" => [],
+        "OPENF1_CAR_DATA_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["OPENF_CARDATA_TEST_LIVE"] === "TRUE";
+    $live = $env["OPENF1_CAR_DATA_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

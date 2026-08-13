@@ -36,9 +36,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = Openf1CarDataSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = Openf1CarDataSDK.test({
+  entity: {
+    endpoint_path_post: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const endpointpathpost = await client.EndpointPathPost().load({ id: 'test01' })
-// endpointpathpost is a bare EndpointPathPost populated with mock data
+// endpointpathpost is the EndpointPathPost entity, populated with mock data
+// — call endpointpathpost.data() for the record itself
 console.log(endpointpathpost)
 ```
 
@@ -323,6 +332,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.openf1.org](https://api.openf1.org)
 

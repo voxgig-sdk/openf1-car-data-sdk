@@ -40,6 +40,7 @@ module Openf1CarDataConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/stripe/create-checkout-session",
                   "parts" => [
@@ -84,6 +85,7 @@ module Openf1CarDataConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/{path}",
                   "parts" => [
@@ -127,6 +129,7 @@ module Openf1CarDataConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{path}",
                   "parts" => [
@@ -167,6 +170,7 @@ module Openf1CarDataConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/race_lap",
                   "parts" => [
@@ -189,6 +193,7 @@ module Openf1CarDataConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/race_lap",
                   "parts" => [
@@ -220,6 +225,7 @@ module Openf1CarDataConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/subscription_cancel",
                   "parts" => [
@@ -251,6 +257,7 @@ module Openf1CarDataConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/subscription_success",
                   "parts" => [
@@ -282,6 +289,7 @@ module Openf1CarDataConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/token",
                   "parts" => [
@@ -313,6 +321,7 @@ module Openf1CarDataConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/stripe/webhook",
                   "parts" => [

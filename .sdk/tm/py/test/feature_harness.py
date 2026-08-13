@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import Openf1CarDataControl
-from core.error import Openf1CarDataError
-from core.result import Openf1CarDataResult
-from core.spec import Openf1CarDataSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import Openf1CarDataControl
+from projectname_sdk.core.error import Openf1CarDataError
+from projectname_sdk.core.result import Openf1CarDataResult
+from projectname_sdk.core.spec import Openf1CarDataSpec
 
 
 # True when this SDK was generated with the named feature.

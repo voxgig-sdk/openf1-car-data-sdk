@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ Openf1CarDataUtility::setRegistrar(function (Openf1CarDataUtility $u): void {
     $u->prepare_params = [Openf1CarDataPrepareParams::class, 'call'];
     $u->prepare_path = [Openf1CarDataPreparePath::class, 'call'];
     $u->prepare_query = [Openf1CarDataPrepareQuery::class, 'call'];
+    $u->graphql_body = [Openf1CarDataGraphql::class, 'body'];
+    $u->graphql_errors = [Openf1CarDataGraphql::class, 'errors'];
     $u->result_basic = [Openf1CarDataResultBasic::class, 'call'];
     $u->result_body = [Openf1CarDataResultBody::class, 'call'];
     $u->result_headers = [Openf1CarDataResultHeaders::class, 'call'];
