@@ -40,7 +40,7 @@ class Openf1CarDataSDK
         $utility = new Openf1CarDataUtility();
         $this->_utility = $utility;
 
-        $config = Openf1CarDataConfig::make_config();
+        $config = Openf1CarDataConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

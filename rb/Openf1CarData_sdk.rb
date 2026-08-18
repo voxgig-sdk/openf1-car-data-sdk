@@ -28,7 +28,7 @@ class Openf1CarDataSDK
     utility = Openf1CarDataUtility.new
     @_utility = utility
 
-    config = Openf1CarDataConfig.make_config
+    config = Openf1CarDataConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
