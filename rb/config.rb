@@ -19,6 +19,9 @@ module Openf1CarDataConfig
     {
       "main" => {
         "name" => "Openf1CarData",
+        "slug" => "openf1-car-data",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {

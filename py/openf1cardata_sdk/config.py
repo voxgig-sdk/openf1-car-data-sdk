@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Openf1CarData",
+            "slug": "openf1-car-data",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
