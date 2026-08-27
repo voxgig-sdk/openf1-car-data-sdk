@@ -25,6 +25,7 @@ class CreateCheckoutSessionCreateData
 /** EndpointPathPost entity data model. */
 class EndpointPathPost
 {
+    public ?string $id = null;
 }
 
 /** Request payload for EndpointPathPost#load. */

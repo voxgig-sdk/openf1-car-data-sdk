@@ -159,6 +159,12 @@ Return the entity name.
 $endpoint_path_post = $client->EndpointPathPost();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`

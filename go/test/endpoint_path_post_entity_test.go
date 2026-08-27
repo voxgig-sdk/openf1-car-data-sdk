@@ -63,15 +63,24 @@ func TestEndpointPathPostEntity(t *testing.T) {
 		if endpointPathPostRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if endpointPathPostRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// LOAD
-		endpointPathPostRef01MatchDt0 := map[string]any{}
+		endpointPathPostRef01MatchDt0 := map[string]any{
+			"id": endpointPathPostRef01Data["id"],
+		}
 		endpointPathPostRef01DataDt0Loaded, err := endpointPathPostRef01Ent.Load(endpointPathPostRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if endpointPathPostRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		endpointPathPostRef01DataDt0LoadResult := core.ToMapAny(entityData(endpointPathPostRef01DataDt0Loaded))
+		if endpointPathPostRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if endpointPathPostRef01DataDt0LoadResult["id"] != endpointPathPostRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

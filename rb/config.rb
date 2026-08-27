@@ -28,6 +28,7 @@ module Openf1CarDataConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -77,7 +78,12 @@ module Openf1CarDataConfig
           },
         },
         "endpoint_path_post" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "endpoint_path_post",
           "op" => {
             "create" => {

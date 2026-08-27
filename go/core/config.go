@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -69,7 +70,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"endpoint_path_post": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "endpoint_path_post",
 				"op": map[string]any{
 					"create": map[string]any{

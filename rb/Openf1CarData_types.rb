@@ -17,8 +17,13 @@ class CreateCheckoutSessionCreateData
 end
 
 # EndpointPathPost entity data model.
-class EndpointPathPost
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+EndpointPathPost = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for EndpointPathPost#load.
 #

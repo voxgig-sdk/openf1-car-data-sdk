@@ -40,23 +40,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = Openf1CarDataSDK.test({
   entity: {
-    endpoint_path_post: {
+    subscription_cancel: {
       test01: { id: 'test01' },
     },
   },
 })
-const endpointpathpost = await client.EndpointPathPost().load({ id: 'test01' })
-// endpointpathpost is the EndpointPathPost entity, populated with mock data
-// — call endpointpathpost.data() for the record itself
-console.log(endpointpathpost)
+const subscriptioncancel = await client.SubscriptionCancel().load()
+// subscriptioncancel is the SubscriptionCancel entity, populated with mock data
+// — call subscriptioncancel.data() for the record itself
+console.log(subscriptioncancel)
 ```
 
 ### Python
 
 ```python
 client = Openf1CarDataSDK.test()
-endpointpathpost = client.EndpointPathPost().load({"id": "test01"})
-print(endpointpathpost)
+subscriptioncancel = client.SubscriptionCancel().load()
+print(subscriptioncancel)
 ```
 
 ### PHP
@@ -64,17 +64,17 @@ print(endpointpathpost)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = Openf1CarDataSDK::test([
-    "entity" => ["endpointpathpost" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["subscriptioncancel" => ["test01" => []]],
 ]);
-$endpointpathpost = $client->EndpointPathPost()->load(["id" => "test01"]);
+$subscriptioncancel = $client->SubscriptionCancel()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.EndpointPathPost(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+result, err := client.SubscriptionCancel(nil).Load(
+    nil, nil,
 )
 ```
 
@@ -83,16 +83,16 @@ result, err := client.EndpointPathPost(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = Openf1CarDataSDK.test({
-  "entity" => { "endpointpathpost" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "subscriptioncancel" => { "test01" => {} } },
 })
-endpointpathpost = client.EndpointPathPost.load({ "id" => "test01" })
+subscriptioncancel = client.SubscriptionCancel.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:EndpointPathPost():load({ id = "test01" })
+local result, err = client:SubscriptionCancel():load()
 ```
 
 ## Packages

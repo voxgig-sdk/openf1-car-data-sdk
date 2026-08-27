@@ -4,6 +4,19 @@ main: kit: entity: endpoint_path_post: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "endpoint_path_post"
   op: {
     create: {

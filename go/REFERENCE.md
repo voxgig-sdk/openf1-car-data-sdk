@@ -164,6 +164,12 @@ endpointPathPost := client.EndpointPathPost(nil)
 fmt.Println(endpointPathPost.GetName()) // "endpoint_path_post"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`

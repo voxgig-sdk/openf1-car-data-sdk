@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-endpointpathpost, err := client.EndpointPathPost(nil).Load(map[string]any{"id": "example_id"}, nil)
+subscriptioncancel, err := client.SubscriptionCancel(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = endpointpathpost
+_ = subscriptioncancel
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-endpointPathPost, err := client.EndpointPathPost(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+subscriptionCancel, err := client.SubscriptionCancel(nil).Load(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(endpointPathPost) // the returned mock data
+fmt.Println(subscriptionCancel) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -274,6 +274,7 @@ API path: `/stripe/create-checkout-session`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Create, Load.
 
@@ -361,6 +362,12 @@ Create an instance: `endpointPathPost := client.EndpointPathPost(nil)`
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -577,11 +584,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-endpointpathpost := client.EndpointPathPost(nil)
-endpointpathpost.Load(map[string]any{"id": "example_id"}, nil)
+subscriptioncancel := client.SubscriptionCancel(nil)
+subscriptioncancel.Load(nil, nil)
 
-// endpointpathpost.Data() now returns the endpointpathpost data from the last load
-// endpointpathpost.Match() returns the last match criteria
+// subscriptioncancel.Data() now returns the subscriptioncancel data from the last load
+// subscriptioncancel.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

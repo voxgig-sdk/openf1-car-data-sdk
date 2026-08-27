@@ -44,12 +44,17 @@ describe("EndpointPathPostEntity", function()
     assert.is_nil(err)
     endpoint_path_post_ref01_data = helpers.to_map(type(endpoint_path_post_ref01_data_result) == 'table' and endpoint_path_post_ref01_data_result.data_get and endpoint_path_post_ref01_data_result:data_get() or endpoint_path_post_ref01_data_result)
     assert.is_not_nil(endpoint_path_post_ref01_data)
+    assert.is_not_nil(endpoint_path_post_ref01_data["id"])
 
     -- LOAD
-    local endpoint_path_post_ref01_match_dt0 = {}
+    local endpoint_path_post_ref01_match_dt0 = {
+      id = endpoint_path_post_ref01_data["id"],
+    }
     local endpoint_path_post_ref01_data_dt0_loaded, err = endpoint_path_post_ref01_ent:load(endpoint_path_post_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(endpoint_path_post_ref01_data_dt0_loaded)
+    local endpoint_path_post_ref01_data_dt0_load_result = helpers.to_map(type(endpoint_path_post_ref01_data_dt0_loaded) == 'table' and endpoint_path_post_ref01_data_dt0_loaded.data_get and endpoint_path_post_ref01_data_dt0_loaded:data_get() or endpoint_path_post_ref01_data_dt0_loaded)
+    assert.is_not_nil(endpoint_path_post_ref01_data_dt0_load_result)
+    assert.are.equal(endpoint_path_post_ref01_data_dt0_load_result["id"], endpoint_path_post_ref01_data["id"])
 
   end)
 end)

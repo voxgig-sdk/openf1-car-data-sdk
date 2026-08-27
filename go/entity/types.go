@@ -22,6 +22,7 @@ type CreateCheckoutSessionCreateData struct {
 
 // EndpointPathPost is the typed data model for the endpoint_path_post entity.
 type EndpointPathPost struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // EndpointPathPostLoadMatch is the typed request payload for EndpointPathPost.LoadTyped.

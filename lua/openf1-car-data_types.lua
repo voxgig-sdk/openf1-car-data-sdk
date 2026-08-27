@@ -11,6 +11,7 @@
 ---@class CreateCheckoutSessionCreateData
 
 ---@class EndpointPathPost
+---@field id? string
 
 ---@class EndpointPathPostLoadMatch
 ---@field id string

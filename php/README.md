@@ -47,7 +47,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $endpointpathpost = $client->EndpointPathPost()->load(["id" => "example_id"]);
+    $subscriptioncancel = $client->SubscriptionCancel()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -114,18 +114,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = Openf1CarDataSDK::test([
-    "entity" => ["endpointpathpost" => ["test01" => ["id" => "test01"]]],
-]);
+$client = Openf1CarDataSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$endpointpathpost = $client->EndpointPathPost()->load(["id" => "test01"]);
-print_r($endpointpathpost);
+$subscriptioncancel = $client->SubscriptionCancel()->load();
+print_r($subscriptioncancel);
 ```
 
 ### Use a custom fetch function
@@ -260,6 +257,7 @@ API path: `/stripe/create-checkout-session`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Create, Load.
 
@@ -343,6 +341,12 @@ Create an instance: `$endpoint_path_post = $client->EndpointPathPost();`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -534,11 +538,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$endpointpathpost = $client->EndpointPathPost();
-$endpointpathpost->load(["id" => "example_id"]);
+$subscriptioncancel = $client->SubscriptionCancel();
+$subscriptioncancel->load();
 
-// $endpointpathpost->data_get() now returns the endpointpathpost data from the last load
-// $endpointpathpost->match_get() returns the last match criteria
+// $subscriptioncancel->data_get() now returns the subscriptioncancel data from the last load
+// $subscriptioncancel->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

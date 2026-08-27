@@ -157,6 +157,12 @@ Return the entity name.
 local endpoint_path_post = client:EndpointPathPost(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `create(reqdata, ctrl) -> any, err`

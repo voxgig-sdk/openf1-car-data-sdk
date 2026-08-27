@@ -64,8 +64,14 @@ describe('EndpointPathPostEntity', async () => {
     endpoint_path_post_ref01_data['path'] = setup.idmap['path01']
 
     endpoint_path_post_ref01_data = (await endpoint_path_post_ref01_ent.create(endpoint_path_post_ref01_data)).data()
-    assert(null != endpoint_path_post_ref01_data)
+    assert(null != endpoint_path_post_ref01_data.id)
 
+
+    // LOAD
+    const endpoint_path_post_ref01_match_dt0: any = {}
+    endpoint_path_post_ref01_match_dt0.id = endpoint_path_post_ref01_data.id
+    const endpoint_path_post_ref01_data_dt0 = (await endpoint_path_post_ref01_ent.load(endpoint_path_post_ref01_match_dt0)).data()
+    assert(endpoint_path_post_ref01_data_dt0.id === endpoint_path_post_ref01_data.id)
 
 
   })

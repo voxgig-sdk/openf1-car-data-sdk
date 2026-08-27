@@ -47,11 +47,16 @@ class EndpointPathPostEntityTest extends TestCase
         $endpoint_path_post_ref01_data_result = $endpoint_path_post_ref01_ent->create($endpoint_path_post_ref01_data, null);
         $endpoint_path_post_ref01_data = Helpers::to_map(is_object($endpoint_path_post_ref01_data_result) && method_exists($endpoint_path_post_ref01_data_result, 'data_get') ? $endpoint_path_post_ref01_data_result->data_get() : $endpoint_path_post_ref01_data_result);
         $this->assertNotNull($endpoint_path_post_ref01_data);
+        $this->assertNotNull($endpoint_path_post_ref01_data["id"]);
 
         // LOAD
-        $endpoint_path_post_ref01_match_dt0 = [];
+        $endpoint_path_post_ref01_match_dt0 = [
+            "id" => $endpoint_path_post_ref01_data["id"],
+        ];
         $endpoint_path_post_ref01_data_dt0_loaded = $endpoint_path_post_ref01_ent->load($endpoint_path_post_ref01_match_dt0, null);
-        $this->assertNotNull($endpoint_path_post_ref01_data_dt0_loaded);
+        $endpoint_path_post_ref01_data_dt0_load_result = Helpers::to_map(is_object($endpoint_path_post_ref01_data_dt0_loaded) && method_exists($endpoint_path_post_ref01_data_dt0_loaded, 'data_get') ? $endpoint_path_post_ref01_data_dt0_loaded->data_get() : $endpoint_path_post_ref01_data_dt0_loaded);
+        $this->assertNotNull($endpoint_path_post_ref01_data_dt0_load_result);
+        $this->assertEquals($endpoint_path_post_ref01_data_dt0_load_result["id"], $endpoint_path_post_ref01_data["id"]);
 
     }
 }

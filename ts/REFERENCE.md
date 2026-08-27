@@ -229,6 +229,12 @@ Return a copy of the entity options.
 const endpoint_path_post = client.EndpointPathPost()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `create(data: object, ctrl?: object)`

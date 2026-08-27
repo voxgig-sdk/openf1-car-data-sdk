@@ -47,11 +47,16 @@ class TestEndpointPathPostEntity:
 
         endpoint_path_post_ref01_data = helpers.to_map(runner.entity_data(endpoint_path_post_ref01_ent.create(endpoint_path_post_ref01_data, None)))
         assert endpoint_path_post_ref01_data is not None
+        assert endpoint_path_post_ref01_data["id"] is not None
 
         # LOAD
-        endpoint_path_post_ref01_match_dt0 = {}
+        endpoint_path_post_ref01_match_dt0 = {
+            "id": endpoint_path_post_ref01_data["id"],
+        }
         endpoint_path_post_ref01_data_dt0_loaded = endpoint_path_post_ref01_ent.load(endpoint_path_post_ref01_match_dt0, None)
-        assert endpoint_path_post_ref01_data_dt0_loaded is not None
+        endpoint_path_post_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(endpoint_path_post_ref01_data_dt0_loaded))
+        assert endpoint_path_post_ref01_data_dt0_load_result is not None
+        assert endpoint_path_post_ref01_data_dt0_load_result["id"] == endpoint_path_post_ref01_data["id"]
 
 
 

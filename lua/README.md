@@ -49,7 +49,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local endpointpathpost, err = client:EndpointPathPost():load({ id = "example_id" })
+local subscriptioncancel, err = client:SubscriptionCancel():load()
 if err then error(err) end
 ```
 
@@ -107,7 +107,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:EndpointPathPost():load({ id = "test01" })
+local result, err = client:SubscriptionCancel():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -242,6 +242,7 @@ API path: `/stripe/create-checkout-session`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Create, Load.
 
@@ -325,6 +326,12 @@ Create an instance: `local endpoint_path_post = client:EndpointPathPost(nil)`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -512,11 +519,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local endpointpathpost = client:EndpointPathPost()
-endpointpathpost:load({ id = "example_id" })
+local subscriptioncancel = client:SubscriptionCancel()
+subscriptioncancel:load()
 
--- endpointpathpost:data_get() now returns the endpointpathpost data from the last load
--- endpointpathpost:match_get() returns the last match criteria
+-- subscriptioncancel:data_get() now returns the subscriptioncancel data from the last load
+-- subscriptioncancel:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

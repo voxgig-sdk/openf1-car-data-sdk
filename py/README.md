@@ -51,8 +51,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    endpointpathpost = client.EndpointPathPost().load({"id": "example_id"})
-    print(endpointpathpost)
+    subscriptioncancel = client.SubscriptionCancel().load()
+    print(subscriptioncancel)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -120,8 +120,8 @@ client = Openf1CarDataSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-endpointpathpost = client.EndpointPathPost().load({"id": "test01"})
-# endpointpathpost contains the mock response record
+subscriptioncancel = client.SubscriptionCancel().load()
+# subscriptioncancel contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -253,6 +253,7 @@ API path: `/stripe/create-checkout-session`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Create, Load.
 
@@ -336,6 +337,12 @@ Create an instance: `endpoint_path_post = client.EndpointPathPost()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `str` |  |
 
 #### Example: Load
 
@@ -522,11 +529,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-endpointpathpost = client.EndpointPathPost()
-endpointpathpost.load({"id": "example_id"})
+subscriptioncancel = client.SubscriptionCancel()
+subscriptioncancel.load()
 
-# endpointpathpost.data_get() now returns the endpointpathpost data from the last load
-# endpointpathpost.match_get() returns the last match criteria
+# subscriptioncancel.data_get() now returns the subscriptioncancel data from the last load
+# subscriptioncancel.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

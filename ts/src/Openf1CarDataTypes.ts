@@ -12,6 +12,7 @@ export interface CreateCheckoutSessionCreateData {
 }
 
 export interface EndpointPathPost {
+  id?: string
 }
 
 export interface EndpointPathPostLoadMatch {

@@ -43,7 +43,8 @@ class SubscriptionCancelEntity extends Openf1CarDataEntityBase<SubscriptionCance
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

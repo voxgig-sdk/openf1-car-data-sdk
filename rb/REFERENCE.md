@@ -160,6 +160,12 @@ Return the entity name.
 endpoint_path_post = client.EndpointPathPost
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `String` | No |  |
+
 ### Operations
 
 #### `create(reqdata, ctrl = nil) -> result`

@@ -40,11 +40,16 @@ class EndpointPathPostEntityTest < Minitest::Test
     endpoint_path_post_ref01_data_result = endpoint_path_post_ref01_ent.create(endpoint_path_post_ref01_data, nil)
     endpoint_path_post_ref01_data = Helpers.to_map(endpoint_path_post_ref01_data_result.respond_to?(:data_get) ? endpoint_path_post_ref01_data_result.data_get : endpoint_path_post_ref01_data_result)
     assert !endpoint_path_post_ref01_data.nil?
+    assert !endpoint_path_post_ref01_data["id"].nil?
 
     # LOAD
-    endpoint_path_post_ref01_match_dt0 = {}
+    endpoint_path_post_ref01_match_dt0 = {
+      "id" => endpoint_path_post_ref01_data["id"],
+    }
     endpoint_path_post_ref01_data_dt0_loaded = endpoint_path_post_ref01_ent.load(endpoint_path_post_ref01_match_dt0, nil)
-    assert !endpoint_path_post_ref01_data_dt0_loaded.nil?
+    endpoint_path_post_ref01_data_dt0_load_result = Helpers.to_map(endpoint_path_post_ref01_data_dt0_loaded.respond_to?(:data_get) ? endpoint_path_post_ref01_data_dt0_loaded.data_get : endpoint_path_post_ref01_data_dt0_loaded)
+    assert !endpoint_path_post_ref01_data_dt0_load_result.nil?
+    assert_equal endpoint_path_post_ref01_data_dt0_load_result["id"], endpoint_path_post_ref01_data["id"]
 
   end
 end

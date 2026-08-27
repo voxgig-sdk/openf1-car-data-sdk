@@ -24,8 +24,8 @@ class CreateCheckoutSessionCreateData(TypedDict):
     pass
 
 
-class EndpointPathPost(TypedDict):
-    pass
+class EndpointPathPost(TypedDict, total=False):
+    id: str
 
 
 class EndpointPathPostLoadMatch(TypedDict):

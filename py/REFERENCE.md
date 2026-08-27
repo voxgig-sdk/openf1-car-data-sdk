@@ -153,6 +153,12 @@ Return the entity name.
 endpoint_path_post = client.EndpointPathPost()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `create(reqdata, ctrl=None) -> dict`

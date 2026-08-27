@@ -48,8 +48,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const endpointpathpost = await client.EndpointPathPost().load({ id: "example_id" })
-  console.log(endpointpathpost)
+  const subscriptioncancel = await client.SubscriptionCancel().load()
+  console.log(subscriptioncancel)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -115,10 +115,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = Openf1CarDataSDK.test()
 
-const endpointpathpost = await client.EndpointPathPost().load({ id: 'test01' })
-// endpointpathpost is the entity, populated with mock response data
-// — call endpointpathpost.data() for the record itself
-console.log(endpointpathpost)
+const subscriptioncancel = await client.SubscriptionCancel().load()
+// subscriptioncancel is the entity, populated with mock response data
+// — call subscriptioncancel.data() for the record itself
+console.log(subscriptioncancel)
 ```
 
 You can also use the instance method:
@@ -133,10 +133,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.EndpointPathPost()
+const entity = client.SubscriptionCancel()
 
 // First call runs the operation and stores its result
-await entity.load({ id: 'example' })
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -296,6 +296,7 @@ API path: `/stripe/create-checkout-session`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: create, load.
 
@@ -379,6 +380,12 @@ Create an instance: `const endpoint_path_post = client.EndpointPathPost()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -559,11 +566,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const endpointpathpost = client.EndpointPathPost()
-await endpointpathpost.load({ id: "example_id" })
+const subscriptioncancel = client.SubscriptionCancel()
+await subscriptioncancel.load()
 
-// endpointpathpost.data() now returns the endpointpathpost data from the last `load`
-// endpointpathpost.match() returns { id: "example_id" }
+// subscriptioncancel.data() now returns the subscriptioncancel data from the last `load`
+// subscriptioncancel.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
