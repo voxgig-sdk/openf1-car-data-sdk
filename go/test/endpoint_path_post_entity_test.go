@@ -52,7 +52,7 @@ func TestEndpointPathPostEntity(t *testing.T) {
 		// CREATE
 		endpointPathPostRef01Ent := client.EndpointPathPost(nil)
 		endpointPathPostRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "endpoint_path_post"}, setup.data), "endpoint_path_post_ref01"))
+			vs.GetPath(setup.data, []any{"new", "endpoint_path_post"}), "endpoint_path_post_ref01"))
 		endpointPathPostRef01Data["path"] = setup.idmap["path01"]
 
 		endpointPathPostRef01DataResult, err := endpointPathPostRef01Ent.Create(endpointPathPostRef01Data, nil)
@@ -110,7 +110,7 @@ func endpoint_path_postBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"endpoint_path_post01", "endpoint_path_post02", "endpoint_path_post03", "path01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -138,10 +138,22 @@ func endpoint_path_postBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENF1_CAR_DATA_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenf1CarDataSDK(core.ToMapAny(mergedOpts))
 	}

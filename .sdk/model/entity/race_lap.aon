@@ -12,8 +12,10 @@ main: kit: entity: race_lap: {
         {
           method: "POST"
           orig: "/race_lap"
-          parts: [
-            "race_lap"
+          segments: [
+            {
+              lit: "race_lap"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -28,8 +30,10 @@ main: kit: entity: race_lap: {
         {
           method: "GET"
           orig: "/race_lap"
-          parts: [
-            "race_lap"
+          segments: [
+            {
+              lit: "race_lap"
+            }
           ]
           transform: {
             req: "`reqdata`"

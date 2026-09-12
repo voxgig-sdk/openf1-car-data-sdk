@@ -12,8 +12,10 @@ main: kit: entity: token: {
         {
           method: "POST"
           orig: "/token"
-          parts: [
-            "token"
+          segments: [
+            {
+              lit: "token"
+            }
           ]
           transform: {
             req: "`reqdata`"

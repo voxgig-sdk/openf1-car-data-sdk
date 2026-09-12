@@ -12,8 +12,10 @@ main: kit: entity: subscription_success: {
         {
           method: "GET"
           orig: "/subscription_success"
-          parts: [
-            "subscription_success"
+          segments: [
+            {
+              lit: "subscription_success"
+            }
           ]
           transform: {
             req: "`reqdata`"

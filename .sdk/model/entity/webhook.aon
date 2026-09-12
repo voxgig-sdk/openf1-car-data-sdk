@@ -12,9 +12,13 @@ main: kit: entity: webhook: {
         {
           method: "POST"
           orig: "/stripe/webhook"
-          parts: [
-            "stripe"
-            "webhook"
+          segments: [
+            {
+              lit: "stripe"
+            }
+            {
+              lit: "webhook"
+            }
           ]
           transform: {
             req: "`reqdata`"

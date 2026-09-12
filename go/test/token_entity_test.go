@@ -52,7 +52,7 @@ func TestTokenEntity(t *testing.T) {
 		// CREATE
 		tokenRef01Ent := client.Token(nil)
 		tokenRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "token"}, setup.data), "token_ref01"))
+			vs.GetPath(setup.data, []any{"new", "token"}), "token_ref01"))
 
 		tokenRef01DataResult, err := tokenRef01Ent.Create(tokenRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func tokenBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"token01", "token02", "token03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -118,10 +118,22 @@ func tokenBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENF1_CAR_DATA_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenf1CarDataSDK(core.ToMapAny(mergedOpts))
 	}

@@ -74,14 +74,22 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/stripe/create-checkout-session',
-                  'parts' => [
-                    'stripe',
-                    'create-checkout-session',
+                  'segments' => [
+                    [
+                      'lit' => 'stripe',
+                    ],
+                    [
+                      'lit' => 'create-checkout-session',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'stripe',
+                    'create-checkout-session',
                   ],
                 ],
               ],
@@ -97,6 +105,10 @@ class Openf1CarDataConfig
               'name' => 'id',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'endpoint_path_post',
           'op' => [
@@ -119,12 +131,14 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/{path}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'path' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -135,6 +149,9 @@ class Openf1CarDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
@@ -158,12 +175,14 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{path}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'path' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -174,6 +193,9 @@ class Openf1CarDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
@@ -196,13 +218,18 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/race_lap',
-                  'parts' => [
-                    'race_lap',
+                  'segments' => [
+                    [
+                      'lit' => 'race_lap',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'race_lap',
                   ],
                 ],
               ],
@@ -216,13 +243,18 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/race_lap',
-                  'parts' => [
-                    'race_lap',
+                  'segments' => [
+                    [
+                      'lit' => 'race_lap',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'race_lap',
                   ],
                 ],
               ],
@@ -245,13 +277,18 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/subscription_cancel',
-                  'parts' => [
-                    'subscription_cancel',
+                  'segments' => [
+                    [
+                      'lit' => 'subscription_cancel',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'subscription_cancel',
                   ],
                 ],
               ],
@@ -274,13 +311,18 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/subscription_success',
-                  'parts' => [
-                    'subscription_success',
+                  'segments' => [
+                    [
+                      'lit' => 'subscription_success',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'subscription_success',
                   ],
                 ],
               ],
@@ -303,13 +345,18 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/token',
-                  'parts' => [
-                    'token',
+                  'segments' => [
+                    [
+                      'lit' => 'token',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'token',
                   ],
                 ],
               ],
@@ -332,14 +379,22 @@ class Openf1CarDataConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/stripe/webhook',
-                  'parts' => [
-                    'stripe',
-                    'webhook',
+                  'segments' => [
+                    [
+                      'lit' => 'stripe',
+                    ],
+                    [
+                      'lit' => 'webhook',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'stripe',
+                    'webhook',
                   ],
                 ],
               ],

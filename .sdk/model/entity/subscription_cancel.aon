@@ -12,8 +12,10 @@ main: kit: entity: subscription_cancel: {
         {
           method: "GET"
           orig: "/subscription_cancel"
-          parts: [
-            "subscription_cancel"
+          segments: [
+            {
+              lit: "subscription_cancel"
+            }
           ]
           transform: {
             req: "`reqdata`"

@@ -12,9 +12,13 @@ main: kit: entity: create_checkout_session: {
         {
           method: "POST"
           orig: "/stripe/create-checkout-session"
-          parts: [
-            "stripe"
-            "create-checkout-session"
+          segments: [
+            {
+              lit: "stripe"
+            }
+            {
+              lit: "create-checkout-session"
+            }
           ]
           transform: {
             req: "`reqdata`"
