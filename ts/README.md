@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data'
+import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data-sdk'
 
 const client = new Openf1CarDataSDK()
 ```
@@ -579,7 +579,7 @@ openf1-car-data/
 Import the SDK from the package root:
 
 ```ts
-import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data'
+import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data-sdk'
 ```
 
 ### Entity state

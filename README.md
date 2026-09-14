@@ -103,7 +103,7 @@ local result, err = client:SubscriptionCancel():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
+| TypeScript | `@voxgig-sdk/openf1-car-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
 | Python | `voxgig-sdk-openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
 | PHP | `voxgig-sdk/openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/openf1-car-data-sdk/go` | `go get github.com/voxgig-sdk/openf1-car-data-sdk/go@latest` |
@@ -117,7 +117,7 @@ local result, err = client:SubscriptionCancel():load()
 ### TypeScript
 
 ```ts
-import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data'
+import { Openf1CarDataSDK } from '@voxgig-sdk/openf1-car-data-sdk'
 
 const client = new Openf1CarDataSDK()
 
