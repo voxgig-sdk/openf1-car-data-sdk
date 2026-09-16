@@ -16,5 +16,26 @@
     "subscription_cancel": {
       "subscription_cancel_ref01": {}
     }
+  },
+  "requests": {
+    "GET /subscription_cancel": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "checkout_cancel_subscription_cancel_get",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -16,5 +16,26 @@
     "create_checkout_session": {
       "create_checkout_session_ref01": {}
     }
+  },
+  "requests": {
+    "POST /stripe/create-checkout-session": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "create_checkout_session_stripe_create_checkout_session_post",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

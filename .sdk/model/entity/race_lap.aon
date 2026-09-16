@@ -10,6 +10,12 @@ main: kit: entity: race_lap: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /race_lap"
+            json: "{\"operationId\":\"get_race_lap_race_lap_post\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/race_lap"
           segments: [
@@ -28,6 +34,12 @@ main: kit: entity: race_lap: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /race_lap"
+            json: "{\"operationId\":\"get_race_lap_race_lap_post\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/race_lap"
           segments: [

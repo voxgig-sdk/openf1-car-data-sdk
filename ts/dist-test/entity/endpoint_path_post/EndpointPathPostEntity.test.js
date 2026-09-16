@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.OPENF1_CAR_DATA_TEST_LIVE;
         for (const op of ['create', 'load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'endpoint_path_post.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'endpoint_path_post.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 0 }], "id": { "field": "id", "name": "id" }, "name": "endpoint_path_post", "op": { "create": { "input": "data", "name": "create", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "path", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "POST /{path}", "json": "{\"operationId\":\"endpoint__path__post\",\"parameters\":[{\"in\":\"path\",\"name\":\"path\",\"required\":true,\"schema\":{\"title\":\"Path\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "POST", "orig": "/{path}", "rename": { "param": { "path": "id" } }, "segments": [{ "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" }, "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "path", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /{path}", "json": "{\"operationId\":\"endpoint__path__post\",\"parameters\":[{\"in\":\"path\",\"name\":\"path\",\"required\":true,\"schema\":{\"title\":\"Path\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/{path}", "rename": { "param": { "path": "id" } }, "segments": [{ "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "endpoint_path_post", "name__orig": "endpoint_path_post", "Name": "EndpointPathPost", "name_": "endpoint_path_post", "name-": "endpoint-path-post", "NAME": "ENDPOINT_PATH_POST", "index$": 1 }, { "active": true, "entity": "endpoint_path_post", "key$": "BasicEndpointPathPostFlow", "kind": "basic", "name": "BasicEndpointPathPostFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "endpoint_path_post_ref01" }, "match": { "path": "path01" }, "op": "create", "spec": [], "valid": [], "index$": 0 }, { "active": true, "data": {}, "input": { "ref": "endpoint_path_post_ref01", "srcdatavar": "endpoint_path_post_ref01_data", "suffix": "_dt0" }, "match": { "id": "endpoint_path_post01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-endpoint_path_post_ref01" } }], "index$": 1 }] }, 'EndpointPathPost');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -107,12 +105,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID': idmap,
         'OPENF1_CAR_DATA_TEST_LIVE': 'FALSE',
@@ -120,7 +112,13 @@ function basicSetup(extra) {
     });
     idmap = env['OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID'];
     const live = 'TRUE' === env.OPENF1_CAR_DATA_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.Openf1CarDataSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -131,7 +129,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -143,7 +142,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.OPENF1_CAR_DATA_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

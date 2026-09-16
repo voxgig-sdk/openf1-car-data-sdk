@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { Openf1CarDataSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('CreateCheckoutSessionEntity', async () => {
 
     const live = 'TRUE' === process.env.OPENF1_CAR_DATA_TEST_LIVE
     for (const op of ['create']) {
-      if (maybeSkipControl(t, 'entityOp', 'create_checkout_session.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'create_checkout_session.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set OPENF1_CAR_DATA_TEST_CREATE_CHECKOUT_SESSION_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"create_checkout_session","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{},"contract":{"id":"POST /stripe/create-checkout-session","json":"{\"operationId\":\"create_checkout_session_stripe_create_checkout_session_post\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/stripe/create-checkout-session","segments":[{"lit":"stripe"},{"lit":"create-checkout-session"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"create_checkout_session","name__orig":"create_checkout_session","Name":"CreateCheckoutSession","name_":"create_checkout_session","name-":"create-checkout-session","NAME":"CREATE_CHECKOUT_SESSION","index$":0}, {"active":true,"entity":"create_checkout_session","key$":"BasicCreateCheckoutSessionFlow","kind":"basic","name":"BasicCreateCheckoutSessionFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"create_checkout_session_ref01"},"match":{},"op":"create","spec":[],"valid":[],"index$":0}]}, 'CreateCheckoutSession')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['OPENF1_CAR_DATA_TEST_CREATE_CHECKOUT_SESSION_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'OPENF1_CAR_DATA_TEST_CREATE_CHECKOUT_SESSION_ENTID': idmap,
     'OPENF1_CAR_DATA_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.OPENF1_CAR_DATA_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['OPENF1_CAR_DATA_TEST_CREATE_CHECKOUT_SESSION_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new Openf1CarDataSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.OPENF1_CAR_DATA_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

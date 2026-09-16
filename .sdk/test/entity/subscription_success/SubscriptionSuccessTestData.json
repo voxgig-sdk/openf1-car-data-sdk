@@ -16,5 +16,26 @@
     "subscription_success": {
       "subscription_success_ref01": {}
     }
+  },
+  "requests": {
+    "GET /subscription_success": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "checkout_success_subscription_success_get",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

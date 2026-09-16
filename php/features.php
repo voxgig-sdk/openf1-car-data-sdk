@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Openf1CarData SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class Openf1CarDataFeatures
@@ -14,8 +17,14 @@ class Openf1CarDataFeatures
         switch ($name) {
             case "base":
                 return new Openf1CarDataBaseFeature();
+            case "ratelimit":
+                return new Openf1CarDataRatelimitFeature();
+            case "retry":
+                return new Openf1CarDataRetryFeature();
             case "test":
                 return new Openf1CarDataTestFeature();
+            case "timeout":
+                return new Openf1CarDataTimeoutFeature();
             default:
                 return new Openf1CarDataBaseFeature();
         }
@@ -31,7 +40,10 @@ class Openf1CarDataFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

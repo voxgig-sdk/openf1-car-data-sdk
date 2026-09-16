@@ -16,5 +16,45 @@
     "race_lap": {
       "race_lap_ref01": {}
     }
+  },
+  "requests": {
+    "POST /race_lap": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get_race_lap_race_lap_post",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /race_lap": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "get_race_lap_race_lap_post",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

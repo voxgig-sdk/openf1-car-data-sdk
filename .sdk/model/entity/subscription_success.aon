@@ -10,6 +10,12 @@ main: kit: entity: subscription_success: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /subscription_success"
+            json: "{\"operationId\":\"checkout_success_subscription_success_get\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/subscription_success"
           segments: [

@@ -16,5 +16,26 @@
     "webhook": {
       "webhook_ref01": {}
     }
+  },
+  "requests": {
+    "POST /stripe/webhook": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "stripe_webhook_stripe_webhook_post",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

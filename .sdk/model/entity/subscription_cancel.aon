@@ -10,6 +10,12 @@ main: kit: entity: subscription_cancel: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /subscription_cancel"
+            json: "{\"operationId\":\"checkout_cancel_subscription_cancel_get\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/subscription_cancel"
           segments: [

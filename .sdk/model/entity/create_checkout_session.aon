@@ -10,6 +10,12 @@ main: kit: entity: create_checkout_session: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /stripe/create-checkout-session"
+            json: "{\"operationId\":\"create_checkout_session_stripe_create_checkout_session_post\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/stripe/create-checkout-session"
           segments: [
