@@ -103,12 +103,12 @@ local result, err = client:SubscriptionCancel():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/openf1-car-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
-| Python | `voxgig-sdk-openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
-| PHP | `voxgig-sdk/openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
+| TypeScript | `@voxgig-sdk/openf1-car-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/tags) |
+| Python | `voxgig-sdk-openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/tags) |
+| PHP | `voxgig-sdk/openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/openf1-car-data-sdk/go` | `go get github.com/voxgig-sdk/openf1-car-data-sdk/go@latest` |
-| Ruby | `voxgig-sdk-openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
-| Lua | `voxgig-sdk-openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases) |
+| Ruby | `voxgig-sdk-openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/tags) |
+| Lua | `voxgig-sdk-openf1-car-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openf1-car-data-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/openf1-car-data-sdk/go-cli` | `go install github.com/voxgig-sdk/openf1-car-data-sdk/go-cli/cmd/openf1-car-data@latest` |
 | Go MCP server | `github.com/voxgig-sdk/openf1-car-data-sdk/go-mcp` | `go get github.com/voxgig-sdk/openf1-car-data-sdk/go-mcp@latest` |
 

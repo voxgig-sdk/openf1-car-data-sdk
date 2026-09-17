@@ -127,27 +127,27 @@ class Config {
 
     entity: {
       
-      create_checkout_session: {
-      },
-
-      endpoint_path_post: {
-      },
-
-      race_lap: {
-      },
-
-      subscription_cancel: {
-      },
-
-      subscription_success: {
-      },
-
-      token: {
-      },
-
-      webhook: {
-      },
-
+        create_checkout_session: {
+        },
+  
+        endpoint_path_post: {
+        },
+  
+        race_lap: {
+        },
+  
+        subscription_cancel: {
+        },
+  
+        subscription_success: {
+        },
+  
+        token: {
+        },
+  
+        webhook: {
+        },
+  
     }
   }
 
