@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -162,7 +155,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/stripe/create-checkout-session",
@@ -174,15 +166,17 @@ class Config {
                   "lit": "create-checkout-session"
                 }
               ],
-              "select": {},
+              "parts": [
+                "stripe",
+                "create-checkout-session"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "stripe",
-                "create-checkout-session"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -195,6 +189,7 @@ class Config {
       "fields": [
         {
           "name": "id",
+          "title": "Id",
           "type": "`$STRING`"
         }
       ],
@@ -209,42 +204,42 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "path",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "POST",
               "orig": "/{path}",
-              "rename": {
-                "param": {
-                  "path": "id"
-                }
-              },
               "segments": [
                 {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
+              "parts": [
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "path": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "path",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         },
@@ -253,42 +248,42 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "path",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/{path}",
-              "rename": {
-                "param": {
-                  "path": "id"
-                }
-              },
               "segments": [
                 {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
+              "parts": [
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "path": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "path",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -306,7 +301,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/race_lap",
@@ -315,14 +309,16 @@ class Config {
                   "lit": "race_lap"
                 }
               ],
-              "select": {},
+              "parts": [
+                "race_lap"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "race_lap"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -331,7 +327,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/race_lap",
@@ -340,14 +335,16 @@ class Config {
                   "lit": "race_lap"
                 }
               ],
-              "select": {},
+              "parts": [
+                "race_lap"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "race_lap"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -365,7 +362,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/subscription_cancel",
@@ -374,14 +370,16 @@ class Config {
                   "lit": "subscription_cancel"
                 }
               ],
-              "select": {},
+              "parts": [
+                "subscription_cancel"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "subscription_cancel"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -399,7 +397,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/subscription_success",
@@ -408,14 +405,16 @@ class Config {
                   "lit": "subscription_success"
                 }
               ],
-              "select": {},
+              "parts": [
+                "subscription_success"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "subscription_success"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -433,7 +432,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/token",
@@ -442,14 +440,16 @@ class Config {
                   "lit": "token"
                 }
               ],
-              "select": {},
+              "parts": [
+                "token"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "token"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -467,7 +467,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/stripe/webhook",
@@ -479,15 +478,17 @@ class Config {
                   "lit": "webhook"
                 }
               ],
-              "select": {},
+              "parts": [
+                "stripe",
+                "webhook"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "stripe",
-                "webhook"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }

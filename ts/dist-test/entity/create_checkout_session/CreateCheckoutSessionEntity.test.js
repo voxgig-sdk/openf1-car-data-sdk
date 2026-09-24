@@ -44,10 +44,6 @@ const live_runner_1 = require("../../live-runner");
 const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 (0, utility_1.loadEnvLocal)(__dirname + '/../../../.env.local');
 (0, node_test_1.describe)('CreateCheckoutSessionEntity', async () => {
     // Per-test live pacing. Delay is read from sdk-test-control.json's
@@ -66,7 +62,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [], "name": "create_checkout_session", "op": { "create": { "input": "data", "name": "create", "points": [{ "active": true, "args": {}, "contract": { "id": "POST /stripe/create-checkout-session", "json": "{\"operationId\":\"create_checkout_session_stripe_create_checkout_session_post\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "POST", "orig": "/stripe/create-checkout-session", "segments": [{ "lit": "stripe" }, { "lit": "create-checkout-session" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "create_checkout_session", "name__orig": "create_checkout_session", "Name": "CreateCheckoutSession", "name_": "create_checkout_session", "name-": "create-checkout-session", "NAME": "CREATE_CHECKOUT_SESSION", "index$": 0 }, { "active": true, "entity": "create_checkout_session", "key$": "BasicCreateCheckoutSessionFlow", "kind": "basic", "name": "BasicCreateCheckoutSessionFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "create_checkout_session_ref01" }, "match": {}, "op": "create", "spec": [], "valid": [], "index$": 0 }] }, 'CreateCheckoutSession');
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "create_checkout_session", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /stripe/create-checkout-session", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/stripe/create-checkout-session", "q": {}, "r": {}, "s": [{ "lit": "stripe" }, { "lit": "create-checkout-session" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "create_checkout_session", "name__orig": "create_checkout_session", "Name": "CreateCheckoutSession", "name_": "create_checkout_session", "name-": "create-checkout-session", "NAME": "CREATE_CHECKOUT_SESSION", "index$": 0 }, { "active": true, "entity": "create_checkout_session", "key$": "BasicCreateCheckoutSessionFlow", "kind": "basic", "name": "BasicCreateCheckoutSessionFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "create_checkout_session_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'CreateCheckoutSession', { "POST /stripe/create-checkout-session": { "protocol": "http", "operationId": "create_checkout_session_stripe_create_checkout_session_post", "responses": { "200": { "description": "Successful Response", "content": { "application/json": { "schema": {} } } } }, "parameters": [], "securitySource": "unspecified" } });
         }
         const client = setup.client;
         const struct = setup.struct;

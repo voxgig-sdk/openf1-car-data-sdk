@@ -1,0 +1,42 @@
+# Entity: webhook
+
+main: kit: entity: webhook: {
+
+  alias: field: {}
+
+  name: "webhook"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /stripe/webhook"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/stripe/webhook"
+          s: [
+            {
+              lit: "stripe"
+            }
+            {
+              lit: "webhook"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

@@ -1,0 +1,39 @@
+# Entity: token
+
+main: kit: entity: token: {
+
+  alias: field: {}
+
+  name: "token"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /token"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/token"
+          s: [
+            {
+              lit: "token"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

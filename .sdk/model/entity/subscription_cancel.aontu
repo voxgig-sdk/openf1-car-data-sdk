@@ -1,0 +1,39 @@
+# Entity: subscription_cancel
+
+main: kit: entity: subscription_cancel: {
+
+  alias: field: {}
+
+  name: "subscription_cancel"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /subscription_cancel"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/subscription_cancel"
+          s: [
+            {
+              lit: "subscription_cancel"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

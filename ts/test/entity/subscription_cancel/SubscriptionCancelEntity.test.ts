@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('SubscriptionCancelEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"subscription_cancel","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{},"contract":{"id":"GET /subscription_cancel","json":"{\"operationId\":\"checkout_cancel_subscription_cancel_get\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/subscription_cancel","segments":[{"lit":"subscription_cancel"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"subscription_cancel","name__orig":"subscription_cancel","Name":"SubscriptionCancel","name_":"subscription_cancel","name-":"subscription-cancel","NAME":"SUBSCRIPTION_CANCEL","index$":3}, {"active":true,"entity":"subscription_cancel","key$":"BasicSubscriptionCancelFlow","kind":"basic","name":"BasicSubscriptionCancelFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"subscription_cancel_ref01","srcdatavar":"subscription_cancel_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-subscription_cancel_ref01"}}],"index$":0}]}, 'SubscriptionCancel')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"subscription_cancel","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /subscription_cancel","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/subscription_cancel","q":{},"r":{},"s":[{"lit":"subscription_cancel"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"subscription_cancel","name__orig":"subscription_cancel","Name":"SubscriptionCancel","name_":"subscription_cancel","name-":"subscription-cancel","NAME":"SUBSCRIPTION_CANCEL","index$":3}, {"active":true,"entity":"subscription_cancel","key$":"BasicSubscriptionCancelFlow","kind":"basic","name":"BasicSubscriptionCancelFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"subscription_cancel_ref01","srcdatavar":"subscription_cancel_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-subscription_cancel_ref01"}}],"index$":0}]}, 'SubscriptionCancel', {"GET /subscription_cancel":{"protocol":"http","operationId":"checkout_cancel_subscription_cancel_get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{}}}}},"parameters":[],"securitySource":"unspecified"}})
     }
     const client = setup.client
     const struct = setup.struct

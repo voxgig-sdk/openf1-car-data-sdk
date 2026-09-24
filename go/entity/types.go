@@ -1,7 +1,7 @@
 // Typed models for the Openf1CarData SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -22,7 +22,6 @@ type CreateCheckoutSessionCreateData struct {
 
 // EndpointPathPost is the typed data model for the endpoint_path_post entity.
 type EndpointPathPost struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // EndpointPathPostLoadMatch is the typed request payload for EndpointPathPost.LoadTyped.

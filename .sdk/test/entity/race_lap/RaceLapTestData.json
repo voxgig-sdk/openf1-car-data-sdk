@@ -20,41 +20,13 @@
   "requests": {
     "POST /race_lap": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "get_race_lap_race_lap_post",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /race_lap": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "get_race_lap_race_lap_post",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

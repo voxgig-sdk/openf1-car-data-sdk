@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('SubscriptionSuccessEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"subscription_success","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{},"contract":{"id":"GET /subscription_success","json":"{\"operationId\":\"checkout_success_subscription_success_get\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{}}},\"description\":\"Successful Response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/subscription_success","segments":[{"lit":"subscription_success"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"subscription_success","name__orig":"subscription_success","Name":"SubscriptionSuccess","name_":"subscription_success","name-":"subscription-success","NAME":"SUBSCRIPTION_SUCCESS","index$":4}, {"active":true,"entity":"subscription_success","key$":"BasicSubscriptionSuccessFlow","kind":"basic","name":"BasicSubscriptionSuccessFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"subscription_success_ref01","srcdatavar":"subscription_success_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-subscription_success_ref01"}}],"index$":0}]}, 'SubscriptionSuccess')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"subscription_success","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /subscription_success","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/subscription_success","q":{},"r":{},"s":[{"lit":"subscription_success"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"subscription_success","name__orig":"subscription_success","Name":"SubscriptionSuccess","name_":"subscription_success","name-":"subscription-success","NAME":"SUBSCRIPTION_SUCCESS","index$":4}, {"active":true,"entity":"subscription_success","key$":"BasicSubscriptionSuccessFlow","kind":"basic","name":"BasicSubscriptionSuccessFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"subscription_success_ref01","srcdatavar":"subscription_success_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-subscription_success_ref01"}}],"index$":0}]}, 'SubscriptionSuccess', {"GET /subscription_success":{"protocol":"http","operationId":"checkout_success_subscription_success_get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{}}}}},"parameters":[],"securitySource":"unspecified"}})
     }
     const client = setup.client
     const struct = setup.struct

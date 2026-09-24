@@ -1,0 +1,62 @@
+# Entity: race_lap
+
+main: kit: entity: race_lap: {
+
+  alias: field: {}
+
+  name: "race_lap"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /race_lap"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/race_lap"
+          s: [
+            {
+              lit: "race_lap"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /race_lap"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/race_lap"
+          s: [
+            {
+              lit: "race_lap"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

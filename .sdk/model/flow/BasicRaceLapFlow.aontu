@@ -1,0 +1,36 @@
+# BasicRaceLapFlow
+
+main: kit: flow: BasicRaceLapFlow:
+{
+  entity: "race_lap",
+  kind: "basic",
+  name: "BasicRaceLapFlow",
+  step: [
+    {
+      i: {
+        ref: "race_lap_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "race_lap_ref01",
+        srcdatavar: "race_lap_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-race_lap_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRaceLapFlow"
+}

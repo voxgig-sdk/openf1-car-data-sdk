@@ -110,7 +110,6 @@ module Openf1CarDataConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/stripe/create-checkout-session",
@@ -122,15 +121,17 @@ module Openf1CarDataConfig
                       "lit" => "create-checkout-session",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "stripe",
                     "create-checkout-session",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -143,6 +144,7 @@ module Openf1CarDataConfig
           "fields" => [
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
           ],
@@ -157,42 +159,42 @@ module Openf1CarDataConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "path",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/{path}",
-                  "rename" => {
-                    "param" => {
-                      "path" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "path" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "path",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
               ],
             },
@@ -201,42 +203,42 @@ module Openf1CarDataConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "path",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{path}",
-                  "rename" => {
-                    "param" => {
-                      "path" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "path" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "path",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
               ],
             },
@@ -254,7 +256,6 @@ module Openf1CarDataConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/race_lap",
@@ -263,14 +264,16 @@ module Openf1CarDataConfig
                       "lit" => "race_lap",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "race_lap",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "race_lap",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -279,7 +282,6 @@ module Openf1CarDataConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/race_lap",
@@ -288,14 +290,16 @@ module Openf1CarDataConfig
                       "lit" => "race_lap",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "race_lap",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "race_lap",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -313,7 +317,6 @@ module Openf1CarDataConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/subscription_cancel",
@@ -322,14 +325,16 @@ module Openf1CarDataConfig
                       "lit" => "subscription_cancel",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "subscription_cancel",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "subscription_cancel",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -347,7 +352,6 @@ module Openf1CarDataConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/subscription_success",
@@ -356,14 +360,16 @@ module Openf1CarDataConfig
                       "lit" => "subscription_success",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "subscription_success",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "subscription_success",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -381,7 +387,6 @@ module Openf1CarDataConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/token",
@@ -390,14 +395,16 @@ module Openf1CarDataConfig
                       "lit" => "token",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "token",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "token",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -415,7 +422,6 @@ module Openf1CarDataConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/stripe/webhook",
@@ -427,15 +433,17 @@ module Openf1CarDataConfig
                       "lit" => "webhook",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "stripe",
                     "webhook",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
