@@ -1,5 +1,5 @@
 {
-  "name": "voxgig-sdk/openf1-car-data",
+  "name": "voxgig-sdk/openf1-car-data-sdk",
   "description": "Unofficial generated PHP SDK for the Fast public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
   "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "openf1-car-data"],
