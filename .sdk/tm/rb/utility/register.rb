@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 Openf1CarDataUtility.registrar = ->(u) {
   u.clean = Openf1CarDataUtilities::Clean
+  u.clean_add = Openf1CarDataUtilities::CleanAdd
+  u.clean_explain = Openf1CarDataUtilities::CleanExplain
   u.done = Openf1CarDataUtilities::Done
   u.make_error = Openf1CarDataUtilities::MakeError
   u.feature_add = Openf1CarDataUtilities::FeatureAdd

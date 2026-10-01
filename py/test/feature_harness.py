@@ -20,6 +20,7 @@ from openf1cardata_sdk.core.control import Openf1CarDataControl
 from openf1cardata_sdk.core.error import Openf1CarDataError
 from openf1cardata_sdk.core.result import Openf1CarDataResult
 from openf1cardata_sdk.core.spec import Openf1CarDataSpec
+from openf1cardata_sdk.utility.clean import clean_util, clean_add_util
 
 
 # True when this SDK was generated with the named feature.
@@ -115,6 +116,9 @@ def build_url(spec):
 class _Utility:
     def __init__(self, fetcher):
         self.fetcher = fetcher
+        # The real ones: every feature record leaves through clean.
+        self.clean = clean_util
+        self.clean_add = clean_add_util
 
         def param(ctx, name):
             params = ctx.spec.params if ctx.spec is not None else {}

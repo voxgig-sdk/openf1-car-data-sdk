@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/openf1-car-data-sdk/releases](https://github.com/voxgig-sdk/openf1-car-data-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/openf1-car-data-sdk
+composer config repositories.openf1-car-data-sdk path ./openf1-car-data-sdk/php
+composer require voxgig-sdk/openf1-car-data-sdk:@dev
+```
 
 
 ## Tutorial: your first API call

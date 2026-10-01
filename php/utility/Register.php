@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 Openf1CarDataUtility::setRegistrar(function (Openf1CarDataUtility $u): void {
     $u->clean = [Openf1CarDataClean::class, 'call'];
+    $u->clean_add = [Openf1CarDataClean::class, 'add'];
+    $u->clean_explain = [Openf1CarDataDone::class, 'clean_explain'];
     $u->done = [Openf1CarDataDone::class, 'call'];
     $u->make_error = [Openf1CarDataMakeError::class, 'call'];
     $u->feature_add = [Openf1CarDataFeatureAdd::class, 'call'];
