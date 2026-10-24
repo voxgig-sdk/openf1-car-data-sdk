@@ -2,19 +2,44 @@
   "existing": {
     "token": {
       "TOKEN00": {
+        "client_id": "CLIENT01",
+        "client_secret": "s3d",
+        "grant_type": "s3e",
+        "password": "s3f",
+        "scope": "s40",
+        "username": "s41",
         "id": "TOKEN00"
       },
       "TOKEN01": {
+        "client_id": "CLIENT01",
+        "client_secret": "s79",
+        "grant_type": "s7a",
+        "password": "s7b",
+        "scope": "s7c",
+        "username": "s7d",
         "id": "TOKEN01"
       },
       "TOKEN02": {
+        "client_id": "CLIENT01",
+        "client_secret": "sb5",
+        "grant_type": "sb6",
+        "password": "sb7",
+        "scope": "sb8",
+        "username": "sb9",
         "id": "TOKEN02"
       }
     }
   },
   "new": {
     "token": {
-      "token_ref01": {}
+      "token_ref01": {
+        "client_id": "CLIENT01",
+        "client_secret": "sf1",
+        "grant_type": "sf2",
+        "password": "sf3",
+        "scope": "sf4",
+        "username": "sf5"
+      }
     }
   },
   "requests": {

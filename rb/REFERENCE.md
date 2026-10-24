@@ -117,7 +117,7 @@ create_checkout_session = client.CreateCheckoutSession
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.CreateCheckoutSession.create({
@@ -170,7 +170,7 @@ endpoint_path_post = client.EndpointPathPost
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.EndpointPathPost.create({
@@ -180,7 +180,7 @@ result = client.EndpointPathPost.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.EndpointPathPost.load({ "id" => "endpoint_path_post_id" })
@@ -226,7 +226,7 @@ race_lap = client.RaceLap
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.RaceLap.create({
@@ -235,7 +235,7 @@ result = client.RaceLap.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.RaceLap.load()
@@ -281,7 +281,7 @@ subscription_cancel = client.SubscriptionCancel
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.SubscriptionCancel.load()
@@ -327,7 +327,7 @@ subscription_success = client.SubscriptionSuccess
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.SubscriptionSuccess.load()
@@ -369,16 +369,31 @@ Return the entity name.
 token = client.Token
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `client_id` | `String` | No |  |
+| `client_secret` | `Object` | No |  |
+| `grant_type` | `Object` | No |  |
+| `password` | `String` | Yes |  |
+| `scope` | `String` | No |  |
+| `username` | `String` | Yes |  |
+
 ### Operations
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Token.create({
+  "password" => "example_password", # String
+  "username" => "example_username", # String
 })
 ```
+
+Declares a `application/x-www-form-urlencoded` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -420,7 +435,7 @@ webhook = client.Webhook
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Webhook.create({
@@ -614,6 +629,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

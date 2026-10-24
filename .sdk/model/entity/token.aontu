@@ -4,6 +4,47 @@ main: kit: entity: token: {
 
   alias: field: {}
 
+  fields: {
+    client_id: {
+      h: "Client Id"
+      n: "client_id"
+      r: false
+      t: "`$STRING`"
+    }
+    client_secret: {
+      fo: "password"
+      h: "Client Secret"
+      n: "client_secret"
+      r: false
+      t: "`$ANY`"
+    }
+    grant_type: {
+      h: "Grant Type"
+      n: "grant_type"
+      r: false
+      t: "`$ANY`"
+    }
+    password: {
+      fo: "password"
+      h: "Password"
+      n: "password"
+      r: true
+      t: "`$STRING`"
+    }
+    scope: {
+      h: "Scope"
+      n: "scope"
+      r: false
+      t: "`$STRING`"
+    }
+    username: {
+      h: "Username"
+      n: "username"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
   name: "token"
   op: {
     create: {
@@ -17,6 +58,34 @@ main: kit: entity: token: {
           }
           m: "POST"
           o: "/token"
+          rb: {
+            fields: [
+              {
+                name: "client_id"
+              }
+              {
+                name: "client_secret"
+              }
+              {
+                name: "grant_type"
+              }
+              {
+                name: "password"
+              }
+              {
+                name: "scope"
+              }
+              {
+                name: "username"
+              }
+            ]
+            kind: "form"
+            media: "application/x-www-form-urlencoded"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "token"
@@ -29,9 +98,6 @@ main: kit: entity: token: {
         }
       ]
     }
-  }
-
-  fields: {
   }
 
 

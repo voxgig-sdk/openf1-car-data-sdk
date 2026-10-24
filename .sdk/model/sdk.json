@@ -116,6 +116,10 @@
                   "o": "/stripe/create-checkout-session",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "stripe"
@@ -192,6 +196,10 @@
                       "path": "id"
                     }
                   },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "var": "id"
@@ -240,6 +248,10 @@
                       "path": "id"
                     }
                   },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "var": "id"
@@ -282,6 +294,10 @@
                   "o": "/race_lap",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "race_lap"
@@ -311,6 +327,10 @@
                   "o": "/race_lap",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "race_lap"
@@ -353,6 +373,10 @@
                   "o": "/subscription_cancel",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "subscription_cancel"
@@ -395,6 +419,10 @@
                   "o": "/subscription_success",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "subscription_success"
@@ -417,7 +445,52 @@
           "alias": {
             "field": {}
           },
-          "fields": {},
+          "fields": {
+            "client_id": {
+              "a": true,
+              "h": "Client Id",
+              "n": "client_id",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "client_secret": {
+              "a": true,
+              "fo": "password",
+              "h": "Client Secret",
+              "n": "client_secret",
+              "r": false,
+              "t": "`$ANY`"
+            },
+            "grant_type": {
+              "a": true,
+              "h": "Grant Type",
+              "n": "grant_type",
+              "r": false,
+              "t": "`$ANY`"
+            },
+            "password": {
+              "a": true,
+              "fo": "password",
+              "h": "Password",
+              "n": "password",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "scope": {
+              "a": true,
+              "h": "Scope",
+              "n": "scope",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "username": {
+              "a": true,
+              "h": "Username",
+              "n": "username",
+              "r": true,
+              "t": "`$STRING`"
+            }
+          },
           "name": "token",
           "op": {
             "create": {
@@ -437,6 +510,34 @@
                   "o": "/token",
                   "q": {},
                   "r": {},
+                  "rb": {
+                    "fields": [
+                      {
+                        "name": "client_id"
+                      },
+                      {
+                        "name": "client_secret"
+                      },
+                      {
+                        "name": "grant_type"
+                      },
+                      {
+                        "name": "password"
+                      },
+                      {
+                        "name": "scope"
+                      },
+                      {
+                        "name": "username"
+                      }
+                    ],
+                    "kind": "form",
+                    "media": "application/x-www-form-urlencoded"
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "token"
@@ -479,6 +580,10 @@
                   "o": "/stripe/webhook",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "stripe"
@@ -822,6 +927,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1138,7 +1244,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1191,6 +1297,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1421,7 +1532,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -1798,6 +1912,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

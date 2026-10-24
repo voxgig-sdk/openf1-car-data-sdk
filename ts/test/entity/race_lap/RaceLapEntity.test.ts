@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { Openf1CarDataSDK, BaseFeature, stdutil } from '../../..'
+import { Openf1CarDataSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,8 @@ describe('RaceLapEntity', async () => {
   })
 
 
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.OPENF1_CAR_DATA_TEST_LIVE
@@ -51,7 +53,7 @@ describe('RaceLapEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"race_lap","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /race_lap","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/race_lap","q":{},"r":{},"s":[{"lit":"race_lap"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /race_lap","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/race_lap","q":{},"r":{},"s":[{"lit":"race_lap"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"race_lap","name__orig":"race_lap","Name":"RaceLap","name_":"race_lap","name-":"race-lap","NAME":"RACE_LAP","index$":2}, {"active":true,"entity":"race_lap","key$":"BasicRaceLapFlow","kind":"basic","name":"BasicRaceLapFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"race_lap_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0},{"a":true,"d":{},"i":{"ref":"race_lap_ref01","srcdatavar":"race_lap_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-race_lap_ref01"}}],"index$":1}]}, 'RaceLap', {"POST /race_lap":{"protocol":"http","parameters":[]},"GET /race_lap":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"race_lap","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /race_lap","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/race_lap","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"race_lap"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /race_lap","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/race_lap","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"race_lap"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"race_lap","name__orig":"race_lap","Name":"RaceLap","name_":"race_lap","name-":"race-lap","NAME":"RACE_LAP","index$":2}, {"active":true,"entity":"race_lap","key$":"BasicRaceLapFlow","kind":"basic","name":"BasicRaceLapFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"race_lap_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0},{"a":true,"d":{},"i":{"ref":"race_lap_ref01","srcdatavar":"race_lap_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-race_lap_ref01"}}],"index$":1}]}, 'RaceLap', {"POST /race_lap":{"protocol":"http","parameters":[]},"GET /race_lap":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -78,6 +80,12 @@ describe('RaceLapEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

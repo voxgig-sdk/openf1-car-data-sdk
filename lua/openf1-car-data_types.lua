@@ -34,8 +34,20 @@
 ---@class SubscriptionSuccessLoadMatch
 
 ---@class Token
+---@field client_id? string
+---@field client_secret? any
+---@field grant_type? any
+---@field password string
+---@field scope? string
+---@field username string
 
 ---@class TokenCreateData
+---@field client_id? string
+---@field client_secret? any
+---@field grant_type? any
+---@field password string
+---@field scope? string
+---@field username string
 
 ---@class Webhook
 

@@ -54,33 +54,42 @@ const utility_1 = require("../../utility");
         const ent = testsdk.EndpointPathPost();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.Openf1CarDataSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.EndpointPathPost().load({ "id": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.OPENF1_CAR_DATA_TEST_LIVE;
-        for (const op of ['create', 'load']) {
+        for (const op of ['load']) {
             if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'endpoint_path_post.' + op, live))
                 return;
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 } }, "id": { "field": "id", "name": "id" }, "name": "endpoint_path_post", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /{path}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "path", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "POST", "o": "/{path}", "q": { "exist": ["id"] }, "r": { "param": { "path": "id" } }, "s": [{ "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /{path}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "path", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/{path}", "q": { "exist": ["id"] }, "r": { "param": { "path": "id" } }, "s": [{ "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "endpoint_path_post", "name__orig": "endpoint_path_post", "Name": "EndpointPathPost", "name_": "endpoint_path_post", "name-": "endpoint-path-post", "NAME": "ENDPOINT_PATH_POST", "index$": 1 }, { "active": true, "entity": "endpoint_path_post", "key$": "BasicEndpointPathPostFlow", "kind": "basic", "name": "BasicEndpointPathPostFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "endpoint_path_post_ref01" }, "m": { "path": "path01" }, "o": "create", "s": [], "v": [], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "endpoint_path_post_ref01", "srcdatavar": "endpoint_path_post_ref01_data", "suffix": "_dt0" }, "m": { "id": "endpoint_path_post01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-endpoint_path_post_ref01" } }], "index$": 1 }] }, 'EndpointPathPost', { "POST /{path}": { "protocol": "http", "parameters": [{ "name": "path", "in": "path", "required": true, "schema": { "type": "string", "title": "Path" }, "index$": 0 }] }, "GET /{path}": { "protocol": "http", "parameters": [{ "name": "path", "in": "path", "required": true, "schema": { "type": "string", "title": "Path" }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 } }, "id": { "field": "id", "name": "id" }, "name": "endpoint_path_post", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /{path}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "path", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "POST", "o": "/{path}", "q": { "exist": ["id"] }, "r": { "param": { "path": "id" } }, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /{path}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "path", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/{path}", "q": { "exist": ["id"] }, "r": { "param": { "path": "id" } }, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "endpoint_path_post", "name__orig": "endpoint_path_post", "Name": "EndpointPathPost", "name_": "endpoint_path_post", "name-": "endpoint-path-post", "NAME": "ENDPOINT_PATH_POST", "index$": 1 }, { "active": true, "entity": "endpoint_path_post", "key$": "BasicEndpointPathPostFlow", "kind": "basic", "name": "BasicEndpointPathPostFlow", "param": {}, "step": [{ "a": false, "d": {}, "i": { "ref": "endpoint_path_post_ref01" }, "m": { "path": "path01" }, "o": "create", "s": [], "v": [], "unreachable": true }, { "a": true, "d": {}, "i": { "ref": "endpoint_path_post_ref01", "srcdatavar": "endpoint_path_post_ref01_data", "suffix": "_dt0" }, "m": { "id": "endpoint_path_post01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-endpoint_path_post_ref01" } }], "index$": 0 }] }, 'EndpointPathPost', { "POST /{path}": { "protocol": "http", "parameters": [{ "name": "path", "in": "path", "required": true, "schema": { "type": "string", "title": "Path" }, "index$": 0 }] }, "GET /{path}": { "protocol": "http", "parameters": [{ "name": "path", "in": "path", "required": true, "schema": { "type": "string", "title": "Path" }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
         const isempty = struct.isempty;
         const select = struct.select;
-        // CREATE
-        const endpoint_path_post_ref01_ent = client.EndpointPathPost();
-        let endpoint_path_post_ref01_data = setup.data.new.endpoint_path_post['endpoint_path_post_ref01'];
-        endpoint_path_post_ref01_data['path'] = setup.idmap['path01'];
-        endpoint_path_post_ref01_data = (await endpoint_path_post_ref01_ent.create(endpoint_path_post_ref01_data)).data();
-        (0, node_assert_1.default)(null != endpoint_path_post_ref01_data.id);
+        let endpoint_path_post_ref01_data = Object.values(setup.data.existing.endpoint_path_post)[0];
         // LOAD
+        const endpoint_path_post_ref01_ent = client.EndpointPathPost();
         const endpoint_path_post_ref01_match_dt0 = {};
         endpoint_path_post_ref01_match_dt0.id = endpoint_path_post_ref01_data.id;
         const endpoint_path_post_ref01_data_dt0 = (await endpoint_path_post_ref01_ent.load(endpoint_path_post_ref01_match_dt0)).data();
         (0, node_assert_1.default)(endpoint_path_post_ref01_data_dt0.id === endpoint_path_post_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null
@@ -95,7 +104,7 @@ function basicSetup(extra) {
     const struct = client.utility().struct;
     const merge = struct.merge;
     const transform = struct.transform;
-    let idmap = transform(['endpoint_path_post01', 'endpoint_path_post02', 'endpoint_path_post03', 'path01'], {
+    let idmap = transform(['endpoint_path_post01', 'endpoint_path_post02', 'endpoint_path_post03'], {
         '`$PACK`': ['', {
                 '`$KEY`': '`$COPY`',
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']

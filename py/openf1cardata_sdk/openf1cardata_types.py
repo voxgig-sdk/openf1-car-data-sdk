@@ -64,12 +64,28 @@ class SubscriptionSuccessLoadMatch(TypedDict):
     pass
 
 
-class Token(TypedDict):
-    pass
+class TokenRequired(TypedDict):
+    password: str
+    username: str
 
 
-class TokenCreateData(TypedDict):
-    pass
+class Token(TokenRequired, total=False):
+    client_id: str
+    client_secret: Any
+    grant_type: Any
+    scope: str
+
+
+class TokenCreateDataRequired(TypedDict):
+    password: str
+    username: str
+
+
+class TokenCreateData(TokenCreateDataRequired, total=False):
+    client_id: str
+    client_secret: Any
+    grant_type: Any
+    scope: str
 
 
 class Webhook(TypedDict):

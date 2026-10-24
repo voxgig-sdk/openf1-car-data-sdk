@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { Openf1CarDataSDK, BaseFeature, stdutil } from '../../..'
+import { Openf1CarDataSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,8 @@ describe('CreateCheckoutSessionEntity', async () => {
   })
 
 
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.OPENF1_CAR_DATA_TEST_LIVE
@@ -51,7 +53,7 @@ describe('CreateCheckoutSessionEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"create_checkout_session","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /stripe/create-checkout-session","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/stripe/create-checkout-session","q":{},"r":{},"s":[{"lit":"stripe"},{"lit":"create-checkout-session"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"create_checkout_session","name__orig":"create_checkout_session","Name":"CreateCheckoutSession","name_":"create_checkout_session","name-":"create-checkout-session","NAME":"CREATE_CHECKOUT_SESSION","index$":0}, {"active":true,"entity":"create_checkout_session","key$":"BasicCreateCheckoutSessionFlow","kind":"basic","name":"BasicCreateCheckoutSessionFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"create_checkout_session_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'CreateCheckoutSession', {"POST /stripe/create-checkout-session":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"create_checkout_session","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /stripe/create-checkout-session","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/stripe/create-checkout-session","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"stripe"},{"lit":"create-checkout-session"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"create_checkout_session","name__orig":"create_checkout_session","Name":"CreateCheckoutSession","name_":"create_checkout_session","name-":"create-checkout-session","NAME":"CREATE_CHECKOUT_SESSION","index$":0}, {"active":true,"entity":"create_checkout_session","key$":"BasicCreateCheckoutSessionFlow","kind":"basic","name":"BasicCreateCheckoutSessionFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"create_checkout_session_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'CreateCheckoutSession', {"POST /stripe/create-checkout-session":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +74,12 @@ describe('CreateCheckoutSessionEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

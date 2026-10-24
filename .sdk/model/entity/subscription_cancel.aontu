@@ -17,6 +17,10 @@ main: kit: entity: subscription_cancel: {
           }
           m: "GET"
           o: "/subscription_cancel"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "subscription_cancel"

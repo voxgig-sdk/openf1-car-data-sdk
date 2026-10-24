@@ -116,7 +116,7 @@ $create_checkout_session = $client->CreateCheckoutSession();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->CreateCheckoutSession()->create([
@@ -169,7 +169,7 @@ $endpoint_path_post = $client->EndpointPathPost();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->EndpointPathPost()->create([
@@ -179,7 +179,7 @@ $result = $client->EndpointPathPost()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->EndpointPathPost()->load(["id" => "endpoint_path_post_id"]);
@@ -225,7 +225,7 @@ $race_lap = $client->RaceLap();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->RaceLap()->create([
@@ -234,7 +234,7 @@ $result = $client->RaceLap()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->RaceLap()->load();
@@ -280,7 +280,7 @@ $subscription_cancel = $client->SubscriptionCancel();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->SubscriptionCancel()->load();
@@ -326,7 +326,7 @@ $subscription_success = $client->SubscriptionSuccess();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->SubscriptionSuccess()->load();
@@ -368,16 +368,31 @@ Return the entity name.
 $token = $client->Token();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `client_id` | `string` | No |  |
+| `client_secret` | `mixed` | No |  |
+| `grant_type` | `mixed` | No |  |
+| `password` | `string` | Yes |  |
+| `scope` | `string` | No |  |
+| `username` | `string` | Yes |  |
+
 ### Operations
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->Token()->create([
+  "password" => null, // string
+  "username" => null, // string
 ]);
 ```
+
+Declares a `application/x-www-form-urlencoded` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -419,7 +434,7 @@ $webhook = $client->Webhook();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->Webhook()->create([
@@ -613,6 +628,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

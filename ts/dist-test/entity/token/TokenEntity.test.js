@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Token();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.Openf1CarDataSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Token().create({ "client_id": 1, "password": "x", "username": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.OPENF1_CAR_DATA_TEST_LIVE;
         for (const op of ['create']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "token", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /token", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/token", "q": {}, "r": {}, "s": [{ "lit": "token" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "token", "name__orig": "token", "Name": "Token", "name_": "token", "name-": "token", "NAME": "TOKEN", "index$": 5 }, { "active": true, "entity": "token", "key$": "BasicTokenFlow", "kind": "basic", "name": "BasicTokenFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "token_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Token', { "POST /token": { "protocol": "http", "requestBody": { "content": { "application/x-www-form-urlencoded": { "schema": { "properties": { "grant_type": { "anyOf": [{ "type": "string", "pattern": "^password$" }, { "type": "null" }], "title": "Grant Type" }, "username": { "type": "string", "title": "Username" }, "password": { "type": "string", "format": "password", "title": "Password" }, "scope": { "type": "string", "title": "Scope", "default": "" }, "client_id": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Client Id" }, "client_secret": { "anyOf": [{ "type": "string" }, { "type": "null" }], "format": "password", "title": "Client Secret" } }, "type": "object", "required": ["username", "password"], "title": "Body_login_for_access_token_token_post", "x-ref": "#/components/schemas/Body_login_for_access_token_token_post" } } }, "required": true }, "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "client_id": { "a": true, "h": "Client Id", "n": "client_id", "r": false, "t": "`$STRING`", "key$": "client_id", "index$": 0 }, "client_secret": { "a": true, "fo": "password", "h": "Client Secret", "n": "client_secret", "r": false, "t": "`$ANY`", "key$": "client_secret", "index$": 1 }, "grant_type": { "a": true, "h": "Grant Type", "n": "grant_type", "r": false, "t": "`$ANY`", "key$": "grant_type", "index$": 2 }, "password": { "a": true, "fo": "password", "h": "Password", "n": "password", "r": true, "t": "`$STRING`", "key$": "password", "index$": 3 }, "scope": { "a": true, "h": "Scope", "n": "scope", "r": false, "t": "`$STRING`", "key$": "scope", "index$": 4 }, "username": { "a": true, "h": "Username", "n": "username", "r": true, "t": "`$STRING`", "key$": "username", "index$": 5 } }, "name": "token", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /token", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/token", "q": {}, "r": {}, "rb": { "fields": [{ "name": "client_id" }, { "name": "client_secret" }, { "name": "grant_type" }, { "name": "password" }, { "name": "scope" }, { "name": "username" }], "kind": "form", "media": "application/x-www-form-urlencoded" }, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "token" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "token", "name__orig": "token", "Name": "Token", "name_": "token", "name-": "token", "NAME": "TOKEN", "index$": 5 }, { "active": true, "entity": "token", "key$": "BasicTokenFlow", "kind": "basic", "name": "BasicTokenFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "token_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Token', { "POST /token": { "protocol": "http", "requestBody": { "content": { "application/x-www-form-urlencoded": { "schema": { "properties": { "grant_type": { "anyOf": [{ "type": "string", "pattern": "^password$" }, { "type": "null" }], "title": "Grant Type", "key$": "grant_type" }, "username": { "type": "string", "title": "Username", "key$": "username" }, "password": { "type": "string", "format": "password", "title": "Password", "key$": "password" }, "scope": { "type": "string", "title": "Scope", "default": "", "key$": "scope" }, "client_id": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Client Id", "key$": "client_id" }, "client_secret": { "anyOf": [{ "type": "string" }, { "type": "null" }], "format": "password", "title": "Client Secret", "key$": "client_secret" } }, "type": "object", "required": ["username", "password"], "title": "Body_login_for_access_token_token_post", "x-ref": "#/components/schemas/Body_login_for_access_token_token_post", "index$": 1 } } }, "required": true }, "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +83,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != token_ref01_data);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

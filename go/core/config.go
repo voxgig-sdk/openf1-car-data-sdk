@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -124,6 +125,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -187,6 +192,10 @@ func MakeConfig() map[string]any {
 										"id",
 									},
 								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -231,6 +240,10 @@ func MakeConfig() map[string]any {
 										"id",
 									},
 								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -266,6 +279,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -292,6 +309,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -327,6 +348,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -362,6 +387,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -371,7 +400,42 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"token": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "client_id",
+						"title": "Client Id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "client_secret",
+						"title": "Client Secret",
+						"type": "`$ANY`",
+						"format": "password",
+					},
+					map[string]any{
+						"name": "grant_type",
+						"title": "Grant Type",
+						"type": "`$ANY`",
+					},
+					map[string]any{
+						"name": "password",
+						"title": "Password",
+						"type": "`$STRING`",
+						"req": true,
+						"format": "password",
+					},
+					map[string]any{
+						"name": "scope",
+						"title": "Scope",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "username",
+						"title": "Username",
+						"type": "`$STRING`",
+						"req": true,
+					},
+				},
 				"name": "token",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -397,6 +461,34 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"body": map[string]any{
+									"fields": []any{
+										map[string]any{
+											"name": "client_id",
+										},
+										map[string]any{
+											"name": "client_secret",
+										},
+										map[string]any{
+											"name": "grant_type",
+										},
+										map[string]any{
+											"name": "password",
+										},
+										map[string]any{
+											"name": "scope",
+										},
+										map[string]any{
+											"name": "username",
+										},
+									},
+									"kind": "form",
+									"media": "application/x-www-form-urlencoded",
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -436,6 +528,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},

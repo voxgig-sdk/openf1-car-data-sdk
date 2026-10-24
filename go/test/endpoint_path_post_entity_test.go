@@ -15,6 +15,13 @@ import (
 	vs "github.com/voxgig-sdk/openf1-car-data-sdk/go/utility/struct"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const endpoint_path_postEntityLiveStrict = true
+
+
 func TestEndpointPathPostEntity(t *testing.T) {
 	t.Run("instance", func(t *testing.T) {
 		testsdk := sdk.TestSDK(nil, nil)
@@ -24,7 +31,21 @@ func TestEndpointPathPostEntity(t *testing.T) {
 		}
 	})
 
-	t.Run("basic", func(t *testing.T) {
+	t.Run("validate", func(t *testing.T) {
+		if !fhHasFeature("validate") {
+			t.Skip("feature not present in this SDK: validate")
+		}
+		client := sdk.TestSDK(nil, map[string]any{
+			"feature": map[string]any{"validate": map[string]any{"active": true}},
+		})
+		_, err := client.EndpointPathPost(nil).Load(map[string]any{"id": 1}, nil)
+		if sdkerr, ok := err.(*core.Openf1CarDataError); !ok || "validate_failed" != sdkerr.Code {
+			t.Fatalf("expected validate_failed, got %v", err)
+		}
+	})
+
+	t.Run("basic", func(tt *testing.T) {
+		var t testing.TB = tt
 		setup := endpoint_path_postBasicSetup(nil)
 		// Per-op sdk-test-control.json skip — basic test exercises a flow
 		// with multiple ops; skipping any op skips the whole flow.
@@ -32,7 +53,7 @@ func TestEndpointPathPostEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "load"} {
+		for _, _op := range []string{"load"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "endpoint_path_post." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -41,33 +62,24 @@ func TestEndpointPathPostEntity(t *testing.T) {
 				return
 			}
 		}
-		// The basic flow consumes synthetic IDs from the fixture. In live mode
-		// without an *_ENTID env override, those IDs hit the live API and 4xx.
-		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID JSON to run live")
-			return
+		if setup.live {
+			liveMiss(t, endpoint_path_postEntityLiveStrict, "Live entity test blocked: %s", "the flow loads a endpoint_path_post record it has no list to find")
 		}
 		client := setup.client
+		_ = client
 
-		// CREATE
-		endpointPathPostRef01Ent := client.EndpointPathPost(nil)
-		endpointPathPostRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath(setup.data, []any{"new", "endpoint_path_post"}), "endpoint_path_post_ref01"))
-		endpointPathPostRef01Data["path"] = setup.idmap["path01"]
-
-		endpointPathPostRef01DataResult, err := endpointPathPostRef01Ent.Create(endpointPathPostRef01Data, nil)
-		if err != nil {
-			t.Fatalf("create failed: %v", err)
+		// Bootstrap entity data from existing test data (no create step in flow).
+		endpointPathPostRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.endpoint_path_post")))
+		var endpointPathPostRef01Data map[string]any
+		if len(endpointPathPostRef01DataRaw) > 0 {
+			endpointPathPostRef01Data = core.ToMapAny(endpointPathPostRef01DataRaw[0][1])
 		}
-		endpointPathPostRef01Data = core.ToMapAny(entityData(endpointPathPostRef01DataResult))
-		if endpointPathPostRef01Data == nil {
-			t.Fatal("expected create result to be a map")
-		}
-		if endpointPathPostRef01Data["id"] == nil {
-			t.Fatal("expected created entity to have an id")
-		}
+		// Discard guards against Go's unused-var check when the flow's steps
+		// happen not to consume the bootstrap data (e.g. list-only flows).
+		_ = endpointPathPostRef01Data
 
 		// LOAD
+		endpointPathPostRef01Ent := client.EndpointPathPost(nil)
 		endpointPathPostRef01MatchDt0 := map[string]any{
 			"id": endpointPathPostRef01Data["id"],
 		}
@@ -111,7 +123,7 @@ func endpoint_path_postBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"endpoint_path_post01", "endpoint_path_post02", "endpoint_path_post03", "path01"},
+		[]any{"endpoint_path_post01", "endpoint_path_post02", "endpoint_path_post03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",
@@ -120,9 +132,8 @@ func endpoint_path_postBasicSetup(extra map[string]any) *entityTestSetup {
 		},
 	)
 
-	// Detect ENTID env override before envOverride consumes it. When live
-	// mode is on without a real override, the basic test runs against synthetic
-	// IDs from the fixture and 4xx's. Surface this so the test can skip.
+	// Whether *_ENTID supplied the idmap, read before envOverride consumes it:
+	// without it, the ids a live flow binds are the fixture's synthetic ones.
 	entidEnvRaw := os.Getenv("OPENF1_CAR_DATA_TEST_ENDPOINT_PATH_POST_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 

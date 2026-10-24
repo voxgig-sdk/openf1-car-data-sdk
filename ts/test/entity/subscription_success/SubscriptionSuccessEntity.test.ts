@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { Openf1CarDataSDK, BaseFeature, stdutil } from '../../..'
+import { Openf1CarDataSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,8 @@ describe('SubscriptionSuccessEntity', async () => {
   })
 
 
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.OPENF1_CAR_DATA_TEST_LIVE
@@ -51,7 +53,7 @@ describe('SubscriptionSuccessEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"subscription_success","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /subscription_success","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/subscription_success","q":{},"r":{},"s":[{"lit":"subscription_success"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"subscription_success","name__orig":"subscription_success","Name":"SubscriptionSuccess","name_":"subscription_success","name-":"subscription-success","NAME":"SUBSCRIPTION_SUCCESS","index$":4}, {"active":true,"entity":"subscription_success","key$":"BasicSubscriptionSuccessFlow","kind":"basic","name":"BasicSubscriptionSuccessFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"subscription_success_ref01","srcdatavar":"subscription_success_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-subscription_success_ref01"}}],"index$":0}]}, 'SubscriptionSuccess', {"GET /subscription_success":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"subscription_success","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /subscription_success","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/subscription_success","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"subscription_success"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"subscription_success","name__orig":"subscription_success","Name":"SubscriptionSuccess","name_":"subscription_success","name-":"subscription-success","NAME":"SUBSCRIPTION_SUCCESS","index$":4}, {"active":true,"entity":"subscription_success","key$":"BasicSubscriptionSuccessFlow","kind":"basic","name":"BasicSubscriptionSuccessFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"subscription_success_ref01","srcdatavar":"subscription_success_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-subscription_success_ref01"}}],"index$":0}]}, 'SubscriptionSuccess', {"GET /subscription_success":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +74,12 @@ describe('SubscriptionSuccessEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

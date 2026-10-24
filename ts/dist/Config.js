@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -139,7 +140,11 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 }
@@ -202,6 +207,10 @@ class Config {
                                 "exist": [
                                     "id"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -246,6 +255,10 @@ class Config {
                                 "exist": [
                                     "id"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -281,7 +294,11 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 },
@@ -307,7 +324,11 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 }
@@ -342,7 +363,11 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 }
@@ -377,7 +402,11 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 }
@@ -387,7 +416,42 @@ class Config {
             }
         },
         "token": {
-            "fields": [],
+            "fields": [
+                {
+                    "name": "client_id",
+                    "title": "Client Id",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "client_secret",
+                    "title": "Client Secret",
+                    "type": "`$ANY`",
+                    "format": "password"
+                },
+                {
+                    "name": "grant_type",
+                    "title": "Grant Type",
+                    "type": "`$ANY`"
+                },
+                {
+                    "name": "password",
+                    "title": "Password",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "format": "password"
+                },
+                {
+                    "name": "scope",
+                    "title": "Scope",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "username",
+                    "title": "Username",
+                    "type": "`$STRING`",
+                    "req": true
+                }
+            ],
             "name": "token",
             "op": {
                 "create": {
@@ -412,7 +476,35 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "body": {
+                                "fields": [
+                                    {
+                                        "name": "client_id"
+                                    },
+                                    {
+                                        "name": "client_secret"
+                                    },
+                                    {
+                                        "name": "grant_type"
+                                    },
+                                    {
+                                        "name": "password"
+                                    },
+                                    {
+                                        "name": "scope"
+                                    },
+                                    {
+                                        "name": "username"
+                                    }
+                                ],
+                                "kind": "form",
+                                "media": "application/x-www-form-urlencoded"
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 }
@@ -451,7 +543,11 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 }

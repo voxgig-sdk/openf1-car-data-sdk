@@ -68,6 +68,12 @@ type Token struct {
 
 // TokenCreateData is the typed request payload for Token.CreateTyped.
 type TokenCreateData struct {
+	ClientId *string `json:"client_id,omitempty"`
+	ClientSecret *any `json:"client_secret,omitempty"`
+	GrantType *any `json:"grant_type,omitempty"`
+	Password string `json:"password"`
+	Scope *string `json:"scope,omitempty"`
+	Username string `json:"username"`
 }
 
 // Webhook is the typed data model for the webhook entity.

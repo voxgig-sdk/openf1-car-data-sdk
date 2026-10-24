@@ -17,6 +17,10 @@ main: kit: entity: subscription_success: {
           }
           m: "GET"
           o: "/subscription_success"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "subscription_success"

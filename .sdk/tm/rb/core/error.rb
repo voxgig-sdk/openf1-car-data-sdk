@@ -28,6 +28,11 @@ class Openf1CarDataError < StandardError
     @msg
   end
 
+  # `err.not_found?` rather than a magic number at every call site.
+  def not_found?
+    404 == @status
+  end
+
   def to_s
     @msg
   end

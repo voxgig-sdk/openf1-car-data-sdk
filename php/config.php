@@ -93,6 +93,7 @@ class Openf1CarDataConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -146,6 +147,10 @@ class Openf1CarDataConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -209,6 +214,10 @@ class Openf1CarDataConfig
                       'id',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -253,6 +262,10 @@ class Openf1CarDataConfig
                       'id',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -288,6 +301,10 @@ class Openf1CarDataConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -314,6 +331,10 @@ class Openf1CarDataConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -349,6 +370,10 @@ class Openf1CarDataConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -384,6 +409,10 @@ class Openf1CarDataConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -393,7 +422,42 @@ class Openf1CarDataConfig
           ],
         ],
         'token' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'client_id',
+              'title' => 'Client Id',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'client_secret',
+              'title' => 'Client Secret',
+              'type' => '`$ANY`',
+              'format' => 'password',
+            ],
+            [
+              'name' => 'grant_type',
+              'title' => 'Grant Type',
+              'type' => '`$ANY`',
+            ],
+            [
+              'name' => 'password',
+              'title' => 'Password',
+              'type' => '`$STRING`',
+              'req' => true,
+              'format' => 'password',
+            ],
+            [
+              'name' => 'scope',
+              'title' => 'Scope',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'username',
+              'title' => 'Username',
+              'type' => '`$STRING`',
+              'req' => true,
+            ],
+          ],
           'name' => 'token',
           'op' => [
             'create' => [
@@ -419,6 +483,34 @@ class Openf1CarDataConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'body' => [
+                    'fields' => [
+                      [
+                        'name' => 'client_id',
+                      ],
+                      [
+                        'name' => 'client_secret',
+                      ],
+                      [
+                        'name' => 'grant_type',
+                      ],
+                      [
+                        'name' => 'password',
+                      ],
+                      [
+                        'name' => 'scope',
+                      ],
+                      [
+                        'name' => 'username',
+                      ],
+                    ],
+                    'kind' => 'form',
+                    'media' => 'application/x-www-form-urlencoded',
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -458,6 +550,10 @@ class Openf1CarDataConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],

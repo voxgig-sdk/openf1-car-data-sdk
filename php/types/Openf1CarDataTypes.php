@@ -78,11 +78,23 @@ class SubscriptionSuccessLoadMatch
 /** Token entity data model. */
 class Token
 {
+    public ?string $client_id = null;
+    public mixed $client_secret = null;
+    public mixed $grant_type = null;
+    public string $password;
+    public ?string $scope = null;
+    public string $username;
 }
 
 /** Request payload for Token#create. */
 class TokenCreateData
 {
+    public ?string $client_id = null;
+    public mixed $client_secret = null;
+    public mixed $grant_type = null;
+    public string $password;
+    public ?string $scope = null;
+    public string $username;
 }
 
 /** Webhook entity data model. */

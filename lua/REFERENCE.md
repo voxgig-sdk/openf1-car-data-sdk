@@ -114,7 +114,7 @@ local create_checkout_session = client:CreateCheckoutSession(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:CreateCheckoutSession():create({
@@ -167,7 +167,7 @@ local endpoint_path_post = client:EndpointPathPost(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:EndpointPathPost():create({
@@ -177,7 +177,7 @@ local result, err = client:EndpointPathPost():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:EndpointPathPost():load({ id = "endpoint_path_post_id" })
@@ -223,7 +223,7 @@ local race_lap = client:RaceLap(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:RaceLap():create({
@@ -232,7 +232,7 @@ local result, err = client:RaceLap():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:RaceLap():load()
@@ -278,7 +278,7 @@ local subscription_cancel = client:SubscriptionCancel(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:SubscriptionCancel():load()
@@ -324,7 +324,7 @@ local subscription_success = client:SubscriptionSuccess(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:SubscriptionSuccess():load()
@@ -366,16 +366,31 @@ Return the entity name.
 local token = client:Token(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `client_id` | `string` | No |  |
+| `client_secret` | `any` | No |  |
+| `grant_type` | `any` | No |  |
+| `password` | `string` | Yes |  |
+| `scope` | `string` | No |  |
+| `username` | `string` | Yes |  |
+
 ### Operations
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Token():create({
+  password = --[[ string ]],
+  username = --[[ string ]],
 })
 ```
+
+Declares a `application/x-www-form-urlencoded` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -417,7 +432,7 @@ local webhook = client:Webhook(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Webhook():create({
@@ -611,6 +626,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

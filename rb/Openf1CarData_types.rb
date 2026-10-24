@@ -72,12 +72,62 @@ class SubscriptionSuccessLoadMatch
 end
 
 # Token entity data model.
-class Token
-end
+#
+# @!attribute [rw] client_id
+#   @return [String, nil]
+#
+# @!attribute [rw] client_secret
+#   @return [Object, nil]
+#
+# @!attribute [rw] grant_type
+#   @return [Object, nil]
+#
+# @!attribute [rw] password
+#   @return [String]
+#
+# @!attribute [rw] scope
+#   @return [String, nil]
+#
+# @!attribute [rw] username
+#   @return [String]
+Token = Struct.new(
+  :client_id,
+  :client_secret,
+  :grant_type,
+  :password,
+  :scope,
+  :username,
+  keyword_init: true
+)
 
 # Request payload for Token#create.
-class TokenCreateData
-end
+#
+# @!attribute [rw] client_id
+#   @return [String, nil]
+#
+# @!attribute [rw] client_secret
+#   @return [Object, nil]
+#
+# @!attribute [rw] grant_type
+#   @return [Object, nil]
+#
+# @!attribute [rw] password
+#   @return [String]
+#
+# @!attribute [rw] scope
+#   @return [String, nil]
+#
+# @!attribute [rw] username
+#   @return [String]
+TokenCreateData = Struct.new(
+  :client_id,
+  :client_secret,
+  :grant_type,
+  :password,
+  :scope,
+  :username,
+  keyword_init: true
+)
 
 # Webhook entity data model.
 class Webhook

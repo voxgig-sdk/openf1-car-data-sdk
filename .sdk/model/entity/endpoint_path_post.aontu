@@ -52,6 +52,10 @@ main: kit: entity: endpoint_path_post: {
               path: "id"
             }
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               var: "id"
@@ -95,6 +99,10 @@ main: kit: entity: endpoint_path_post: {
             param: {
               path: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

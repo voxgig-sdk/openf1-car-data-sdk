@@ -45,9 +45,21 @@ export interface SubscriptionSuccessLoadMatch {
 }
 
 export interface Token {
+  client_id?: string
+  client_secret?: any
+  grant_type?: any
+  password: string
+  scope?: string
+  username: string
 }
 
 export interface TokenCreateData {
+  client_id?: string
+  client_secret?: any
+  grant_type?: any
+  password: string
+  scope?: string
+  username: string
 }
 
 export interface Webhook {
